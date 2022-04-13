@@ -1,0 +1,803 @@
+islam, 102, 107, MISC
+Ministry of Education, 183, 204, ORG
+Stay, 288, 292, ORG
+Ministry of Education, 40, 61, ORG
+Ministry of Education, 175, 196, ORG
+Ong Ye Kung, 78, 89, PER
+Jamus, 123, 128, PER
+India, 206, 211, LOC
+India, 229, 234, LOC
+religion, 30, 38, MISC
+christianity, 111, 123, MISC
+islam, 125, 130, MISC
+hinduism, 132, 140, MISC
+religion, 189, 197, MISC
+Tanglin Police Division, 39, 62, LOC
+Paul Lim Choon Wui, 79, 97, PER
+Shangri-La Hotel, 159, 175, MISC
+Shang Palace, 260, 272, MISC
+Chinese, 276, 283, MISC
+Orchard Road, 322, 334, MISC
+Singaporean, 0, 11, MISC
+brother, 141, 148, PER
+LGBTQ, 103, 108, ORG
+Singapore, 119, 128, LOC
+Singapore, 344, 353, LOC
+Singaporeans, 610, 622, MISC
+the Singapore Government, 660, 684, ORG
+Singaporeans, 724, 736, MISC
+KSP, 120, 123, ORG
+Black Ops Cold War, 135, 153, MISC
+DUI, 676, 679, ORG
+Grand Theft Auto, 721, 737, MISC
+Call of Duty, 758, 770, ORG
+Grand Theft Auto, 994, 1010, MISC
+Call of Duty, 1027, 1039, ORG
+People's Action Party, 98, 119, ORG
+Ngl, 0, 3, PER
+singapore, 40, 49, LOC
+Christian, 66, 75, MISC
+Buddhist, 79, 87, MISC
+Ukrainian, 9, 18, MISC
+Russia, 11, 17, LOC
+China, 22, 27, LOC
+Singapore, 40, 49, LOC
+Ottawa Treaty, 68, 81, MISC
+France, 95, 101, LOC
+UK, 106, 108, LOC
+Indonesia, 136, 145, LOC
+Malaysia, 147, 155, LOC
+Kosovo, 241, 247, LOC
+Singapore, 268, 277, LOC
+Cluster Bomb, 355, 367, MISC
+Taliban Afghanistan, 378, 397, LOC
+China, 493, 498, LOC
+France, 500, 506, LOC
+India, 508, 513, LOC
+Malaysia, 515, 523, LOC
+Indonesia, 525, 534, LOC
+Singapore, 560, 569, LOC
+International, 615, 628, MISC
+International, 661, 674, MISC
+unclos, 744, 750, ORG
+ASEAN, 786, 791, ORG
+Mainly, 799, 805, ORG
+Phillppines, 806, 817, LOC
+Vietnam, 822, 829, LOC
+South China Sea, 845, 860, LOC
+China, 869, 874, LOC
+unclos, 897, 903, ORG
+Israel, 953, 959, LOC
+Peru, 961, 965, LOC
+Syria, 967, 972, LOC
+Turkey, 974, 980, LOC
+Venezuela, 982, 991, LOC
+Parliament, 423, 433, ORG
+Singapore, 1804, 1813, LOC
+Omicron, 1875, 1882, MISC
+INTERFET, 0, 8, ORG
+Singapore, 34, 43, LOC
+Indonesia, 138, 147, LOC
+Operation, 177, 186, ORG
+Israeli, 10, 17, MISC
+UK, 19, 21, LOC
+USA, 26, 29, LOC
+nicole seah, 95, 106, PER
+NZ, 226, 228, LOC
+NDP, 167, 170, ORG
+NSC, 45, 48, ORG
+TC, 66, 68, ORG
+NLB, 136, 139, ORG
+Sigma, 0, 5, MISC
+Greek, 55, 60, MISC
+Labour, 0, 6, ORG
+labour, 118, 124, ORG
+muh, 304, 307, ORG
+Russia, 46, 52, LOC
+South East Asia, 69, 84, LOC
+Indonesia, 108, 117, LOC
+Thailand, 150, 158, LOC
+Philppines, 160, 170, LOC
+Malaysia, 179, 187, LOC
+Singapore, 197, 206, LOC
+covid, 467, 472, ORG
+covid, 493, 498, ORG
+Asian, 252, 257, MISC
+Geforce Now, 105, 116, MISC
+Mandarin, 27, 35, MISC
+Reddit, 25, 31, ORG
+Singaporean, 197, 208, MISC
+Admins, 279, 285, ORG
+Ukraine, 0, 7, LOC
+NATO, 90, 94, ORG
+NATO, 188, 192, ORG
+Russia, 215, 221, LOC
+Ukraine, 241, 248, LOC
+NATO, 271, 275, ORG
+Russia, 280, 286, LOC
+NATO, 325, 329, ORG
+Russia, 334, 340, LOC
+Ukraine, 362, 369, LOC
+Ukraine, 401, 408, LOC
+NATO, 426, 430, ORG
+Ukraine, 493, 500, LOC
+African, 516, 523, MISC
+the Monroe Doctrine, 615, 634, MISC
+Western Hemisphere, 705, 723, LOC
+Cuba, 755, 759, LOC
+Cuba, 770, 774, LOC
+China, 798, 803, LOC
+the Korean war, 820, 834, MISC
+China, 979, 984, LOC
+Russia, 986, 992, LOC
+NATO, 997, 1001, ORG
+Singapore, 13, 22, LOC
+Russia, 72, 78, LOC
+Tuas, 219, 223, LOC
+Singapore, 28, 37, LOC
+Singapore Inc, 41, 54, LOC
+CBA, 85, 88, ORG
+'Nam, 121, 125, LOC
+Malaysia, 0, 8, LOC
+Philippines, 10, 21, LOC
+Singapore, 53, 62, LOC
+Malaysia, 113, 121, LOC
+Ukraine, 202, 209, LOC
+Taiwan, 221, 227, LOC
+find it, 767, 774, ORG
+sit, 975, 978, ORG
+Singapore, 986, 995, LOC
+Singapore, 1103, 1112, LOC
+Government, 163, 173, ORG
+China, 259, 264, LOC
+USA, 265, 268, LOC
+Singapore, 331, 340, LOC
+PES, 536, 539, ORG
+confirm, 937, 944, ORG
+Singaporean, 15, 26, MISC
+Singaporean, 78, 89, MISC
+FBI, 118, 121, ORG
+Singapore, 183, 192, LOC
+Malaysian, 268, 277, MISC
+Singapore, 287, 296, LOC
+Singaporean, 333, 344, MISC
+Russia, 385, 391, LOC
+SHN, 89, 92, LOC
+Singapore, 79, 88, LOC
+World War One, 43, 56, MISC
+World War Two, 61, 74, MISC
+World War Two, 113, 126, MISC
+malaysia, 296, 304, LOC
+Ukraine, 14, 21, LOC
+Brits, 71, 76, MISC
+World War Two, 124, 137, MISC
+Ty, 76, 78, PER
+frans, 131, 136, MISC
+377a, 44, 48, MISC
+People's Action Party, 84, 105, ORG
+WP, 125, 127, ORG
+377a, 158, 162, MISC
+People's Action Party, 0, 21, ORG
+sengkang, 71, 79, LOC
+WP, 98, 100, ORG
+Jamus, 115, 120, LOC
+Gan Eng Seng, 19, 31, LOC
+Bukit Merah, 105, 116, LOC
+tracetogether, 156, 169, MISC
+Mr Lawrence Wong, 701, 717, PER
+India, 776, 781, LOC
+IMH, 129, 132, ORG
+IMH, 296, 299, ORG
+IMH, 779, 782, ORG
+Lee Kuan Yew, 999, 1011, PER
+singapore, 108, 117, LOC
+find it, 310, 317, ORG
+MRT, 782, 785, MISC
+ATM, 103, 106, ORG
+Storytel, 17, 25, ORG
+grab, 373, 377, ORG
+Uber, 382, 386, ORG
+WWF, 454, 457, ORG
+WWF, 579, 582, ORG
+Russia, 21, 27, LOC
+Ukraine, 30, 37, LOC
+Russia, 39, 45, LOC
+Ukraine, 54, 61, LOC
+NATO, 73, 77, ORG
+Ukraine, 125, 132, LOC
+NATO, 140, 144, ORG
+NATO, 176, 180, ORG
+Russia, 236, 242, LOC
+muslims, 260, 267, MISC
+the Middle East, 322, 337, LOC
+Russia, 395, 401, LOC
+NATO, 440, 444, ORG
+Ukraine, 543, 550, LOC
+Russia, 567, 573, LOC
+NATO, 632, 636, ORG
+PIKACHU, 311, 318, ORG
+conservatives, 307, 320, MISC
+OP, 11, 13, PER
+Facebook, 221, 229, ORG
+Singapore, 9, 18, LOC
+denmark, 44, 51, LOC
+chinese, 109, 116, MISC
+indian, 129, 135, MISC
+Singaporeans, 30, 42, MISC
+Colonial, 102, 110, MISC
+Dreams, 61, 67, ORG
+Golden Orb Weaver, 169, 186, MISC
+B1617, 228, 233, MISC
+Singaporeans, 9, 21, MISC
+Singaporeans, 215, 227, MISC
+Government, 279, 289, ORG
+People's Action Party, 581, 602, ORG
+English, 221, 228, MISC
+Asia, 186, 190, LOC
+American, 55, 63, MISC
+Singapore, 91, 100, LOC
+Muslims, 77, 84, MISC
+Singapore, 9, 18, LOC
+Europe, 161, 167, LOC
+Premier League, 73, 87, MISC
+Government, 115, 125, ORG
+Japan, 165, 170, LOC
+mala, 146, 150, PER
+religion, 325, 333, MISC
+Singapore, 60, 69, LOC
+CDG, 11, 14, ORG
+zig, 46, 49, ORG
+India, 56, 61, LOC
+Singapore, 77, 86, LOC
+WP, 13, 15, ORG
+People's Action Party, 51, 72, ORG
+James Bond, 17, 27, PER
+James Bond, 37, 47, PER
+James Bond, 56, 66, PER
+UK, 29, 31, LOC
+Putin, 0, 5, PER
+russia, 45, 51, LOC
+Putin, 154, 159, PER
+Singapore, 0, 9, LOC
+West, 69, 73, LOC
+grab, 14, 18, ORG
+Indians, 157, 164, MISC
+Ang Yong, 23, 31, PER
+ch8, 58, 61, ORG
+SDP, 109, 112, ORG
+Singapore, 38, 47, LOC
+Singaporeans, 431, 443, MISC
+Singapore, 1861, 1870, LOC
+Sarah, 2212, 2217, PER
+Budget, 0, 6, ORG
+Singapore, 72, 81, LOC
+Akan, 95, 99, PER
+the Switch Pro, 20, 34, MISC
+RTX 2000, 79, 87, MISC
+RTX 3000 GPUs, 100, 113, MISC
+LGBT, 111, 115, ORG
+LGBTQ, 741, 746, ORG
+LGBTQ, 1817, 1822, ORG
+russian, 56, 63, MISC
+Ukraine, 120, 127, LOC
+venezuela, 243, 252, LOC
+lebanon, 257, 264, LOC
+NTF, 11, 14, ORG
+Malaysian, 54, 63, MISC
+Indonesia, 128, 137, LOC
+Indonesian, 167, 177, MISC
+Indonesia, 264, 273, LOC
+Malaysians, 353, 363, MISC
+Singaporeans, 368, 380, MISC
+Indonesia, 433, 442, LOC
+Taiwan, 43, 49, LOC
+Singapore, 58, 67, LOC
+Ukraine, 72, 79, LOC
+Taiwan, 205, 211, LOC
+Indonesia, 263, 272, LOC
+Democratic Republic of Timor-, 281, 310, LOC
+Singapore, 327, 336, LOC
+Sengkang, 10, 18, LOC
+Singaporeans, 98, 110, MISC
+singapore, 56, 65, LOC
+California, 114, 124, LOC
+Singapore Government, 31, 51, MISC
+jiak kentang, 117, 129, PER
+chinese, 156, 163, MISC
+Chinese, 43, 50, MISC
+Chinese, 60, 67, MISC
+Chinese, 87, 94, MISC
+bias, 255, 259, ORG
+Judaic Abrahamic, 33, 49, MISC
+religion, 281, 289, MISC
+AWARE, 134, 139, ORG
+Christian, 242, 251, MISC
+chinese, 25, 32, MISC
+chinese, 49, 56, MISC
+SPF, 350, 353, ORG
+GDP, 161, 164, ORG
+Condo, 219, 224, ORG
+VB, 195, 197, ORG
+VB, 220, 222, ORG
+WP, 238, 240, ORG
+People's Action Party, 284, 305, ORG
+WP, 427, 429, ORG
+Jamus, 465, 470, PER
+Parliament, 511, 521, ORG
+SA, 112, 114, LOC
+medisave, 119, 127, PER
+Australia, 72, 81, LOC
+Pre, 12, 15, ORG
+Ukraine, 35, 42, LOC
+Israel, 52, 58, LOC
+Russian, 64, 71, MISC
+Israel, 131, 137, LOC
+MRT, 79, 82, MISC
+MRT, 133, 136, MISC
+Mr Elson Lee, 60, 72, PER
+MOH, 314, 317, ORG
+QTC, 459, 462, ORG
+Mr Lee, 591, 597, PER
+Mr Lee, 1024, 1030, PER
+Mr Lee, 1367, 1373, PER
+Korea, 19, 24, LOC
+Korea, 110, 115, LOC
+He Ting Ru's, 36, 48, PER
+T, 59, 60, PER
+Singapore, 12, 21, LOC
+OP, 116, 118, PER
+OP, 296, 298, PER
+God, 165, 168, PER
+sampan, 80, 86, LOC
+Russian, 164, 171, MISC
+Russian, 260, 267, MISC
+America, 443, 450, LOC
+SARS, 0, 4, ORG
+SARS, 82, 86, ORG
+Neo Nazi, 31, 39, MISC
+American, 61, 69, MISC
+NATO, 86, 90, ORG
+Ukraine, 152, 159, LOC
+Singapore, 166, 175, LOC
+Russia, 277, 283, LOC
+Ukraine, 366, 373, LOC
+Jewish, 390, 396, MISC
+Nazis, 437, 442, MISC
+World War Two, 450, 463, MISC
+Ukrainians, 470, 480, MISC
+Neo Nazis, 489, 498, MISC
+Jewish, 526, 532, MISC
+Little, 0, 6, ORG
+Singapore, 77, 86, LOC
+inform, 85, 91, ORG
+eCoNoMy, 79, 86, MISC
+Iraq, 23, 27, LOC
+WMD, 78, 81, ORG
+Tiananmen, 90, 99, MISC
+Singapore, 29, 38, LOC
+Ministry of Education, 209, 230, ORG
+China, 47, 52, LOC
+Singapore, 84, 93, LOC
+China, 110, 115, LOC
+Singapore, 132, 141, LOC
+Indian, 185, 191, MISC
+China, 112, 117, LOC
+Sinophile, 188, 197, MISC
+Sinovac, 236, 243, ORG
+Indonesia, 264, 273, LOC
+Math, 323, 327, PER
+Bell, 245, 249, PER
+faraid, 109, 115, MISC
+Muslim, 127, 133, MISC
+non-Muslim, 237, 247, MISC
+shariah, 602, 609, MISC
+shariah, 902, 909, MISC
+Train, 83, 88, ORG
+Russia, 56, 62, LOC
+China, 9, 14, LOC
+Russia, 441, 447, LOC
+Nazi, 46, 50, MISC
+Japanese, 54, 62, MISC
+albino, 230, 236, MISC
+India, 0, 5, LOC
+India, 280, 285, LOC
+China, 302, 307, LOC
+Singapore, 345, 354, LOC
+TTSH, 454, 458, ORG
+Singapore, 16, 25, LOC
+Russia, 56, 62, LOC
+Switzerland, 107, 118, LOC
+Indians, 34, 41, MISC
+Indian, 61, 67, MISC
+Colorful, 86, 94, MISC
+Singapore, 147, 156, LOC
+ICA, 82, 85, ORG
+PPE, 100, 103, ORG
+N95, 105, 108, ORG
+Muslim, 132, 138, MISC
+Hari Raya, 157, 166, MISC
+RI, 74, 76, ORG
+RGS, 80, 83, ORG
+St Nicholas, 87, 98, PER
+NYGS, 102, 106, ORG
+ACS, 110, 113, ORG
+India, 36, 41, LOC
+Australia, 230, 239, LOC
+India, 337, 342, LOC
+SARS, 27, 31, MISC
+SARS, 117, 121, MISC
+reddit, 141, 147, ORG
+Istana, 15, 21, MISC
+Singaporean, 78, 89, MISC
+Singapore, 91, 100, LOC
+Singapore, 58, 67, LOC
+People's Action Party, 224, 245, ORG
+Viv, 280, 283, PER
+Denmark, 148, 155, LOC
+Singapore, 249, 258, LOC
+London, 295, 301, LOC
+Singaporeans, 14, 26, MISC
+Singaporeans, 116, 128, MISC
+Scoot, 144, 149, MISC
+China, 179, 184, LOC
+Government, 241, 251, ORG
+Singaporeans, 354, 366, MISC
+India, 402, 407, LOC
+Singapore, 549, 558, LOC
+Singaporeans, 660, 672, MISC
+India, 704, 709, LOC
+Singaporeans, 799, 811, MISC
+Singapore, 82, 91, LOC
+Singaporean, 87, 98, MISC
+Christian, 59, 68, MISC
+Christian, 122, 131, MISC
+GC, 118, 120, ORG
+Singapore, 34, 43, LOC
+heaven, 80, 86, ORG
+mafan, 110, 115, MISC
+Eaay, 204, 208, PER
+Son, 90, 93, ORG
+nia, 153, 156, ORG
+Singapore, 291, 300, LOC
+GDP, 106, 109, ORG
+SMRT, 13, 17, ORG
+Ukraine, 33, 40, LOC
+the Azov Battalion, 70, 88, ORG
+neo-nazi, 125, 133, MISC
+Jewish, 171, 177, MISC
+Healthcare, 50, 60, ORG
+ComfortDelgro, 3, 16, ORG
+Grab, 112, 116, ORG
+Uber, 121, 125, ORG
+India, 3, 8, LOC
+Singapore, 83, 92, LOC
+Chinese, 99, 106, MISC
+Indians, 122, 129, MISC
+Australia, 170, 179, LOC
+Americans, 186, 195, MISC
+Aussies, 199, 206, MISC
+Chinese, 222, 229, MISC
+BX, 269, 271, MISC
+english, 609, 616, MISC
+minecraft, 2316, 2325, ORG
+French, 101, 107, MISC
+Macron, 167, 173, PER
+Macron, 254, 260, PER
+Macron, 361, 367, PER
+Singaporeans, 741, 753, MISC
+French, 797, 803, MISC
+Russian, 0, 7, MISC
+Neo Nazis Wagner Group, 51, 73, ORG
+Eastern Europe, 133, 147, LOC
+DISPLAYED, 569, 578, ORG
+Singapore, 1529, 1538, LOC
+Ukraine, 127, 134, LOC
+singaporeans, 146, 158, MISC
+KKK, 38, 41, ORG
+LGBTQ, 132, 137, ORG
+Ministry of Education, 543, 564, ORG
+LGBT, 43, 47, ORG
+singaporeans, 17, 29, MISC
+rv, 57, 59, ORG
+rv, 436, 438, ORG
+ALEXA, 0, 5, ORG
+ASTRONOMIA, 11, 21, ORG
+Government, 88, 98, ORG
+lee, 49, 52, PER
+Lee Kuan Yew, 61, 73, PER
+singapore, 100, 109, LOC
+score, 93, 98, ORG
+RI, 5, 7, ORG
+STDs, 228, 232, ORG
+Ed, 328, 330, PER
+HPB, 455, 458, ORG
+Housing and Development Board, 353, 382, ORG
+Thailand, 286, 294, LOC
+MacPhun, 25, 32, ORG
+Intensify CK.app but, 35, 55, ORG
+Singapore, 45, 54, LOC
+Singapore, 173, 182, LOC
+Hong Kong, 571, 580, LOC
+Russian, 591, 598, MISC
+Navalny, 599, 606, PER
+WP, 7, 9, ORG
+SDP, 65, 68, ORG
+MOH, 0, 3, ORG
+HDB, 299, 302, ORG
+singapore, 389, 398, LOC
+Ukraine, 107, 114, LOC
+Russia, 130, 136, LOC
+Ukrainians, 215, 225, MISC
+Russians, 298, 306, MISC
+Russians, 448, 456, MISC
+singapore, 10, 19, LOC
+TADA, 17, 21, ORG
+Singapore, 224, 233, LOC
+NS, 45, 47, ORG
+DHQ, 261, 264, ORG
+singaporeans, 194, 206, MISC
+NATO, 38, 42, ORG
+europeans, 123, 132, MISC
+europe, 162, 168, LOC
+asia, 233, 237, LOC
+CCP, 4, 7, ORG
+CCP, 15, 18, ORG
+sit, 68, 71, ORG
+Singapore, 120, 129, LOC
+SCDF, 66, 70, ORG
+NS, 397, 399, ORG
+Singaporeans, 62, 74, MISC
+People's Action Party, 150, 171, ORG
+Singaporeans, 298, 310, MISC
+Europe, 93, 99, LOC
+Singaporean, 152, 163, MISC
+Singaporean, 204, 215, MISC
+hdb, 941, 944, ORG
+Prob, 0, 4, ORG
+edmw, 104, 108, ORG
+Singaporean, 271, 282, MISC
+USA, 0, 3, ORG
+Instagram, 70, 79, ORG
+europe, 70, 76, LOC
+ER, 112, 114, ORG
+singapore, 271, 280, LOC
+Government, 993, 1003, ORG
+Government, 1029, 1039, ORG
+Government, 1313, 1323, ORG
+Pomodoro, 48, 56, LOC
+USD, 7, 10, ORG
+Big Mac, 98, 105, ORG
+USD, 161, 164, ORG
+McDonald's, 247, 257, ORG
+NS, 266, 268, ORG
+People's Action Party, 88, 109, ORG
+People's Action Party, 126, 147, ORG
+Jamus, 252, 257, ORG
+Sengkang, 295, 303, LOC
+People's Action Party, 383, 404, ORG
+Punggol, 464, 471, LOC
+People's Action Party, 538, 559, ORG
+Jamus, 597, 602, ORG
+STDs, 34, 38, ORG
+Singapore, 286, 295, LOC
+AGGA, 15, 19, ORG
+ABTM, 72, 76, ORG
+AGGA, 116, 120, ORG
+SARS, 43, 47, MISC
+Capitaland, 380, 390, LOC
+377A, 83, 87, MISC
+Brexit, 118, 124, PER
+Singapore, 43, 52, LOC
+Singapore, 525, 534, LOC
+Singapore, 991, 1000, LOC
+Russian, 80, 87, MISC
+Singapore, 103, 112, LOC
+Singapore, 210, 219, LOC
+Singapore, 264, 273, LOC
+Putin, 324, 329, PER
+singaporean, 477, 488, MISC
+People's Action Party, 546, 567, ORG
+singaporean, 621, 632, MISC
+People's Action Party, 698, 719, ORG
+ACS, 110, 113, ORG
+polis, 17, 22, ORG
+NS, 266, 268, ORG
+gna, 378, 381, ORG
+NDTV, 23, 27, ORG
+New Delhi Television, 28, 48, ORG
+Modi, 146, 150, PER
+India, 166, 171, LOC
+Government, 276, 286, ORG
+grab, 97, 101, ORG
+N Korean, 67, 75, MISC
+Mississippi, 30, 41, LOC
+Singapore, 382, 391, LOC
+the Supreme Court of Authentic Fresh Milk, 45, 86, ORG
+CNB, 32, 35, ORG
+Police, 58, 64, ORG
+Committee of Inquiry, 78, 98, ORG
+Police, 142, 148, ORG
+CNB, 248, 251, ORG
+Tee Tua, 261, 268, PER
+CNB, 286, 289, ORG
+Singapore, 36, 45, LOC
+Methodist, 70, 79, MISC
+Religion, 31, 39, MISC
+religion, 528, 536, MISC
+Indians, 1076, 1083, MISC
+Singapore, 1109, 1118, LOC
+Chinese, 1159, 1166, MISC
+Singaporeans, 1167, 1179, MISC
+West, 1209, 1213, LOC
+the west, 1328, 1336, ORG
+Chinese, 1348, 1355, MISC
+PRC, 1383, 1386, LOC
+chinese, 1387, 1394, MISC
+Singapore, 1449, 1458, LOC
+Singaporean Chinese, 1541, 1560, MISC
+grab, 195, 199, ORG
+Yeapps, 0, 6, PER
+Russia, 88, 94, LOC
+Russian, 129, 136, MISC
+Ukrainian, 194, 203, MISC
+AK-47s, 386, 392, MISC
+Ukraine, 435, 442, LOC
+Russian, 561, 568, MISC
+dunman, 87, 93, PER
+the east, 124, 132, ORG
+Government, 190, 200, ORG
+Singapore, 390, 399, LOC
+Jane, 116, 120, PER
+Singapore, 175, 184, LOC
+Singaporeans, 210, 222, MISC
+singapore, 269, 278, LOC
+reddit, 804, 810, ORG
+singapore, 896, 905, LOC
+liao, 91, 95, PER
+Singaporean, 378, 389, MISC
+Mr Khairul, 92, 102, PER
+Aiyah, 98, 103, PER
+PRP, 61, 64, LOC
+Scottish, 4, 12, MISC
+Singaporean, 295, 306, MISC
+CDC, 374, 377, ORG
+Scottish, 382, 390, MISC
+UK, 558, 560, LOC
+Singapore, 640, 649, LOC
+Singapore, 141, 150, LOC
+Singapore, 399, 408, LOC
+America, 517, 524, LOC
+Singapore, 25, 34, LOC
+Russia, 19, 25, LOC
+MBS, 24, 27, MISC
+MBS, 370, 373, MISC
+Lee Hsien Loong, 23, 38, PER
+liao, 55, 59, PER
+Lee Hsien Loong, 118, 133, PER
+Singapore, 147, 156, LOC
+Lee Kuan Yew's, 204, 218, PER
+Vietcong, 233, 241, MISC
+Lee Kuan Yew, 356, 368, PER
+Lee Hsien Loong, 451, 466, PER
+Lee Hsien Loong, 626, 641, PER
+IPS, 44, 47, ORG
+hl, 13, 15, ORG
+N95, 49, 52, ORG
+Omicron, 255, 262, ORG
+Omicron, 371, 378, ORG
+N95, 441, 444, ORG
+Denmark, 733, 740, LOC
+Need, 51, 55, ORG
+christ, 780, 786, PER
+Ministry of Education, 945, 966, ORG
+LGBTQ, 547, 552, PER
+People's Action Party, 273, 294, ORG
+cpf, 304, 307, ORG
+Reno, 184, 188, LOC
+Singaporeans, 64, 76, MISC
+Singaporeans, 148, 160, MISC
+China, 25, 30, LOC
+CCP, 35, 38, ORG
+Chinese, 56, 63, MISC
+India, 70, 75, LOC
+CECA, 80, 84, ORG
+Russia, 136, 142, LOC
+frogman, 0, 7, PER
+Navy, 48, 52, ORG
+frogman, 107, 114, MISC
+Singapore, 223, 232, LOC
+Taiseng UBi, 18, 29, LOC
+Japan, 457, 462, LOC
+Amsterdam, 25, 34, LOC
+I Amsterdam, 39, 50, LOC
+Museumplein, 78, 89, MISC
+GroenLinks, 127, 137, ORG
+Amsterdam, 185, 194, LOC
+muslim, 43, 49, MISC
+sengkang, 37, 45, LOC
+sengkang, 68, 76, LOC
+wp, 85, 87, ORG
+Mac, 134, 137, PER
+Chao Kway Teow, 37, 51, MISC
+Chao Kway Teow, 96, 110, MISC
+bisikan, 38, 45, MISC
+syaitan, 46, 53, MISC
+Islam, 333, 338, MISC
+Islam, 652, 657, MISC
+religion, 670, 678, MISC
+Mars, 885, 889, LOC
+musafir, 928, 935, MISC
+muqim, 941, 946, MISC
+Earth, 1032, 1037, LOC
+Earth, 1077, 1082, LOC
+islamic, 1170, 1177, MISC
+Mars, 1254, 1258, LOC
+Lee Hsien Loong, 143, 158, PER
+Singapore, 33, 42, LOC
+377A, 886, 890, MISC
+Pledge, 15, 21, MISC
+religion, 64, 72, MISC
+russian, 52, 59, MISC
+russia, 69, 75, LOC
+ukraine, 176, 183, LOC
+malaysia, 199, 207, LOC
+Indian, 0, 6, MISC
+India, 59, 64, LOC
+Indian, 204, 210, MISC
+Singaporean, 243, 254, MISC
+India, 281, 286, LOC
+377A, 328, 332, MISC
+British, 361, 368, MISC
+Singapore, 381, 390, LOC
+Molotov, 392, 399, MISC
+Quran, 11, 16, MISC
+Djitsun Mall, 19, 31, LOC
+Texas, 60, 65, LOC
+koi otter, 58, 67, PER
+NS-FIT, 17, 23, ORG
+SAF, 65, 68, ORG
+Wuhan, 41, 46, LOC
+China, 192, 197, LOC
+Caspian, 54, 61, LOC
+MPs, 21, 24, ORG
+LGBT, 37, 41, ORG
+Baey Yam Keng, 54, 67, PER
+Shanmugam, 121, 130, PER
+sian, 14, 18, MISC
+kena covid, 110, 120, PER
+Russia, 57, 63, LOC
+Japan, 185, 190, LOC
+Switzerland, 305, 316, LOC
+Australia, 318, 327, LOC
+European, 369, 377, MISC
+Russia, 433, 439, LOC
+Norway, 467, 473, LOC
+Kenya, 475, 480, LOC
+China, 487, 492, LOC
+Russia, 549, 555, LOC
+Singapore, 665, 674, LOC
+IQ, 310, 312, ORG
+Singapore, 527, 536, LOC
+NPD, 149, 152, ORG
+People's Action Party, 52, 73, ORG
+liao, 78, 82, PER
+Patrick Star, 155, 167, PER
+christian, 18, 27, MISC
+Muslim, 73, 79, MISC
+Muslim, 211, 217, MISC
+Tiananmen, 59, 68, MISC
+China, 132, 137, LOC
+Lee Kuan Yew, 167, 179, PER
+SafeEntry, 61, 70, ORG
+Russia, 49, 55, LOC
+Russia, 198, 204, LOC
+Russia, 286, 292, LOC
+singaporeans, 422, 434, MISC
+Reddit, 0, 6, ORG
+Wehrmacht, 59, 68, MISC
+The Nuremburg Trials, 152, 172, MISC
+Jews, 441, 445, MISC
+Jews, 520, 524, MISC
+Jews, 672, 676, MISC
+Nazi, 779, 783, MISC
+Citymapper, 12, 22, ORG

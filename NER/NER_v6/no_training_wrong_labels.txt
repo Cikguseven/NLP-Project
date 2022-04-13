@@ -1,0 +1,173 @@
+Time, 0, 4, ORG, 7
+Tanglin, 39, 46, LOC, 11
+Gee, 71, 74, PER, 16
+Singapore Government, 664, 684, LOC, 16
+KSP 45, 120, 126, ORG, 17
+Black Ops Cold War, 135, 153, ORG, 17
+Ottawa Treaty, 68, 81, LOC, 22
+Mainly Phillppines, 799, 817, LOC, 22
+Government, 148, 158, ORG, 23
+the community, 93, 106, ORG, 26
+Israeli, 10, 17, LOC, 30
+Geforce, 105, 112, MISC, 45
+Target, 70, 76, ORG, 48
+Singapore Government, 13, 33, LOC, 52
+CBA, 85, 88, ORG, 57
+', 121, 122, ORG, 58
+Nam, 122, 125, ORG, 58
+Government, 163, 173, ORG, 61
+USA, 265, 268, ORG, 61
+PES, 536, 539, ORG, 61
+GE2030, 929, 935, MISC, 61
+confirm, 937, 944, ORG, 61
+Ya, 0, 2, PER, 67
+Ty, 76, 78, PER, 71
+frans, 131, 136, PER, 71
+Gan Eng Seng, 19, 31, LOC, 77
+Bukit Merah, 105, 116, LOC, 77
+Mr, 701, 703, PER, 78
+Government, 53, 63, ORG, 81
+conservatives, 307, 320, ORG, 89
+Colonial, 102, 110, ORG, 95
+Dreams, 61, 67, ORG, 96
+Weaver, 180, 186, PER, 99
+abd, 148, 151, PER, 100
+Government, 279, 289, ORG, 101
+GOOD, 1202, 1206, ORG, 103
+GE2020, 22, 28, MISC, 110
+Government, 115, 125, ORG, 111
+West, 69, 73, ORG, 122
+Akan, 95, 99, PER, 130
+the Switch Pro, 20, 34, MISC, 131
+copycats, 98, 106, PER, 132
+GIF, 504, 507, ORG, 138
+Great, 23, 28, ORG, 148
+Grievous, 32, 40, PER, 148
+Great Bodily Injury, 152, 171, ORG, 148
+jiak kentang, 117, 129, PER, 150
+bias, 255, 259, ORG, 153
+Judaic Abrahamic, 33, 49, PER, 154
+GDP, 161, 164, ORG, 158
+VB, 195, 197, ORG, 160
+VB, 220, 222, ORG, 160
+Government, 10, 20, ORG, 162
+OA, 73, 75, ORG, 162
+SA, 112, 114, LOC, 162
+medisave, 119, 127, ORG, 162
+Mr Elson Lee, 60, 72, PER, 167
+Mr Lee, 606, 612, PER, 167
+Mr Lee, 1055, 1061, PER, 167
+Mr Lee, 1398, 1404, PER, 167
+He Ting Ru's, 36, 48, PER, 170
+OP, 116, 118, PER, 174
+OP, 296, 298, PER, 174
+loud, 7, 11, MISC, 191
+inform, 85, 91, ORG, 192
+foodcourt, 227, 236, ORG, 201
+ago, 66, 69, ORG, 202
+Sinophile, 188, 197, PER, 205
+Bell, 245, 249, PER, 206
+OT, 102, 104, ORG, 207
+non-, 237, 241, MISC, 208
+Muslim, 241, 247, MISC, 208
+Colorful, 86, 94, MISC, 220
+N95, 131, 134, ORG, 224
+St Nicholas, 87, 98, PER, 225
+reddit, 141, 147, ORG, 234
+Government, 241, 251, ORG, 239
+max, 245, 248, ORG, 249
+GC, 118, 120, ORG, 251
+heaven, 80, 86, ORG, 253
+Eaay, 204, 208, PER, 256
+Gathering, 123, 132, ORG, 257
+The Government, 22, 36, ORG, 260
+GDP, 106, 109, ORG, 260
+Healthcare, 50, 60, ORG, 264
+airforce, 110, 118, MISC, 270
+minecraft manhunt best, 2316, 2338, MISC, 271
+Government, 69, 79, ORG, 276
+rv, 57, 59, LOC, 284
+ig, 188, 190, ORG, 284
+ig, 390, 392, ORG, 284
+rv, 436, 438, LOC, 284
+ABOUT YOU, 536, 545, ORG, 284
+PLS, 561, 564, ORG, 284
+ALEXA PLAY ASTRONOMIA, 0, 21, ORG, 285
+Government, 88, 98, ORG, 285
+lee, 49, 52, ORG, 289
+score, 93, 98, ORG, 291
+Ed, 353, 355, PER, 293
+MacPhun's, 25, 34, ORG, 298
+HDB, 299, 302, ORG, 309
+DHQ, 275, 278, ORG, 317
+Leak, 51, 55, ORG, 323
+Anti, 10, 14, ORG, 324
+hdb, 941, 944, ORG, 329
+MPs, 237, 240, ORG, 330
+MPs, 385, 388, ORG, 330
+Prob, 0, 4, ORG, 331
+p5, 26, 28, ORG, 335
+Instagram, 70, 79, ORG, 335
+whole world, 35, 46, ORG, 339
+Pomodoro technique, 48, 66, ORG, 340
+USD, 7, 10, ORG, 343
+USD, 161, 164, ORG, 343
+pro-, 83, 87, ORG, 344
+anti-, 120, 125, ORG, 344
+special forces, 101, 115, ORG, 347
+kopitiam, 202, 210, ORG, 350
+Soul, 305, 309, PER, 350
+Russian, 80, 87, LOC, 358
+The Government, 132, 146, ORG, 363
+bunch, 68, 73, ORG, 366
+Oh, 428, 430, ORG, 367
+NDTV New Delhi Television, 23, 48, ORG, 368
+Government, 276, 286, ORG, 368
+grab, 97, 101, ORG, 369
+MPs, 101, 104, ORG, 373
+Amen, 0, 4, PER, 379
+Committee of Inquiry, 78, 98, ORG, 380
+West, 1209, 1213, LOC, 385
+grab, 195, 199, ORG, 387
+les, 77, 80, MISC, 388
+Elite, 299, 304, ORG, 389
+Yeapps, 0, 6, PER, 391
+Government, 13, 23, ORG, 394
+Government, 190, 200, ORG, 394
+Spot, 771, 775, ORG, 398
+reddit, 804, 810, ORG, 398
+liao, 91, 95, PER, 399
+Mr Khairul, 92, 102, PER, 402
+PRP, 61, 64, ORG, 405
+Scottish Government, 4, 23, ORG, 406
+Singaporean Government, 295, 317, ORG, 406
+When the Vietcong unified the whole country, 224, 267, ORG, 413
+hl, 13, 15, MISC, 417
+N95, 49, 52, ORG, 418
+N95, 441, 444, ORG, 418
+Need, 51, 55, ORG, 421
+christ, 780, 786, PER, 423
+The Government, 22, 36, ORG, 426
+max, 313, 316, ORG, 427
+Reno, 184, 188, LOC, 431
+Amsterdam, 41, 50, LOC, 440
+Mac, 134, 137, MISC, 443
+Chao Kway Teow, 37, 51, ORG, 444
+Chao Kway Teow, 96, 110, ORG, 444
+bisikan syaitan la, 38, 56, ORG, 445
+Pledge, 15, 21, PER, 449
+Singaporean, 243, 254, MISC, 453
+377A which, 328, 338, MISC, 453
+British, 361, 368, PER, 453
+Molotov, 392, 399, ORG, 454
+Texas, 60, 65, LOC, 459
+mtf, 54, 57, ORG, 460
+otter 1, 0, 7, PER, 461
+otter 2, 37, 44, PER, 461
+koi, 58, 61, PER, 461
+otter 1, 62, 69, PER, 461
+NPD, 149, 152, ORG, 480
+Patrick Star, 155, 167, PER, 481
+hoc, 214, 217, ORG, 482
+3344, 67, 71, MISC, 489
+Reddit, 0, 6, ORG, 494

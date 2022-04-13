@@ -1,0 +1,244 @@
+Stay, 288, 292, ORG
+religion, 30, 38, MISC
+religion, 189, 197, MISC
+Tanglin Police Division, 39, 62, LOC
+Paul Lim Choon Wui, 79, 97, PER
+Shangri-La Hotel, 159, 175, MISC
+Shang Palace, 260, 272, MISC
+Orchard Road, 322, 334, MISC
+brother, 141, 148, PER
+LGBTQ, 103, 108, ORG
+KSP, 120, 123, ORG
+DUI, 676, 679, ORG
+Call of Duty, 758, 770, ORG
+Call of Duty, 1027, 1039, ORG
+Ngl, 0, 3, PER
+Cluster Bomb, 355, 367, MISC
+Taliban Afghanistan, 378, 397, LOC
+International, 615, 628, MISC
+International, 661, 674, MISC
+unclos, 744, 750, ORG
+Mainly, 799, 805, ORG
+unclos, 897, 903, ORG
+Omicron, 1875, 1882, MISC
+Operation, 177, 186, ORG
+NDP, 167, 170, ORG
+NSC, 45, 48, ORG
+Sigma, 0, 5, MISC
+Labour, 0, 6, ORG
+labour, 118, 124, ORG
+muh, 304, 307, ORG
+covid, 467, 472, ORG
+covid, 493, 498, ORG
+Admins, 279, 285, ORG
+NATO, 997, 1001, ORG
+Singapore, 13, 22, LOC
+Singapore Inc, 41, 54, LOC
+CBA, 85, 88, ORG
+find it, 767, 774, ORG
+sit, 975, 978, ORG
+Government, 163, 173, ORG
+PES, 536, 539, ORG
+confirm, 937, 944, ORG
+SHN, 89, 92, LOC
+Ty, 76, 78, PER
+frans, 131, 136, MISC
+sengkang, 71, 79, LOC
+Jamus, 115, 120, LOC
+Gan Eng Seng, 19, 31, LOC
+Bukit Merah, 105, 116, LOC
+tracetogether, 156, 169, MISC
+Mr Lawrence Wong, 701, 717, PER
+IMH, 779, 782, ORG
+find it, 310, 317, ORG
+ATM, 103, 106, ORG
+PIKACHU, 311, 318, ORG
+conservatives, 307, 320, MISC
+OP, 11, 13, PER
+Colonial, 102, 110, MISC
+Dreams, 61, 67, ORG
+Golden Orb Weaver, 169, 186, MISC
+B1617, 228, 233, MISC
+Government, 279, 289, ORG
+Premier League, 73, 87, MISC
+Government, 115, 125, ORG
+mala, 146, 150, PER
+religion, 325, 333, MISC
+zig, 46, 49, ORG
+West, 69, 73, LOC
+Ang Yong, 23, 31, PER
+Budget, 0, 6, ORG
+Akan, 95, 99, PER
+the Switch Pro, 20, 34, MISC
+RTX 3000 GPUs, 100, 113, MISC
+LGBT, 111, 115, ORG
+LGBTQ, 741, 746, ORG
+LGBTQ, 1817, 1822, ORG
+Indonesian, 167, 177, MISC
+Democratic Republic of Timor-, 281, 310, LOC
+Singapore Government, 31, 51, MISC
+jiak kentang, 117, 129, PER
+bias, 255, 259, ORG
+Judaic Abrahamic, 33, 49, MISC
+religion, 281, 289, MISC
+GDP, 161, 164, ORG
+Condo, 219, 224, ORG
+VB, 195, 197, ORG
+VB, 220, 222, ORG
+SA, 112, 114, LOC
+medisave, 119, 127, PER
+Pre, 12, 15, ORG
+Mr Elson Lee, 60, 72, PER
+QTC, 459, 462, ORG
+Mr Lee, 591, 597, PER
+Mr Lee, 1024, 1030, PER
+Mr Lee, 1367, 1373, PER
+He Ting Ru's, 36, 48, PER
+T, 59, 60, PER
+OP, 116, 118, PER
+OP, 296, 298, PER
+God, 165, 168, PER
+sampan, 80, 86, LOC
+SARS, 0, 4, ORG
+SARS, 82, 86, ORG
+Little, 0, 6, ORG
+inform, 85, 91, ORG
+eCoNoMy, 79, 86, MISC
+WMD, 78, 81, ORG
+Tiananmen, 90, 99, MISC
+Sinovac, 236, 243, ORG
+Math, 323, 327, PER
+Bell, 245, 249, PER
+faraid, 109, 115, MISC
+Train, 83, 88, ORG
+albino, 230, 236, MISC
+Colorful, 86, 94, MISC
+PPE, 100, 103, ORG
+N95, 105, 108, ORG
+St Nicholas, 87, 98, PER
+SARS, 27, 31, MISC
+SARS, 117, 121, MISC
+reddit, 141, 147, ORG
+Scoot, 144, 149, MISC
+Government, 241, 251, ORG
+GC, 118, 120, ORG
+heaven, 80, 86, ORG
+mafan, 110, 115, MISC
+Eaay, 204, 208, PER
+Son, 90, 93, ORG
+nia, 153, 156, ORG
+GDP, 106, 109, ORG
+Healthcare, 50, 60, ORG
+minecraft, 2316, 2325, ORG
+Neo Nazis Wagner Group, 51, 73, ORG
+DISPLAYED, 569, 578, ORG
+LGBTQ, 132, 137, ORG
+LGBT, 43, 47, ORG
+ALEXA, 0, 5, ORG
+ASTRONOMIA, 11, 21, ORG
+Government, 88, 98, ORG
+score, 93, 98, ORG
+STDs, 228, 232, ORG
+Ed, 328, 330, PER
+Intensify CK.app but, 35, 55, ORG
+HDB, 299, 302, ORG
+NS, 45, 47, ORG
+DHQ, 261, 264, ORG
+asia, 233, 237, LOC
+sit, 68, 71, ORG
+NS, 397, 399, ORG
+hdb, 941, 944, ORG
+Prob, 0, 4, ORG
+edmw, 104, 108, ORG
+USA, 0, 3, ORG
+Instagram, 70, 79, ORG
+ER, 112, 114, ORG
+Government, 993, 1003, ORG
+Government, 1029, 1039, ORG
+Government, 1313, 1323, ORG
+Pomodoro, 48, 56, LOC
+USD, 7, 10, ORG
+Big Mac, 98, 105, ORG
+USD, 161, 164, ORG
+NS, 266, 268, ORG
+Jamus, 252, 257, ORG
+Jamus, 597, 602, ORG
+STDs, 34, 38, ORG
+AGGA, 15, 19, ORG
+ABTM, 72, 76, ORG
+AGGA, 116, 120, ORG
+SARS, 43, 47, MISC
+Capitaland, 380, 390, LOC
+Brexit, 118, 124, PER
+polis, 17, 22, ORG
+NS, 266, 268, ORG
+gna, 378, 381, ORG
+Government, 276, 286, ORG
+grab, 97, 101, ORG
+Committee of Inquiry, 78, 98, ORG
+Religion, 31, 39, MISC
+religion, 528, 536, MISC
+Chinese, 1159, 1166, MISC
+Singaporeans, 1167, 1179, MISC
+West, 1209, 1213, LOC
+the west, 1328, 1336, ORG
+grab, 195, 199, ORG
+Yeapps, 0, 6, PER
+AK-47s, 386, 392, MISC
+dunman, 87, 93, PER
+the east, 124, 132, ORG
+Government, 190, 200, ORG
+Singapore, 390, 399, LOC
+reddit, 804, 810, ORG
+liao, 91, 95, PER
+Mr Khairul, 92, 102, PER
+Aiyah, 98, 103, PER
+Scottish, 4, 12, MISC
+Singaporean, 295, 306, MISC
+Scottish, 382, 390, MISC
+liao, 55, 59, PER
+Vietcong, 233, 241, MISC
+N95, 49, 52, ORG
+Omicron, 255, 262, ORG
+Omicron, 371, 378, ORG
+N95, 441, 444, ORG
+Need, 51, 55, ORG
+christ, 780, 786, PER
+LGBTQ, 547, 552, PER
+cpf, 304, 307, ORG
+Reno, 184, 188, LOC
+frogman, 0, 7, PER
+Taiseng UBi, 18, 29, LOC
+I Amsterdam, 39, 50, LOC
+Mac, 134, 137, PER
+Chao Kway Teow, 37, 51, MISC
+Chao Kway Teow, 96, 110, MISC
+bisikan, 38, 45, MISC
+syaitan, 46, 53, MISC
+religion, 670, 678, MISC
+musafir, 928, 935, MISC
+muqim, 941, 946, MISC
+islamic, 1170, 1177, MISC
+Pledge, 15, 21, MISC
+religion, 64, 72, MISC
+russian, 52, 59, MISC
+Singaporean, 243, 254, MISC
+Molotov, 392, 399, MISC
+Djitsun Mall, 19, 31, LOC
+Texas, 60, 65, LOC
+koi otter, 58, 67, PER
+NS-FIT, 17, 23, ORG
+Caspian, 54, 61, LOC
+MPs, 21, 24, ORG
+LGBT, 37, 41, ORG
+sian, 14, 18, MISC
+kena covid, 110, 120, PER
+IQ, 310, 312, ORG
+NPD, 149, 152, ORG
+liao, 78, 82, PER
+Patrick Star, 155, 167, PER
+Tiananmen, 59, 68, MISC
+SafeEntry, 61, 70, ORG
+Reddit, 0, 6, ORG
+Wehrmacht, 59, 68, MISC
+Citymapper, 12, 22, ORG

@@ -1,0 +1,5 @@
+models/
+old_models/
+data/
+*.spacy
+*.bin
