@@ -8,6 +8,7 @@ from transformers import pipeline
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import main_config
 import numpy as np
+import torch
 
 
 def custom_sigmoid(x):
