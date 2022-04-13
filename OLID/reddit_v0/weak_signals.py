@@ -11,7 +11,7 @@ import numpy as np
 
 
 def custom_sigmoid(x):
-    return 1 / (1 + exp(5 * x + 0.25))
+    return 1 / (1 + exp(2.5 * x + 0.125))
 
 
 def sentiment_vader(sentence):
@@ -81,7 +81,6 @@ def model_aggregator(comments: list,
         textblob_score = custom_sigmoid(sentiment_textblob(comments[i]))
         sonar_score = 1 - \
             sonar_model.ping(text=comments[i])['classes'][2]['confidence']
-
 
         sentence = Sentence(comments[i])
         flair_model.predict(sentence)
