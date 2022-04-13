@@ -73,6 +73,8 @@ def model_aggregator(comments: list,
 
         weighted_average_score += np.array(single_score)
 
+    torch.cuda.empty_cache() 
+
     detoxify_score = detoxify_model.predict(comments)['toxicity']
     weighted_average_score += np.array(detoxify_score) * 0.5
 
