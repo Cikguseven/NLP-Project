@@ -1,4 +1,4 @@
-x = 's'
+a = [('b', 'c', 'd'), ('d', 'e', 'g')]
 
-if x in ('s', 't'):
-	print('g')
+for t, y, l in a:
+	print(t)
