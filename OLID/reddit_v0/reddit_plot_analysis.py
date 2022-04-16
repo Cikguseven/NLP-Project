@@ -8,20 +8,20 @@ import spacy
 import time
 import weak_signals
 
-# spacy.require_gpu()
+spacy.require_gpu()
 
 
 def evaluate_model(
         models: list,
-        test_tweets: list,
+        test_comments: list,
         test_answers: list):
 
     task_a_answers_array = np.array(
-        [1 if x == 'OFF' else 0 for x in test_answers[:860]])
+        [1 if x[0] == 'OFF' else 0 for x in test_answers])
     task_b_answers_array = np.array(
-        [1 if x == 'TIN' else 0 for x in test_answers[860:1100]])
+        [1 if x[1] == 'TIN' else 0 for x in test_answers])
 
-    uncased_test_tweets = [tweet.lower() for tweet in test_tweets]
+    uncased_test_comments = [comment.lower() for comment in test_comments]
 
     figure, axis = plt.subplots(2, 2)
 
@@ -32,22 +32,24 @@ def evaluate_model(
         print(model)
 
         if 'weak_signals_function' in model:
-            weak_signals_output = weak_signals.model_aggregator(test_tweets, uncased_test_tweets)
+            weak_signals_output = weak_signals.model_aggregator(test_comments, uncased_test_comments)
 
-            task_a_predictions_array = weak_signals_output[0][:860]
-            task_b_predictions_array = weak_signals_output[1][860:1100]
+            task_a_predictions_array = weak_signals_output[0]
+            task_b_predictions_array = weak_signals_output[1]
 
         else:
             nlp = spacy.load(main_config.model_directory +
                              model + '/model-best')
 
             if 'uncased' in model:
-                docs = list(nlp.pipe(uncased_test_tweets))
+                docs = list(nlp.pipe(uncased_test_comments))
             else:
-                docs = list(nlp.pipe(test_tweets))
+                docs = list(nlp.pipe(test_comments))
 
-            task_a_predictions_array = np.array([docs[i].cats['offensive'] for i in range(860)])
-            task_b_predictions_array = np.array([docs[i].cats['targeted'] for i in range(860, 1100)])
+            task_a_predictions_array = np.array(
+                [doc.cats['offensive'] for doc in docs])
+            task_b_predictions_array = np.array(
+                [doc.cats['targeted'] for doc in docs])
 
         precision, recall, thresholds = precision_recall_curve(
             task_a_answers_array, task_a_predictions_array)
@@ -56,19 +58,19 @@ def evaluate_model(
         axis[0, 0].set_xlabel("Recall")
         axis[0, 0].set_ylabel("Precision")
 
-        fpr, recall, thresholds = roc_curve(
-            task_a_answers_array, task_a_predictions_array)
-        axis[1, 0].plot(fpr, recall, label=model)
-        axis[1, 0].set_title("Task A ROC")
-        axis[1, 0].set_xlabel("False Positive Rate")
-        axis[1, 0].set_ylabel("True Positive Rate")
-
         precision, recall, thresholds = precision_recall_curve(
             task_b_answers_array, task_b_predictions_array)
         axis[0, 1].plot(recall, precision, label=model)
         axis[0, 1].set_title("Task B PRC")
         axis[0, 1].set_xlabel("Recall")
         axis[0, 1].set_ylabel("Precision")
+
+        fpr, recall, thresholds = roc_curve(
+            task_a_answers_array, task_a_predictions_array)
+        axis[1, 0].plot(fpr, recall, label=model)
+        axis[1, 0].set_title("Task A ROC")
+        axis[1, 0].set_xlabel("False Positive Rate")
+        axis[1, 0].set_ylabel("True Positive Rate")
 
         fpr, recall, thresholds = roc_curve(
             task_b_answers_array, task_b_predictions_array)
@@ -91,17 +93,19 @@ if __name__ == '__main__':
     all_models = custom_models + specific_model
 
     # Import unique filtered comments for testing
-    filtered_tweets = comment_filter.c_filter(
+    filtered_comments = comment_filter.c_filter(
         shuffle=False,
         remove_username=False,
         remove_commas=False,
         length_min=0,
-        length_max=9999,
+        length_max=99,
         uncased=False,
         unique=False,
-        input_list=main_config.test_tweets_getter())
+        input_file=main_config.hand_labelled_comments)
+
+    comment_limit = 900
 
     evaluate_model(
         models=all_models,
-        test_tweets=filtered_tweets[:],
-        test_answers=main_config.answers_getter())
+        test_comments=filtered_comments[comment_limit:],
+        test_answers=main_config.answers[comment_limit:])

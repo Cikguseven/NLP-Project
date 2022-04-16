@@ -8,7 +8,6 @@ from transformers import pipeline
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import main_config
 import numpy as np
-import torch
 
 
 def custom_sigmoid(x):
@@ -37,16 +36,23 @@ tc_pipe_4 = pipeline(task='text-classification', model="./pipelines/tc_pipe_4/",
 
 tc_pipe_5 = pipeline(task='text-classification', model="./pipelines/tc_pipe_5/", tokenizer="./pipelines/tc_pipe_5/", device=0)
 
-tc_pipe_6 = pipeline(task='text-classification', model="./pipelines/tc_pipe_6/", tokenizer="./pipelines/tc_pipe_6/", device=0)
+# device=0 if there is enough memory
+tc_pipe_6 = pipeline(task='text-classification', model="./pipelines/tc_pipe_6/", tokenizer="./pipelines/tc_pipe_6/")
+
+tc_pipe_7 = pipeline(task='text-classification', model="./pipelines/tc_pipe_7/", tokenizer="./pipelines/tc_pipe_7/")
+
+tc_pipe_8 = pipeline(task='text2text-generation', model="./pipelines/tc_pipe_8/", tokenizer="./pipelines/tc_pipe_8/")
 
 
-tc_tuples = [(tc_pipe_0, 'NON_HATE', 'cased'),
-             (tc_pipe_1, 'POSITIVE', 'uncased'),
-             (tc_pipe_2, 'LABEL_0', 'cased'),
-             (tc_pipe_3, 'LABEL_0', 'cased'),
-             (tc_pipe_4, 'Non-Offensive', 'cased'),
-             (tc_pipe_5, 'POSITIVE', 'cased'),
-             (tc_pipe_6, 'LABEL_0', 'cased')]
+tc_tuples = [(tc_pipe_0, 0, 'POSITIVE', 'cased'),
+             (tc_pipe_1, 1, 'POSITIVE', 'uncased'),
+             (tc_pipe_2, 2, 'LABEL_0', 'cased'),
+             (tc_pipe_3, 3, 'LABEL_0', 'cased'),
+             (tc_pipe_4, 4, 'Non-Offensive', 'cased'),
+             (tc_pipe_5, 5, 'LABEL_0', 'cased'),
+             (tc_pipe_6, 6, 'NO_HATE', 'cased'),
+             (tc_pipe_7, 7, 'NON_HATE', 'cased'),
+             (tc_pipe_8, 8, 'no-hate-speech', 'cased')]
 
 
 sonar_model = Sonar()
@@ -61,41 +67,59 @@ def model_aggregator(comments: list,
 
     length = len(comments)
 
-    weighted_average_score = np.zeros(length)
+    overall_a_score = np.zeros(length)
+    overall_b_score = np.zeros(length)
 
-    for classifier, wrong_label, case in tc_tuples:
+    for classifier, index, wrong_label, case in tc_tuples:
         if case == 'uncased':
             results = classifier(uncased_comments)
         else:
             results = classifier(comments)
 
-        single_score = [1 - result['score'] if result['label'] ==
-                        wrong_label else result['score'] for result in results]
+        if index < 8:
+            classifier_score = [1 - result['score'] if result['label'] ==
+                wrong_label else result['score'] for result in results]
 
-        weighted_average_score += np.array(single_score)
+            if index < 6:
+                overall_a_score += np.array(classifier_score)
+                if index == 6:
+                    overall_b_score += np.array([1 - result['score'] if result['label'] in ('LABEL_0', 'LABEL_1') else result['score'] for result in results])
 
-    torch.cuda.empty_cache() 
-
-    detoxify_score = detoxify_model.predict(comments)['toxicity']
-    weighted_average_score += np.array(detoxify_score) * 0.5
+            else:
+                overall_a_score += np.array(classifier_score) * 0.5
+                overall_b_score += np.array(classifier_score)
+        
+        else:
+            classifier_score = [0 if result['generated_text'] == wrong_label else 1 for result in results]
+            overall_a_score += np.array(classifier_score)
+            overall_b_score += np.array(classifier_score)
 
     for i in range(length):
         vader_score = custom_sigmoid(sentiment_vader(comments[i])) 
         textblob_score = custom_sigmoid(sentiment_textblob(comments[i]))
-        sonar_score = 1 - \
-            sonar_model.ping(text=comments[i])['classes'][2]['confidence']
+
+        detoxify_output = detoxify_model.predict(comments[i])
+        detoxify_score_a = detoxify_output['toxicity']
+        detoxify_score_b = detoxify_output['insult']
+
+        sonar_output = sonar_model.ping(text=comments[i])['classes']
+        sonar_score_a = 1 - \
+            sonar_output[2]['confidence']
+        sonar_score_b = sonar_output[0]['confidence'] / sonar_score_a
 
         sentence = Sentence(comments[i])
         flair_model.predict(sentence)
         flair_result = sentence.labels[0].to_dict()
         flair_score = 1 - flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
         
-        weighted_average_score[i] += (vader_score + textblob_score +
-                    sonar_score + flair_score) * 0.5
+        overall_a_score[i] += (vader_score + textblob_score * 0.5 + detoxify_score + sonar_score * 0.5 + flair_score * 0.5)
+        overall_b_score[i] += detoxify_score_b + sonar_score_b
 
-    weighted_average_score /= 9.5
 
-    return weighted_average_score
+    overall_a_score /= 11.5
+    overall_b_score /= 6
+
+    return overall_a_score, overall_b_score
 
 
 if __name__ == '__main__':

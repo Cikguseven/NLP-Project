@@ -3,6 +3,7 @@ import comment_filter
 import main_config
 import spacy
 import time
+import weak_signals
 
 start = time.time()
 
@@ -23,8 +24,10 @@ def spacy_file_creator(
 
     comment_count = len(comments)
 
+    uncased_comments = [comment.lower() for comment in comments]
+
     if weak_supervision_mode:
-        pass
+        weak_labelled_comments = weak_signals.model_aggregator(comments, uncased_comments)
 
     else:
         for i in range(comment_count):
