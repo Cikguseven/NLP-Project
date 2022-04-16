@@ -120,6 +120,7 @@ uncased_regex_replacements = [
     (r'(?<![^\W_])lky(?![^\W_])', ' Lee Kuan Yew'),
     (r'(?<![^\W_])lmfao{1,}(?![^\W_])', 'laughing my fucking ass off'),
     (r'(?<![^\W_])medisave(?![^\W_])', ' medisave'),
+    (r'(?<![^\W_])mo\s?fo(?![^\W_])', ' motherfucker'),
     (r'(?<![^\W_])mrt(?![^\W_])', ' MRT'),
     (r'(?<![^\W_])msia(?![^\W_])', ' Malaysia'),
     (r'(?<![^\W_])ngl(?![^\W_])', ' not going to lie'),

@@ -8,6 +8,8 @@ from transformers import pipeline
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import main_config
 import numpy as np
+from bad_words import offensive_words
+import spacy
 
 
 def custom_sigmoid(x):
@@ -125,6 +127,10 @@ def model_aggregator(comments: list,
                 flair_score = 1 - flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
                 
                 overall_score[i] += (vader_score + textblob_score * 0.5 + detoxify_score + sonar_score * 0.5 + flair_score * 0.5)
+
+            spacy.require_gpu()
+
+            nlp = spacy.load()
 
         else:
             for i in range(length):

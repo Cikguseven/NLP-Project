@@ -8,6 +8,7 @@ from transformers import pipeline
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import main_config
 import numpy as np
+import bad_words
 
 
 def custom_sigmoid(x):
@@ -83,6 +84,6 @@ def test(sentences):
 		print()
 
 
-list_of_test = ['oh shit', 'fuck my life', 'bag of dicks']
+list_of_test = bad_words.offensive_words[:3]
 
 test(list_of_test)
