@@ -63,7 +63,7 @@ detoxify_model = Detoxify('unbiased', device='cuda')
 flair_model = TextClassifier.load('sentiment')
 
 spacy.require_gpu()
-spacy_models = [f for f in listdir(main_config.model_directory)]
+spacy_models = [f for f in listdir(main_config.model_directory) if 'olid' not in f]
 
 
 def model_aggregator(comments: list,
@@ -73,6 +73,7 @@ def model_aggregator(comments: list,
     length = len(comments)
 
     overall_score = np.zeros(length)
+    overall_weight = 0
 
     if task == 'a':
         for classifier, index, wrong_label, case in tc_tuples:
@@ -86,13 +87,16 @@ def model_aggregator(comments: list,
 
                 if index < 6:
                     overall_score += np.array(classifier_score)
+                    overall_weight += 1
 
                 else:
                     overall_score += np.array(classifier_score) * 0.5
+                    overall_weight += 0.5
             
             else:
                 classifier_score = [0 if result['generated_text'] == wrong_label else 1 for result in results]
                 overall_score += np.array(classifier_score)
+                overall_weight += 1
 
         for model in spacy_models:
             nlp = spacy.load(main_config.model_directory +
@@ -105,6 +109,7 @@ def model_aggregator(comments: list,
 
             overall_score += np.array(
                 [doc.cats['offensive'] for doc in docs]) * 4
+            overall_weight += 4
 
         for i in range(length):
             vader_score = custom_sigmoid(sentiment_vader(comments[i])) 
@@ -115,18 +120,19 @@ def model_aggregator(comments: list,
             sonar_score = 1 - \
                 sonar_model.ping(text=comments[i])['classes'][2]['confidence']
 
-            lexicon_score = 1 if any(offensive_word in comments[i] for offensive_word in offensive_lexicon) else 0
+            uncased_comment = comments[i].lower()
+
+            lexicon_score = 1 if any(offensive_word in uncased_comment for offensive_word in offensive_lexicon) else 0
 
             sentence = Sentence(comments[i])
             flair_model.predict(sentence)
             flair_result = sentence.labels[0].to_dict()
             flair_score = 1 - flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
             
-            overall_score[i] += (vader_score + textblob_score * 0.5 + detoxify_score + sonar_score * 0.5 + lexicon_score * 5.5 + flair_score * 0.5)
+            overall_score[i] += (vader_score + textblob_score * 0.5 + detoxify_score + sonar_score * 0.5 + lexicon_score * 7.5 + flair_score * 0.5)
+            overall_weight += 11
 
-        overall_score /= 25
-
-        return overall_score
+        overall_score /= overall_weight
 
     elif task == 'b':
         for classifier, index, wrong_label, case in tc_tuples[5:]:
@@ -134,12 +140,15 @@ def model_aggregator(comments: list,
 
             if index == 5:
                 overall_score += np.array([1 - result['score'] if result['label'] in ('LABEL_0', 'LABEL_1') else result['score'] for result in results])
+                overall_weight += 1
 
             elif index < 8:
                 overall_score += np.array([1 - result['score'] if result['label'] == wrong_label else result['score'] for result in results])
+                overall_weight += 1
             
             else:
                 overall_score += np.array([0 if result['generated_text'] == wrong_label else 1 for result in results])
+                overall_weight += 1
 
         for model in spacy_models:
             nlp = spacy.load(main_config.model_directory +
@@ -151,7 +160,8 @@ def model_aggregator(comments: list,
                 docs = list(nlp.pipe(comments))
 
             overall_score += np.array(
-                [doc.cats['targeted'] for doc in docs]) * 4
+                [doc.cats['targeted'] for doc in docs])
+            overall_weight += 1
 
         for i in range(length):
             detoxify_score = detoxify_model.predict(comments[i])['insult']
@@ -161,10 +171,11 @@ def model_aggregator(comments: list,
                 sonar_output[2]['confidence'])
 
             overall_score[i] += detoxify_score + sonar_score
+            overall_weight += 2
 
-        overall_score /= 14
+        overall_score /= overall_weight
 
-        return overall_score
+    return overall_score
 
 
 if __name__ == '__main__':

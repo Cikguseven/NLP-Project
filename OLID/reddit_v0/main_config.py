@@ -8,7 +8,7 @@ import comment_filter
 olid_directory = '../OLID_dataset/'
 model_directory = '../models/'
 
-# training_tweet_file = olid_directory + 'olid-training-v1.tsv'
+training_tweet_file = olid_directory + 'olid-training-v1.tsv'
 
 test_tweets_a_file = olid_directory + 'testset-levela.tsv'
 test_tweets_b_file = olid_directory + 'testset-levelb.tsv'
@@ -27,7 +27,7 @@ hand_labelled_comments_csv = 'redditsg_testing.csv'
 hand_labelled_comments_uncased_csv = 'redditsg_testing_uncased.csv'
 remaining_comments = 'redditsg_trainval.txt'
 
-gold_labels = 'gold_labels.txt'
+gold_labels = 'gold_labels_reddit.txt'
 with open(gold_labels) as f:
 	answers = [line.strip().split() for line in f]
 
@@ -39,15 +39,15 @@ spacy_training_file = version + 'training.spacy'
 spacy_validation_file = version + 'vaildation.spacy'
 
 
-# def training_tweets_getter():
-#     with open(training_tweet_file, encoding='utf-8') as f:
-#         tweets = [line.split('\t') for line in f]
+def training_tweets_getter():
+    with open(training_tweet_file, encoding='utf-8') as f:
+        tweets = [line.split('\t') for line in f]
 
-#     tweets.pop(0)
-#     for tweet in tweets:
-#         tweet[4] = tweet[4].strip()
+    tweets.pop(0)
+    for tweet in tweets:
+        tweet[4] = tweet[4].strip()
 
-#     return tweets
+    return tweets
 
 
 def test_tweets_getter():

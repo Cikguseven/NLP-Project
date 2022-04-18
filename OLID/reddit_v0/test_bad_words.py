@@ -1,8 +1,10 @@
 from bad_words import offensive_lexicon
 import weak_signals
 
-scores = weak_signals.model_aggregator(comments=offensive_lexicon, uncased_comments=offensive_lexicon, task='b')
+offensive_lexicon_list = list(offensive_lexicon)[:]
 
-for i in range(len(offensive_lexicon)):
-    print(f'{offensive_lexicon[i]} | {scores[i]}')
+scores = weak_signals.model_aggregator(comments=offensive_lexicon_list, uncased_comments=offensive_lexicon_list, task='b')
+
+for i in range(len(offensive_lexicon_list)):
+    print(f'{offensive_lexicon_list[i]} | {scores[i]}')
     

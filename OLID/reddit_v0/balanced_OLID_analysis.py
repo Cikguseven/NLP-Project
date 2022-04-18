@@ -4,6 +4,7 @@ import comment_filter
 import main_config
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 import spacy
 import time
 import weak_signals
@@ -80,6 +81,10 @@ def evaluate_model(
     plt.show()
 
 
+def random_seed():
+    return 0.1
+
+
 if __name__ == '__main__':
     custom_models = [f for f in listdir(
         main_config.model_directory)]
@@ -88,18 +93,39 @@ if __name__ == '__main__':
 
     all_models = custom_models + specific_model
 
-    # Import unique filtered comments for testing
-    filtered_tweets = comment_filter.c_filter(
-        shuffle=False,
-        remove_username=False,
-        remove_commas=False,
-        length_min=0,
-        length_max=9999,
-        uncased=False,
-        unique=False,
-        input_list=main_config.test_tweets_getter())
+    olid_training_data = main_config.training_tweets_getter()
 
-    evaluate_model(
-        models=all_models,
-        test_tweets=filtered_tweets[:],
-        test_answers=main_config.answers_getter())
+    sample_tweets = []
+    nn_counter = 0
+    ou_counter = 0
+    ot_counter = 0
+
+    for tweet in olid_training_data:
+        if tweet[2] == 'NOT' and nn_counter < 1048:
+            sample_tweets.append(tweet[1])
+            nn_counter += 1
+        elif tweet[3] == 'UNT':
+            sample_tweets.append(tweet[1])
+            ou_counter += 1
+        elif ot_counter < 524:
+            sample_tweets.append(tweet[1])
+            ot_counter += 1
+
+    random.shuffle(sample_tweets, )
+
+
+    # # Import unique filtered comments for testing
+    # filtered_tweets = comment_filter.c_filter(
+    #     shuffle=False,
+    #     remove_username=False,
+    #     remove_commas=False,
+    #     length_min=0,
+    #     length_max=9999,
+    #     uncased=False,
+    #     unique=False,
+    #     input_list=main_config.test_tweets_getter())
+
+    # evaluate_model(
+    #     models=specific_model,
+    #     test_tweets=filtered_tweets[:],
+    #     test_answers=main_config.answers_getter())

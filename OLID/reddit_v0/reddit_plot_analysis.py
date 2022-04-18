@@ -104,6 +104,6 @@ if __name__ == '__main__':
     comment_limit = 900
 
     evaluate_model(
-        models=all_models,
+        models=custom_models,
         test_comments=filtered_comments[comment_limit:],
         test_answers=main_config.answers[comment_limit:])
