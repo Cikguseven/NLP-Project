@@ -1,4 +1,3 @@
-a = [('b', 'c', 'd'), ('d', 'e', 'g')]
+from bad_words import offensive_lexicon
 
-for t, y, l in a:
-	print(t)
+if

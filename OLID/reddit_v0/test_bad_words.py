@@ -1,10 +1,8 @@
-import bad_words
+from bad_words import offensive_lexicon
 import weak_signals
 
-for word in bad_words.offensive_words:
-    if weak_signals.model_aggregator(
-            comments=[word],
-            uncased_comments=[word],
-            task='a',
-            device='cpu') < 0.5:
-        print(word)
+scores = weak_signals.model_aggregator(comments=offensive_lexicon, uncased_comments=offensive_lexicon, task='b')
+
+for i in range(len(offensive_lexicon)):
+    print(f'{offensive_lexicon[i]} | {scores[i]}')
+    

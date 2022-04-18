@@ -32,10 +32,8 @@ def evaluate_model(
         print(model)
 
         if 'weak_signals_function' in model:
-            weak_signals_output = weak_signals.model_aggregator(test_comments, uncased_test_comments)
-
-            task_a_predictions_array = weak_signals_output[0]
-            task_b_predictions_array = weak_signals_output[1]
+            task_a_predictions_array = weak_signals.model_aggregator(test_comments, uncased_test_comments, 'a')
+            task_b_predictions_array = weak_signals.model_aggregator(test_comments, uncased_test_comments, 'b')
 
         else:
             nlp = spacy.load(main_config.model_directory +

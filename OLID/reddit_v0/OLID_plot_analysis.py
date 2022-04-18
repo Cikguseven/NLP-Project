@@ -8,7 +8,7 @@ import spacy
 import time
 import weak_signals
 
-# spacy.require_gpu()
+spacy.require_gpu()
 
 
 def evaluate_model(
@@ -32,8 +32,6 @@ def evaluate_model(
         print(model)
 
         if 'weak_signals_function' in model:
-            weak_signals_output = weak_signals.model_aggregator(test_tweets, uncased_test_tweets, a)
-
             task_a_predictions_array = weak_signals.model_aggregator(test_tweets[:860], uncased_test_tweets[:860], 'a')
             task_b_predictions_array = weak_signals.model_aggregator(test_tweets[860:1100], uncased_test_tweets[860:1100], 'b')
 
@@ -84,7 +82,7 @@ def evaluate_model(
 
 if __name__ == '__main__':
     custom_models = [f for f in listdir(
-        main_config.model_directory)]
+        main_config.model_directory) if 'reddit' not in f]
 
     specific_model = ['weak_signals_function']
 
@@ -102,6 +100,6 @@ if __name__ == '__main__':
         input_list=main_config.test_tweets_getter())
 
     evaluate_model(
-        models=specific_model,
+        models=all_models,
         test_tweets=filtered_tweets[:],
         test_answers=main_config.answers_getter())

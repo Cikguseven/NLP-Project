@@ -1,4 +1,4 @@
-offensive_words = ["2 girls 1 cup",
+offensive_lexicon = {"2 girls 1 cup",
 "2g1c",
 "4r5e",
 "5h1t",
@@ -2709,4 +2709,4 @@ offensive_words = ["2 girls 1 cup",
 "zipperhead",
 "zoophile",
 "zoophilia",
-"zubb"]
+"zubb"}
