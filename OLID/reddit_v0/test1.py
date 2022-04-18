@@ -1,14 +1,5 @@
-import random
+import numpy as np
 
-def random_seed():
-	return 0.3
 
-x = [1, 2, 3, 4]
-y = ['a', 'b', 'c', 'd']
+x = np.concatenate((np.zeros(2), np.ones(2))).tolist()
 
-random.shuffle(x, random_seed)
-random.shuffle(y, random_seed)
-
-print(x)
-
-print(y)

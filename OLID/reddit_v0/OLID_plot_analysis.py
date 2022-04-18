@@ -27,8 +27,6 @@ def evaluate_model(
 
     for model in models:
 
-        start = time.time()
-
         print(model)
 
         if 'weak_signals_function' in model:

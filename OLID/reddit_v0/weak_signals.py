@@ -26,8 +26,6 @@ def sentiment_textblob(sentence):
 
 
 # Hate speech text classifier models from Hugging Face
-
-# GPU
 tc_pipe_0 = pipeline(task='text-classification', model="./pipelines/tc_pipe_0/", tokenizer="./pipelines/tc_pipe_0/", device=0)
 
 tc_pipe_1 = pipeline(task='text-classification', model="./pipelines/tc_pipe_1/", tokenizer="./pipelines/tc_pipe_1/", device=0)
