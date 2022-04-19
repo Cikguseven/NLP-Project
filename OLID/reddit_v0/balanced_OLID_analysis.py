@@ -13,13 +13,12 @@ spacy.require_gpu()
 
 
 def evaluate_model(
-        test_tweets: list,
-        test_answers: list):
+        test_tweets: list):
 
     task_a_answers_array = np.array(
-        [1 if x < 1048 else 0 for x in range(2096)])
+        [0 if x < 1048 else 1 for x in range(2096)])
     task_b_answers_array = np.array(
-        [1 if x < 524 else 0 for x in range(1048)])
+        [0 if x < 524 else 1 for x in range(1048)])
 
     uncased_test_tweets = [tweet.lower() for tweet in test_tweets]
 
@@ -30,28 +29,28 @@ def evaluate_model(
 
     precision, recall, thresholds = precision_recall_curve(
         task_a_answers_array, task_a_predictions_array)
-    axis[0, 0].plot(recall, precision, label=model)
+    axis[0, 0].plot(recall, precision)
     axis[0, 0].set_title("Task A PRC")
     axis[0, 0].set_xlabel("Recall")
     axis[0, 0].set_ylabel("Precision")
 
     fpr, recall, thresholds = roc_curve(
         task_a_answers_array, task_a_predictions_array)
-    axis[1, 0].plot(fpr, recall, label=model)
+    axis[1, 0].plot(fpr, recall)
     axis[1, 0].set_title("Task A ROC")
     axis[1, 0].set_xlabel("False Positive Rate")
     axis[1, 0].set_ylabel("True Positive Rate")
 
     precision, recall, thresholds = precision_recall_curve(
         task_b_answers_array, task_b_predictions_array)
-    axis[0, 1].plot(recall, precision, label=model)
+    axis[0, 1].plot(recall, precision)
     axis[0, 1].set_title("Task B PRC")
     axis[0, 1].set_xlabel("Recall")
     axis[0, 1].set_ylabel("Precision")
 
     fpr, recall, thresholds = roc_curve(
         task_b_answers_array, task_b_predictions_array)
-    axis[1, 1].plot(fpr, recall, label=model)
+    axis[1, 1].plot(fpr, recall)
     axis[1, 1].set_title("Task B ROC")
     axis[1, 1].set_xlabel("False Positive Rate")
     axis[1, 1].set_ylabel("True Positive Rate")
@@ -104,5 +103,4 @@ if __name__ == '__main__':
         input_list=sample_tweets)
 
     evaluate_model(
-        test_tweets=filtered_tweets,
-        test_answers=answers_lc)
+        test_tweets=filtered_tweets)

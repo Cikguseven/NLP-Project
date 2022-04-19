@@ -66,8 +66,8 @@ if __name__ == '__main__':
 
     # Import unique filtered comments for testing and validation
     filtered_comments = c_filter(
-        input_file=main_config.hand_labelled_comments,
-        shuffle=False,
+        input_file=main_config.remaining_comments,
+        shuffle=True,
         remove_username=False,
         length_min=14,
         length_max=99999,
