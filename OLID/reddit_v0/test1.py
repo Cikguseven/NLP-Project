@@ -1,5 +1,4 @@
-import numpy as np
+import spacy
 
-
-x = np.concatenate((np.zeros(2), np.ones(2))).tolist()
+print(spacy.explain('ADD'))
 

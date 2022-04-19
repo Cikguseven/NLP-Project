@@ -82,7 +82,7 @@ def evaluate_model(
 if __name__ == '__main__':
     specific_model = ['en_core_web_trf']
 
-    custom_models = [f for f in listdir(main_config.model_directory) if 'v6' in f]
+    custom_models = [f for f in listdir(main_config.model_directory) if 'v7' in f]
 
     spacy_models = ['en_core_web_sm', 'en_core_web_md', 'en_core_web_lg', 'en_core_web_trf']
 

@@ -1,0 +1,92 @@
+islam, 102, 107, ORG, 1
+the Tanglin Police Division, 35, 62, ORG, 11
+Paul Lim Choon Wui, 79, 97, PER, 11
+Orchard Road, 322, 334, MISC, 11
+Black Ops Cold War, 135, 153, ORG, 17
+the People's Action Party, 94, 119, ORG, 18
+Mainly Phillppines, 799, 817, LOC, 22
+NDP, 167, 170, ORG, 34
+NSC, 45, 48, ORG, 35
+NLB, 136, 139, MISC, 36
+Geforce Now, 105, 116, ORG, 45
+', 121, 122, ORG, 58
+Nam, 122, 125, ORG, 58
+GE2030, 929, 935, MISC, 61
+confirm, 937, 944, ORG, 61
+Ya, 0, 2, PER, 67
+SHN, 89, 92, ORG, 67
+Ty, 76, 78, PER, 71
+Gan Eng Seng, 19, 31, LOC, 77
+51, 35, 37, MISC, 77
+Bukit Merah, 105, 116, LOC, 77
+the People's Action Party, 577, 602, ORG, 101
+Government, 115, 125, ORG, 111
+the Switch Pro, 20, 34, MISC, 131
+NTF, 11, 14, MISC, 136
+Sengkang, 10, 18, PER, 146
+jiak kentang, 117, 129, PER, 150
+VB, 195, 197, ORG, 160
+VB, 220, 222, ORG, 160
+the People's Action Party, 280, 305, ORG, 160
+SA, 112, 114, LOC, 162
+medisave, 119, 127, ORG, 162
+He Ting Ru's, 36, 48, PER, 170
+OP, 296, 298, PER, 174
+sampan, 80, 86, MISC, 176
+2019ncov, 59, 67, PER, 180
+hooha, 12, 17, LOC, 190
+Sinophile, 188, 197, PER, 205
+albino, 230, 236, MISC, 214
+Colorful, 86, 94, MISC, 220
+Hari Raya, 183, 192, PER, 224
+Scoot, 144, 149, MISC, 239
+Government, 241, 251, ORG, 239
+GC, 118, 120, ORG, 251
+SMRT, 13, 17, MISC, 261
+minecraft manhunt best, 2316, 2338, MISC, 271
+ALEXA PLAY ASTRONOMIA, 0, 21, ORG, 285
+Government, 88, 98, ORG, 285
+lee, 49, 52, ORG, 289
+the safe entry gateway box, 61, 87, MISC, 297
+TADA, 17, 21, MISC, 314
+DHQ, 275, 278, ORG, 317
+the People's Action Party, 146, 171, ORG, 328
+pro- People's Action Party, 83, 109, ORG, 344
+anti- People's Action Party, 120, 147, ORG, 344
+AGGA, 15, 19, ORG, 348
+AGGA, 116, 120, ORG, 348
+kopitiam, 202, 210, ORG, 350
+Capitaland, 380, 390, MISC, 350
+Brexit, 118, 124, LOC, 351
+the People's Action Party, 542, 567, ORG, 358
+NDTV New Delhi Television, 23, 48, ORG, 368
+covid, 317, 322, MISC, 378
+a Committee of Inquiry, 76, 98, ORG, 380
+les, 77, 80, MISC, 388
+Russian, 129, 136, MISC, 393
+Government, 13, 23, ORG, 394
+Government, 190, 200, ORG, 394
+reddit, 804, 810, ORG, 398
+liao, 91, 95, PER, 399
+liao, 55, 59, PER, 413
+When the Vietcong unified the whole country, 224, 267, MISC, 413
+hl, 13, 15, MISC, 417
+the Ministry of Education, 941, 966, ORG, 423
+Reno, 184, 188, LOC, 431
+Mac, 134, 137, MISC, 443
+Chao Kway Teow, 37, 51, ORG, 444
+Chao Kway Teow, 96, 110, ORG, 444
+bisikan syaitan la, 38, 56, ORG, 445
+Islam, 652, 657, ORG, 445
+Singaporean, 243, 254, MISC, 453
+377A which, 328, 338, MISC, 453
+Texas, 60, 65, MISC, 459
+otter 1, 0, 7, PER, 461
+otter 2, 37, 44, PER, 461
+otter 1, 62, 69, PER, 461
+gp, 67, 69, ORG, 463
+chiong, 90, 96, PER, 463
+kena covid, 110, 120, PER, 473
+liao, 78, 82, PER, 481
+SafeEntry, 61, 70, ORG, 490
+Reddit, 0, 6, ORG, 494

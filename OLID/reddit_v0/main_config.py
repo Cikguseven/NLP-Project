@@ -1,9 +1,13 @@
 from collections import Counter
-# import emoji
-# import filters
-# import re
-# import wordsegment
 import comment_filter
+import emoji
+import os
+import re
+import sys
+import wordsegment
+
+sys.path.insert(1, os.path.join(sys.path[0], '../..'))
+import shared_filters
 
 olid_directory = '../OLID_dataset/'
 model_directory = '../models/'
@@ -98,38 +102,40 @@ def answers_frequency(answers: list):
 
 
 
-# def preprocess(tweets: list, uncased: bool):
-#     wordsegment.load()
+def preprocess(tweets: list, uncased: bool):
+    wordsegment.load()
 
-#     for i in range(len(tweets)):
+    for i in range(len(tweets)):
 
-#         # User mention replacement
-#         if tweets[i].find('@USER') != tweets[i].rfind('@USER'):
-#             tweets[i] = tweets[i].replace('@USER', '')
-#             tweets[i] = '@USERS ' + tweets[i]
+        # User mention replacement
+        if tweets[i].find('@USER') != tweets[i].rfind('@USER'):
+            tweets[i] = tweets[i].replace('@USER', '')
+            tweets[i] = '@USERS ' + tweets[i]
 
-#         # Hashtag segmentation
-#         line_tokens = tweets[i].split(' ')
-#         for j, t in enumerate(line_tokens):
-#             if t.find('#') == 0:
-#                 line_tokens[j] = ' '.join(wordsegment.segment(t))
-#         tweets[i] = ' '.join(line_tokens)
+        # Hashtag segmentation
+        line_tokens = tweets[i].split(' ')
+        for j, t in enumerate(line_tokens):
+            if t.find('#') == 0:
+                line_tokens[j] = ' '.join(wordsegment.segment(t))
+        tweets[i] = ' '.join(line_tokens)
 
-#         # Emoji to word
-#         tweets[i] = emoji.demojize(tweets[i])
+        # Emoji to word
+        tweets[i] = emoji.demojize(tweets[i])
 
-#         # Formatting and slang replacement
-#         for old, new in filters.uncased_regex_replacements:
-#             tweets[i] = re.sub(old, new, tweets[i], flags=re.I)
+        # Formatting and slang replacement
+        for old, new in shared_filters.uncased_regex_replacements:
+            tweets[i] = re.sub(old, new, tweets[i], flags=re.I)
 
-#         for old, new in filters.cased_regex_replacements:
-#             tweets[i] = re.sub(old, new, tweets[i])
+        for old, new in shared_filters.cased_regex_replacements:
+            tweets[i] = re.sub(old, new, tweets[i])
 
-#         # Uncased text
-#         if uncased:
-#             tweets[i] = tweets[i].lower()
+        # Uncased text
+        if uncased:
+            tweets[i] = tweets[i].lower()
 
-#     return tweets
+        tweets[i] = tweets[i].strip()
+
+    return tweets
 
 
 def k_most_frequent_words(data: list, k: int):
