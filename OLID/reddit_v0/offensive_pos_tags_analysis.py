@@ -77,12 +77,6 @@ spacy.require_gpu()
 
 nlp = spacy.load('en_core_web_trf')
 
-docs = list(nlp.pipe(tweets))
+docs = list(nlp.pipe(tweets[:3]))
 
-pos_tags = set()
-
-for doc in docs:
-    for tok in doc:
-        pos_tags.add(tok.tag_)
-
-print(pos_tags)
+all_tags = [[tags_dict[tok.tag_] for tok in doc] for doc in docs]
