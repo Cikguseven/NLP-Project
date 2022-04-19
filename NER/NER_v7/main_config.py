@@ -5,6 +5,7 @@ hand_labelled_comments = '500_cased.txt'
 remaining_comments = 'remaining.txt'
 
 model_directory = '../models/'
+NER_model_directory = '../../NER/models/'
 
 validation_split = 25
 training_split = 100 - validation_split
