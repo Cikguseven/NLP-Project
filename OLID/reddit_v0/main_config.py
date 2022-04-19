@@ -7,6 +7,7 @@ import comment_filter
 
 olid_directory = '../OLID_dataset/'
 model_directory = '../models/'
+NER_model_directory = '../../NER/models/'
 
 training_tweet_file = olid_directory + 'olid-training-v1.tsv'
 
