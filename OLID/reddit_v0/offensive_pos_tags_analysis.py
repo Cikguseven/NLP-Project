@@ -2,6 +2,10 @@ import main_config
 import spacy
 import comment_filter
 from os import listdir
+from collections import Counter
+import test1
+
+accumulator = Counter()
 
 # custom_models = [f for f in listdir(
 #     main_config.NER_model_directory) if 'v' in f]
@@ -70,13 +74,18 @@ tags_dict = {"$": 1,
              "XX": 48,
              "``": 49}
 
-with open('olid_offensive.txt') as f:
-    tweets = [line.strip() for line in f]
+# with open('olid_offensive.txt') as f:
+#     tweets = [line.strip() for line in f]
 
-spacy.require_gpu()
+# spacy.require_gpu()
 
-nlp = spacy.load('en_core_web_trf')
+# nlp = spacy.load('en_core_web_trf')
 
-docs = list(nlp.pipe(tweets[:3]))
+# docs = list(nlp.pipe(tweets))
 
-all_tags = [[tags_dict[tok.tag_] for tok in doc] for doc in docs]
+# all_tags = [[tags_dict[tok.tag_] for tok in doc] for doc in docs]
+
+# print(all_tags)
+
+print(len(results))
+
