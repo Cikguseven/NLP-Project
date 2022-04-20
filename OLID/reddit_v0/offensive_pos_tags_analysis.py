@@ -3,7 +3,7 @@ import spacy
 import comment_filter
 from os import listdir
 from collections import Counter
-import test1
+import tag_freq_analysis
 
 accumulator = Counter()
 
@@ -11,18 +11,17 @@ accumulator = Counter()
 #     main_config.NER_model_directory) if 'v' in f]
 
 
-# olid_training_data = main_config.training_tweets_getter()
+olid_training_data = main_config.training_tweets_getter()
 
-# offensive_tweets = []
+non_offensive_tweets = []
 
-# for tweet in olid_training_data:
-#     if tweet[2] == 'OFF':
-#         offensive_tweets.append(tweet[1])
+for tweet in olid_training_data:
+    if tweet[2] != 'OFF':
+        non_offensive_tweets.append(tweet[1])
 
-# filtered_tweets = main_config.preprocess(offensive_tweets, False)
+print(len(non_offensive_tweets))
 
-# for t in filtered_tweets:
-# 	print(t)
+filtered_tweets = main_config.preprocess(non_offensive_tweets, False)
 
 tags_dict = {"$": 1,
              "''": 2,
@@ -74,18 +73,19 @@ tags_dict = {"$": 1,
              "XX": 48,
              "``": 49}
 
-# with open('olid_offensive.txt') as f:
-#     tweets = [line.strip() for line in f]
+spacy.require_gpu()
+nlp = spacy.load('en_core_web_trf')
+docs = list(nlp.pipe(filtered_tweets))
+all_tags = [[tags_dict[tok.tag_] for tok in doc] for doc in docs]
 
-# spacy.require_gpu()
+print(all_tags)
 
-# nlp = spacy.load('en_core_web_trf')
+# for pattern in test1.results:
+#     length = len(pattern)
+#     if length > 5:
+#         for l in range(8, length + 1, 3):
+#             for start in range(length - l):
+#                 accumulator[pattern[start:start+l]] += 1
 
-# docs = list(nlp.pipe(tweets))
-
-# all_tags = [[tags_dict[tok.tag_] for tok in doc] for doc in docs]
-
-# print(all_tags)
-
-print(len(results))
+# print(accumulator.most_common(40))
 
