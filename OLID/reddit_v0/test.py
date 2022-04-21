@@ -1,3 +1,5 @@
-from collections import Counter
+from detoxify import Detoxify
 
-print(type(Counter()))
+results = Detoxify('unbiased', device='cuda').predict('bunch of cunts')
+
+print(results)

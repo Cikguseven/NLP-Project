@@ -9,7 +9,8 @@ import spacy
 import time
 import weak_signals
 
-spacy.require_gpu()
+def random_seed():
+    return 0.1346365467
 
 
 def evaluate_model(
@@ -60,14 +61,10 @@ def evaluate_model(
     plt.show()
 
 
-def random_seed():
-    return 0.1346365467
-
-
 if __name__ == '__main__':
-    olid_training_data = main_config.training_tweets_getter()
+    spacy.require_gpu()
 
-    sample_tweets = []
+    olid_training_data = main_config.training_tweets_getter()
 
     nn_tweets = []
     nn_counter = 0

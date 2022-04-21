@@ -26,33 +26,42 @@ def sentiment_textblob(sentence):
 
 
 # Hate speech text classifier models from Hugging Face
-tc_pipe_0 = pipeline(task='text-classification', model="./pipelines/tc_pipe_0/", tokenizer="./pipelines/tc_pipe_0/", device=0)
+tc_0 = pipeline(task='text-classification', model="./pipelines/tc_0/",
+                tokenizer="./pipelines/tc_0/", device=0)
 
-tc_pipe_1 = pipeline(task='text-classification', model="./pipelines/tc_pipe_1/", tokenizer="./pipelines/tc_pipe_1/", device=0)
+tc_1 = pipeline(task='text-classification', model="./pipelines/tc_1/",
+                tokenizer="./pipelines/tc_1/", device=0)
 
-tc_pipe_2 = pipeline(task='text-classification', model="./pipelines/tc_pipe_2/", tokenizer="./pipelines/tc_pipe_2/", device=0)
+tc_2 = pipeline(task='text-classification', model="./pipelines/tc_2/",
+                tokenizer="./pipelines/tc_2/", device=0)
 
-tc_pipe_3 = pipeline(task='text-classification', model="./pipelines/tc_pipe_3/", tokenizer="./pipelines/tc_pipe_3/", device=0)
+tc_3 = pipeline(task='text-classification', model="./pipelines/tc_3/",
+                tokenizer="./pipelines/tc_3/", device=0)
 
-tc_pipe_4 = pipeline(task='text-classification', model="./pipelines/tc_pipe_4/", tokenizer="./pipelines/tc_pipe_4/", device=0)
+tc_4 = pipeline(task='text-classification', model="./pipelines/tc_4/",
+                tokenizer="./pipelines/tc_4/", device=0)
 
-tc_pipe_5 = pipeline(task='text-classification', model="./pipelines/tc_pipe_5/", tokenizer="./pipelines/tc_pipe_5/", device=0)
+tc_5 = pipeline(task='text-classification', model="./pipelines/tc_5/",
+                tokenizer="./pipelines/tc_5/", device=0)
 
-tc_pipe_6 = pipeline(task='text-classification', model="./pipelines/tc_pipe_6/", tokenizer="./pipelines/tc_pipe_6/", device=0)
+tc_6 = pipeline(task='text-classification', model="./pipelines/tc_6/",
+                tokenizer="./pipelines/tc_6/", device=0)
 
-tc_pipe_7 = pipeline(task='text-classification', model="./pipelines/tc_pipe_7/", tokenizer="./pipelines/tc_pipe_7/", device=0)
+tc_7 = pipeline(task='text-classification', model="./pipelines/tc_7/",
+                tokenizer="./pipelines/tc_7/", device=0)
 
-tc_pipe_8 = pipeline(task='text2text-generation', model="./pipelines/tc_pipe_8/", tokenizer="./pipelines/tc_pipe_8/", device=0)
+tc_8 = pipeline(task='text2text-generation', model="./pipelines/tc_8/",
+                tokenizer="./pipelines/tc_8/", device=0)
 
-tc_tuples = [(tc_pipe_0, 0, 'POSITIVE', 'cased'),
-             (tc_pipe_1, 1, 'POSITIVE', 'uncased'),
-             (tc_pipe_2, 2, 'LABEL_0', 'cased'),
-             (tc_pipe_3, 3, 'LABEL_0', 'cased'),
-             (tc_pipe_4, 4, 'Non-Offensive', 'cased'),
-             (tc_pipe_5, 5, 'LABEL_0', 'cased'),
-             (tc_pipe_6, 6, 'NO_HATE', 'cased'),
-             (tc_pipe_7, 7, 'NON_HATE', 'cased'),
-             (tc_pipe_8, 8, 'no-hate-speech', 'cased')]
+tc_tuples = [(tc_0, 0, 'POSITIVE', 'cased', 1),
+             (tc_1, 1, 'POSITIVE', 'uncased', 1),
+             (tc_2, 2, 'LABEL_0', 'cased', 0.5),
+             (tc_3, 3, 'LABEL_0', 'cased', 2),
+             (tc_4, 4, 'Non-Offensive', 'cased', 2),
+             (tc_5, 5, 'LABEL_0', 'cased', 2),
+             (tc_6, 6, 'NO_HATE', 'cased', 1),
+             (tc_7, 7, 'NON_HATE', 'cased', 1),
+             (tc_8, 8, 'no-hate-speech', 'cased', 1)]
 
 sonar_model = Sonar()
 
@@ -60,8 +69,16 @@ detoxify_model = Detoxify('unbiased', device='cuda')
 
 flair_model = TextClassifier.load('sentiment')
 
+detoxify_weight = 1
+vader_weight = 1
+textblob_weight = 1
+sonar_weight = 1
+lexicon_weight = 15
+flair_weight = 0.5
+
 spacy.require_gpu()
-spacy_models = [f for f in listdir(main_config.model_directory) if 'olid' not in f]
+spacy_models = [f for f in listdir(
+    main_config.NER_model_directory) if 'v7' in f]
 
 
 def model_aggregator(comments: list,
@@ -83,93 +100,88 @@ def model_aggregator(comments: list,
             if index < 8:
                 classifier_score = [1 - result['score'] if result['label'] == wrong_label else result['score'] for result in results]
 
-                if index < 6:
-                    overall_score += np.array(classifier_score)
-                    overall_weight += 1
-
+                if 2 < index < 6:
+                    weight = 2
                 else:
-                    overall_score += np.array(classifier_score) * 0.5
-                    overall_weight += 0.5
-            
+                    weight = 1
+
+                overall_score += np.array(classifier_score) * weight
+                overall_weight += weight
+
             else:
-                classifier_score = [0 if result['generated_text'] == wrong_label else 1 for result in results]
+                classifier_score = [0 if result['generated_text']
+                                    == wrong_label else 1 for result in results]
+
                 overall_score += np.array(classifier_score)
                 overall_weight += 1
 
-        for model in spacy_models:
-            nlp = spacy.load(main_config.model_directory +
-                             model + '/model-best')
-
-            if 'uncased' in model:
-                docs = list(nlp.pipe(uncased_comments))
-            else:
-                docs = list(nlp.pipe(comments))
-
-            overall_score += np.array(
-                [doc.cats['offensive'] for doc in docs]) * 4
-            overall_weight += 4
+        overall_score += np.array(detoxify_model.predict(comments)['toxicity'])
+        overall_weight += detoxify_weight
 
         for i in range(length):
-            vader_score = custom_sigmoid(sentiment_vader(comments[i])) 
-            textblob_score = custom_sigmoid(sentiment_textblob(comments[i]))
+            vader_score = custom_sigmoid(sentiment_vader(comments[i]))
 
-            detoxify_score = detoxify_model.predict(comments[i])['toxicity']
+            textblob_score = custom_sigmoid(sentiment_textblob(comments[i]))
 
             sonar_score = 1 - \
                 sonar_model.ping(text=comments[i])['classes'][2]['confidence']
 
-            uncased_comment = comments[i].lower()
-
-            lexicon_score = 1 if any(offensive_word in uncased_comment for offensive_word in offensive_lexicon) else 0
+            lexicon_score = 1 if any(
+                offensive_word in uncased_comments[i] for offensive_word in offensive_lexicon) else 0
 
             sentence = Sentence(comments[i])
             flair_model.predict(sentence)
             flair_result = sentence.labels[0].to_dict()
-            flair_score = 1 - flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
-            
-            overall_score[i] += (vader_score + textblob_score * 0.5 + detoxify_score + sonar_score * 0.5 + lexicon_score * 7.5 + flair_score * 0.5)
-            overall_weight += 11
+            flair_score = 1 - \
+                flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
+
+            overall_score[i] += (vader_score * vader_weight + textblob_score * textblob_weight + sonar_score * sonar_weight + lexicon_score * lexicon_weight + flair_score * flair_weight)
+        
+        overall_weight += vader_weight + textblob_weight + sonar_weight + lexicon_weight + flair_weight
 
         overall_score /= overall_weight
 
     elif task == 'b':
-        for classifier, index, wrong_label, case in tc_tuples[5:]:
-            results = classifier(comments)
+        for classifier, index, wrong_label, case, weight in tc_tuples:
+            if index == 0 or index > 4:
+                results = classifier(comments)
 
-            if index == 5:
-                overall_score += np.array([1 - result['score'] if result['label'] in ('LABEL_0', 'LABEL_1') else result['score'] for result in results])
-                overall_weight += 1
+                if index == 5:
+                    overall_score += np.array([1 - result['score'] if result['label'] in (
+                        'LABEL_0', 'LABEL_1') else result['score'] for result in results]) * weight
+                    overall_weight += weight
 
-            elif index < 8:
-                overall_score += np.array([1 - result['score'] if result['label'] == wrong_label else result['score'] for result in results])
-                overall_weight += 1
-            
-            else:
-                overall_score += np.array([0 if result['generated_text'] == wrong_label else 1 for result in results])
-                overall_weight += 1
+                elif index < 8:
+                    overall_score += np.array([1 - result['score'] if result['label'] == wrong_label else result['score'] for result in results]) * weight
+                    overall_weight += weight
 
-        for model in spacy_models:
-            nlp = spacy.load(main_config.model_directory +
-                             model + '/model-best')
+                else:
+                    overall_score += np.array([0 if result['generated_text']
+                                               == wrong_label else 1 for result in results]) * weight
+                    overall_weight += weight
 
-            if 'uncased' in model:
-                docs = list(nlp.pipe(uncased_comments))
-            else:
-                docs = list(nlp.pipe(comments))
+        # for model in spacy_models:
+        #     nlp = spacy.load(main_config.model_directory +
+        #                      model + '/model-best')
 
-            overall_score += np.array(
-                [doc.cats['targeted'] for doc in docs])
-            overall_weight += 1
+        #     if 'uncased' in model:
+        #         docs = list(nlp.pipe(uncased_comments))
+        #     else:
+        #         docs = list(nlp.pipe(comments))
+
+        #     overall_score += np.array(
+        #         [doc.cats['targeted'] for doc in docs])
+        #     overall_weight += 1
+
+        overall_score += np.array(detoxify_model.predict(comments)['insult'])
+        overall_weight += detoxify_weight
 
         for i in range(length):
-            detoxify_score = detoxify_model.predict(comments[i])['insult']
-
             sonar_output = sonar_model.ping(text=comments[i])['classes']
-            sonar_score = sonar_output[0]['confidence'] / (1 - \
-                sonar_output[2]['confidence'])
-
-            overall_score[i] += detoxify_score + sonar_score
-            overall_weight += 2
+            sonar_score = sonar_output[0]['confidence'] / (1 - sonar_output[2]['confidence'])
+            overall_score[i] += sonar_score
+        
+        overall_weight += sonar_weight
 
         overall_score /= overall_weight
 

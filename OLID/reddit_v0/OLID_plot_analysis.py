@@ -5,7 +5,6 @@ import main_config
 import matplotlib.pyplot as plt
 import numpy as np
 import spacy
-import time
 import weak_signals
 
 spacy.require_gpu()
