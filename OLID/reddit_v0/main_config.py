@@ -11,9 +11,10 @@ import shared_filters
 
 olid_directory = '../OLID_dataset/'
 model_directory = '../models/'
-NER_model_directory = '../../NER/models/'
+NER_model = '../../NER/models/v7/model-best'
 
 training_tweet_file = olid_directory + 'olid-training-v1.tsv'
+balanced_tweet_file = olid_directory + 'olid-combined.tsv'
 
 test_tweets_a_file = olid_directory + 'testset-levela.tsv'
 test_tweets_b_file = olid_directory + 'testset-levelb.tsv'
@@ -54,6 +55,53 @@ def training_tweets_getter():
 
     return tweets
 
+
+def balanced_tweets_getter():
+    with open(balanced_tweet_file, encoding='utf-8') as f:
+        tweets = [line.split('\t') for line in f]
+
+    tweets.pop(0)
+    for tweet in tweets:
+        tweet[4] = tweet[4].strip()
+
+    nn_tweets = []
+    nn_counter = 0
+
+    ou_tweets = []
+
+    ot_tweets = []
+    ot_counter = 0
+
+    ind_tweets = []
+    ind_counter = 0
+
+    grp_tweets = []
+    grp_counter = 0
+
+    oth_tweets = []
+
+    for tweet in tweets:
+        if nn_counter < 1102 and tweet[2] == 'NOT':
+            nn_tweets.append(tweet[1])
+            nn_counter += 1
+        elif tweet[3] == 'UNT':
+            ou_tweets.append(tweet[1])
+        elif ot_counter < 551 and tweet[3] == 'TIN':
+            ot_tweets.append(tweet[1])
+            ot_counter += 1
+
+        if tweet[4] == 'OTH':
+            oth_tweets.append(tweet[1])
+        elif tweet[4] == 'IND' and ind_counter < 430:
+            ind_tweets.append(tweet[1])
+            ind_counter += 1
+        elif tweet[4] == 'GRP' and grp_counter < 430:
+            grp_tweets.append(tweet[1])
+            grp_counter += 1
+
+    a_b = nn_tweets + ou_tweets + ot_tweets
+    c = oth_tweets + ind_tweets + grp_tweets
+    
 
 def test_tweets_getter():
     tweets = []

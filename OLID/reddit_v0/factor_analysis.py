@@ -78,16 +78,24 @@ models = [(tc_0, 'tc_0', 'POSITIVE', 'cased', 1),
 
 
 def evaluate(
-        test_tweets: list):
+        test_tweets: list,
+        test_tweets_c: list):
 
     task_a_answers_array = np.array(
-        [0 if x < 1048 else 1 for x in range(2096)])
+        [0 if x < 1102 else 1 for x in range(2204)])
     task_b_answers_array = np.array(
-        [0 if x < 524 else 1 for x in range(1048)])
+        [0 if x < 551 else 1 for x in range(1102)])
+    oth_answers_array = np.array(
+        [1 if x < 430 else 0 for x in range(1290)])
+    ind_answers_array = np.array(
+        [1 if 429 < x < 860 else 0 for x in range(1290)])
+    grp_answers_array = np.array(
+        [1 if x > 859 else 0 for x in range(1290)])
 
     uncased_test_tweets = [tweet.lower() for tweet in test_tweets]
+    uncased_test_tweets_c = [tweet.lower() for tweet in test_tweets_c]
 
-    figure, axis = plt.subplots(2, 2)
+    figure, axis = plt.subplots(2, 5)
 
     for classifier, name, wrong_label, case, index in models:
 
@@ -187,32 +195,10 @@ def evaluate(
 
 
 if __name__ == '__main__':
-    olid_training_data = main_config.training_tweets_getter()
-
-    nn_tweets = []
-    nn_counter = 0
-
-    ou_tweets = []
-    ou_counter = 0
-
-    ot_tweets = []
-    ot_counter = 0
-
-    for tweet in olid_training_data:
-        if tweet[2] == 'NOT' and nn_counter < 1048:
-            nn_tweets.append(tweet[1])
-            nn_counter += 1
-        elif tweet[3] == 'UNT':
-            ou_tweets.append(tweet[1])
-            ou_counter += 1
-        elif ot_counter < 524:
-            ot_tweets.append(tweet[1])
-            ot_counter += 1
-
-    sample_tweets = nn_tweets + ou_tweets + ot_tweets
+    task_a_b, task_c = main_config.balanced_tweets_getter()
 
     # Import unique filtered comments for testing
-    filtered_tweets = comment_filter.c_filter(
+    filtered_a_b = comment_filter.c_filter(
         shuffle=False,
         remove_username=False,
         remove_commas=False,
@@ -220,7 +206,18 @@ if __name__ == '__main__':
         length_max=9999,
         uncased=False,
         unique=False,
-        input_list=sample_tweets)
+        input_list=task_a_b)
+
+    filtered_c = comment_filter.c_filter(
+        shuffle=False,
+        remove_username=False,
+        remove_commas=False,
+        length_min=0,
+        length_max=9999,
+        uncased=False,
+        unique=False,
+        input_list=task_c)
 
     evaluate(
-        test_tweets=filtered_tweets)
+        test_tweets=filtered_a_b,
+        test_tweets_c=filtered_c)

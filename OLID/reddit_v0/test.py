@@ -1,5 +1,7 @@
-from detoxify import Detoxify
+import spacy
 
-results = Detoxify('unbiased', device='cuda').predict('bunch of cunts')
+nlp_trf = spacy.load('en_core_web_trf')
 
-print(results)
+text = 'My first birthday was great. My 2. was even better.'
+for i in nlp_trf(text).sents:
+	print(i)

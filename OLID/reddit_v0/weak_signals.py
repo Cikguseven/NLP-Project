@@ -160,19 +160,6 @@ def model_aggregator(comments: list,
                                                == wrong_label else 1 for result in results]) * weight
                     overall_weight += weight
 
-        # for model in spacy_models:
-        #     nlp = spacy.load(main_config.model_directory +
-        #                      model + '/model-best')
-
-        #     if 'uncased' in model:
-        #         docs = list(nlp.pipe(uncased_comments))
-        #     else:
-        #         docs = list(nlp.pipe(comments))
-
-        #     overall_score += np.array(
-        #         [doc.cats['targeted'] for doc in docs])
-        #     overall_weight += 1
-
         overall_score += np.array(detoxify_model.predict(comments)['insult'])
         overall_weight += detoxify_weight
 
@@ -184,6 +171,12 @@ def model_aggregator(comments: list,
         overall_weight += sonar_weight
 
         overall_score /= overall_weight
+
+    elif task == 'c':
+        nlp_trf = spacy.load('en_core_web_trf')
+
+        nlp_ner = spacy.load(main_config.NER_model)
+
 
     return overall_score
 

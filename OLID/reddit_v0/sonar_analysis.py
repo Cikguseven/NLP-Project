@@ -1,14 +1,12 @@
-# Do analysis for pipe 5
-
-from hatesonar import Sonar
+from transformers import pipeline
 from sklearn.metrics import precision_recall_curve, roc_curve
 import comment_filter
 import main_config
 import matplotlib.pyplot as plt
 import numpy as np
 
-sonar_model = Sonar()
-
+tc_5 = pipeline(task='text-classification', model="./pipelines/tc_5/",
+                tokenizer="./pipelines/tc_5/", device=0)
 
 def evaluate(
         test_tweets: list):
@@ -17,28 +15,57 @@ def evaluate(
         [0 if x < 1048 else 1 for x in range(2096)])
     task_b_answers_array = np.array(
         [0 if x < 524 else 1 for x in range(1048)])
+    oth_answers_array = np.array(
+        [1 if x < 430 else 0 for x in range(1290)])
+    ind_answers_array = np.array(
+        [1 if 429 < x < 860 else 0 for x in range(1290)])
+    grp_answers_array = np.array(
+        [1 if x > 859 else 0 for x in range(1290)])
 
     figure, axis = plt.subplots(2, 2)
 
-    sonar_hate = []
-    sonar_offensive = []
-    sonar_either = []
-    sonar_hateovereither = []
+    LABEL_0 = np.zeros(2096)
+    INVERSE_0 = np.zeros(2096)
+    INVERSE_0_1 = np.zeros(2096)
+    INVERSE_0_1_2 = np.zeros(2096)
+    LABEL_1 = np.zeros(2096)
+    LABEL_2 = np.zeros(2096)
+    LABEL_3 = np.zeros(2096)
+    
+    results = tc_5(test_tweets)
 
-    keys = [(sonar_hate, 'sonar_hate'), (sonar_offensive, 'sonar_offensive'), (sonar_either,'sonar_either'), (sonar_hateovereither, 'sonar_hateovereither')]
+    for i in range(len(results)):
+        if results[i]['label'] == 'LABEL_0':
+            LABEL_0[i] = results[i]['score']
+            INVERSE_0[i] = 1 - results[i]['score']
+            INVERSE_0_1[i] = 1 - results[i]['score']
+            INVERSE_0_1_2[i] = 1 - results[i]['score']
+        elif results[i]['label'] == 'LABEL_1':
+            LABEL_1[i] = results[i]['score']
+            INVERSE_0_1[i] = 1 - results[i]['score']
+            INVERSE_0_1_2[i] = 1 - results[i]['score']
+        elif results[i]['label'] == 'LABEL_2':
+            LABEL_2[i] = results[i]['score']
+            INVERSE_0_1_2[i] = 1 - results[i]['score']
+        else:
+            LABEL_3[i] = results[i]['score']
 
-    for tweet in test_tweets:
-        sonar_score = sonar_model.ping(text=tweet)['classes']
 
-        hate = sonar_score[0]['confidence']
-        either = 1 - sonar_score[2]['confidence']
+    print(LABEL_0[:10])
+    print(INVERSE_0[:10])
+    print(INVERSE_0_1[:10])
+    print(INVERSE_0_1_2[:10])
+    print(LABEL_1[:10])
+    print(LABEL_2[:10])
+    print(LABEL_3[:10])
 
-        sonar_hate.append(hate)
-        sonar_offensive.append(sonar_score[1]['confidence'])
-        sonar_either.append(either)
-        sonar_hateovereither.append(hate / either)
+    TASK_A = INVERSE_0 + LABEL_1 + LABEL_2 + LABEL_3
+    TASK_B = INVERSE_0_1 + LABEL_2 + LABEL_3
+    NEW_TASK_B = INVERSE_0_1_2 + LABEL_3
 
-    for score, key in keys:
+    keys = [('TASK_A', TASK_A), ('TASK_B', TASK_B), ('NEW_TASK_B', NEW_TASK_B)]
+
+    for key, score in keys:
 
         task_a_predictions_array = np.array(score)
         task_b_predictions_array = task_a_predictions_array[1048:]
