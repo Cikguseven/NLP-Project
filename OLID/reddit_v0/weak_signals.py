@@ -69,12 +69,12 @@ detoxify_model = Detoxify('unbiased', device='cuda')
 
 flair_model = TextClassifier.load('sentiment')
 
-detoxify_weight = 1
+detoxify_weight = 2
 vader_weight = 1
 textblob_weight = 1
 sonar_weight = 1
 lexicon_weight = 15
-flair_weight = 0.5
+flair_weight = 1
 
 spacy.require_gpu()
 spacy_models = [f for f in listdir(
@@ -116,6 +116,7 @@ def model_aggregator(comments: list,
                 overall_weight += 1
 
         overall_score += np.array(detoxify_model.predict(comments)['toxicity'])
+        overall_score += np.array(detoxify_model.predict(comments)['insult'])
         overall_weight += detoxify_weight
 
         for i in range(length):
@@ -160,15 +161,22 @@ def model_aggregator(comments: list,
                                                == wrong_label else 1 for result in results]) * weight
                     overall_weight += weight
 
-        overall_score += np.array(detoxify_model.predict(comments)['insult'])
+        overall_score += np.array(detoxify_model.predict(comments)['insult']) * detoxify_weight
         overall_weight += detoxify_weight
 
         for i in range(length):
             sonar_output = sonar_model.ping(text=comments[i])['classes']
             sonar_score = sonar_output[0]['confidence'] / (1 - sonar_output[2]['confidence'])
-            overall_score[i] += sonar_score
+
+            sentence = Sentence(comments[i])
+            flair_model.predict(sentence)
+            flair_result = sentence.labels[0].to_dict()
+            flair_score = 1 - \
+                flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
+
+            overall_score[i] += sonar_score * sonar_weight + flair_score * flair_weight
         
-        overall_weight += sonar_weight
+        overall_weight += sonar_weight + flair_weight
 
         overall_score /= overall_weight
 

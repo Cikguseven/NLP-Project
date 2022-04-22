@@ -35,7 +35,7 @@ remaining_comments = 'redditsg_trainval.txt'
 
 gold_labels = 'gold_labels_reddit.txt'
 with open(gold_labels) as f:
-	answers = [line.strip().split() for line in f]
+    answers = [line.strip().split() for line in f]
 
 validation_split = 100
 
@@ -99,9 +99,11 @@ def balanced_tweets_getter():
             grp_tweets.append(tweet[1])
             grp_counter += 1
 
-    a_b = nn_tweets + ou_tweets + ot_tweets
-    c = oth_tweets + ind_tweets + grp_tweets
-    
+    output_tweets = nn_tweets + ou_tweets + \
+        ot_tweets + oth_tweets + ind_tweets + grp_tweets
+
+    return output_tweets
+
 
 def test_tweets_getter():
     tweets = []
@@ -125,29 +127,27 @@ def answers_getter():
 
 
 def answers_frequency(answers: list):
-	frequency = []
-	
-	for label in answers:
-		if label[0] == 'NOT':
-			frequency.append('NOT')
-		else:
-			frequency.append('OFF')
+    frequency = []
 
-			if label[1] == 'UNT':
-				frequency.append('UNT')
-			else:
-				frequency.append('TIN')
+    for label in answers:
+        if label[0] == 'NOT':
+            frequency.append('NOT')
+        else:
+            frequency.append('OFF')
 
-				if label[2] == 'IND':
-					frequency.append('IND')
-				elif label[2] == 'GRP':
-					frequency.append('GRP')
-				else:
-					frequency.append('OTH')
+            if label[1] == 'UNT':
+                frequency.append('UNT')
+            else:
+                frequency.append('TIN')
 
-	return frequency
+                if label[2] == 'IND':
+                    frequency.append('IND')
+                elif label[2] == 'GRP':
+                    frequency.append('GRP')
+                else:
+                    frequency.append('OTH')
 
-
+    return frequency
 
 
 def preprocess(tweets: list, uncased: bool):
