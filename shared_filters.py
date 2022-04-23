@@ -223,7 +223,7 @@ uncased_regex_replacements = [
     (r',{2,}', ','),
 
     # Keep only these characters
-    ("[^A-Za-z0-9 .,!?'/$&%+\-\(\)]", ' '),
+    ("[^A-Za-z0-9 .,!?'/$&@%+\-\(\)]", ' '),
 
     # Remove additional spaces
     ('\s+', ' ')

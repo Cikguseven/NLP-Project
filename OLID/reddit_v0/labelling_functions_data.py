@@ -1,6 +1,7 @@
-individual = ["it's", "you're", 'he', 'her', 'hers', 'him', 'his', 'himself', 'herself', 'itself', 'i', 'it', 'its', 'me', 'my', 'myself', 'yourself', 'mine', 'she', 'u', 'you', 'your', 'youre', 'yours', 'i', 'is', 'was', 'woman', 'man', 'guy', 'girl', 'gal', 'dude', 'person', 'bitch', 'slut', 'whore']
+individual = ["it's", "you're", 'he', 'her', 'hers', 'him', 'his', 'himself', 'herself', 'itself', 'i', 'it', 'its', 'me', 'my', 'myself', 'yourself', 'mine', 'she', 'u', 'you', 'your', 'youre', 'yours', 'i', 'is', 'was', 'woman', 'man', 'guy', 'girl', 'gal', 'dude', 'person', 'bitch', 'slut', 'whore', '@user']
 
 group = [
+'@users',
 "a bu neh neh",
 "a pu neh neh",
 "abbo",

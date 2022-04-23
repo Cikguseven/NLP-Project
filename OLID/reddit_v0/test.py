@@ -6,6 +6,7 @@ import main_config
 import re
 import spacy
 import statistics
+import comment_filter
 
 
 def take_closest(myList, myNumber):
@@ -23,10 +24,10 @@ def take_closest(myList, myNumber):
 
 
 def entity_to_target(entity: str):
-    if entity == 'PER' or entity in labelling_functions_data.individual:
+    if entity == 'PER' or entity.lower() in labelling_functions_data.individual:
         return 'IND'
 
-    elif entity == 'MISC' or entity in labelling_functions_data.group:
+    elif entity == 'MISC' or entity == 'LOC' or entity.lower() in labelling_functions_data.group:
         return 'GRP'
 
     return 'OTH'
@@ -53,16 +54,40 @@ def target_classifier(sentences: list):
         if noun_pos and offensive_word_pos:
             closest_index = take_closest([x for x in noun_pos], statistics.mean(offensive_word_pos))
             if closest_index in ent_pos:
-                results.append(entity_to_target(ent_pos[closest_index]))
+                print('ent_pos')
+                prediction = entity_to_target(ent_pos[closest_index])
             else:
-                results.append(entity_to_target(noun_pos[closest_index]))
+                print('noun_pos')
+                prediction = entity_to_target(noun_pos[closest_index])
 
         else:
             all_targets = [entity_to_target(word) for word in list(noun_pos.values()) + list(ent_pos.values())]
+            print(all_targets)
             if all_targets:
-                results.append(Counter(all_targets).most_common(1)[0][0])
+                print('most_common')
+                prediction = Counter(all_targets).most_common(1)[0][0]
             else:
-                print(docs[i].text)
-                results.append('OTH')
+                print('not any')
+                prediction = 'IND'
+
+        results.append(prediction)
+        print(f'{docs[i].text} | {prediction}')
+        print()
 
     return results
+
+if __name__ == '__main__':
+    olid_balanced_tweets = main_config.balanced_tweets_getter()
+
+    # Import unique filtered comments for testing
+    filtered_tweets = comment_filter.c_filter(
+        shuffle=False,
+        remove_username=False,
+        remove_commas=False,
+        length_min=0,
+        length_max=9999,
+        uncased=False,
+        unique=False,
+        input_list=olid_balanced_tweets)
+
+    target_classifier(filtered_tweets[3480:])

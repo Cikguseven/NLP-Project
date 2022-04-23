@@ -1,7 +1,6 @@
-from collections import Counter 
+z = ['OTH'] * 2 + ['IND'] * 2 + ['GRP'] * 2
 
-all_targets = []
+w = z * 5
 
+print(z)
 
-
-print(Counter(all_targets).most_common(1)[0][0])
