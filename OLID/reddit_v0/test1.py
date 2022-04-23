@@ -1,6 +1,3 @@
-z = ['OTH'] * 2 + ['IND'] * 2 + ['GRP'] * 2
+z = [1, 2, 3]
 
-w = z * 5
-
-print(z)
-
+print(max(z, key=z.count))

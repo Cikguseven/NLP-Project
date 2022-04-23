@@ -12,7 +12,7 @@ import comment_filter
 import main_config
 import matplotlib.pyplot as plt
 import numpy as np
-import test
+import target_classifier
 
 
 def custom_sigmoid(x):
@@ -194,14 +194,15 @@ def evaluate(test_tweets: list, uncased_test_tweets: list):
 
 def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
 
-    # tc_8 = pipeline(task='text2text-generation', model="./pipelines/tc_8/",
-    #                 tokenizer="./pipelines/tc_8/", device=0)
+    tc_8 = pipeline(task='text2text-generation', model="./pipelines/tc_8/",
+                    tokenizer="./pipelines/tc_8/", device=0)
 
     # binary_models = [(tc_8, 'tc_8', 'no-hate-speech'),
     #                  (offensive_lexicon, 'offensive_lexicon', 'LABEL_0'),
-    #                  (test.target_classifier, 'spacy', None)]
+    #                  (target_classifier.weak_classifier, 'spacy', None)]
 
-    binary_models = [(test.target_classifier, 'spacy', None)]
+    binary_models = [(tc_8, 'tc_8', 'no-hate-speech'),
+                     (offensive_lexicon, 'offensive_lexicon', 'LABEL_0')]
 
     for classifier, name, wrong_label in binary_models:
         if '8' in name:
@@ -222,68 +223,56 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
             disp.plot(values_format='')
             plt.show()
 
-        # true_positive_not = 0
-        # false_positive_not = 0
+        true_positive_not = 0
+        false_positive_not = 0
 
-        # true_positive_off = 0
-        # false_positive_off = 0
+        true_positive_off = 0
+        false_positive_off = 0
 
-        # true_positive_unt = 0
-        # false_positive_unt = 0
+        true_positive_unt = 0
+        false_positive_unt = 0
 
-        # true_positive_tin = 0
-        # false_positive_tin = 0
+        true_positive_tin = 0
+        false_positive_tin = 0
 
-        # true_positive_ind = 0
-        # false_positive_ind = 0
+        for i in range(3494):
+            if i < 1102:
+                if predictions_array[i] == 0:
+                    true_positive_not += 1
+                else:
+                    false_positive_off += 1
 
-        # true_positive_grp = 0
-        # false_positive_grp = 0
+            else:
+                if predictions_array[i]:
+                    true_positive_off += 1
+                else:
+                    false_positive_not += 1
 
-        # true_positive_oth = 0
-        # false_positive_oth = 0
+                if i < 1653:
+                    if predictions_array[i] == 0:
+                        true_positive_unt += 1
+                    else:
+                        false_positive_tin += 1
 
-        # for i in range(3494):
-        #     if i < 1102:
-        #         if predictions_array[i] == 0:
-        #             true_positive_not += 1
-        #         else:
-        #             false_positive_off += 1
+                else:
+                    if predictions_array[i]:
+                        true_positive_tin += 1
+                    else:
+                        false_positive_unt += 1
 
-        #     else:
-        #         if predictions_array[i]:
-        #             true_positive_off += 1
-        #         else:
-        #             false_positive_not += 1
+        metrics = [(true_positive_not, false_positive_not, 'NOT', 1102),
+                   (true_positive_off, false_positive_off, 'OFF', 2392),
+                   (true_positive_unt, false_positive_unt, 'UNT', 551),
+                   (true_positive_tin, false_positive_tin, 'TIN', 1841)]
 
-        #         if i < 1653:
-        #             if predictions_array[i] == 0:
-        #                 true_positive_unt += 1
-        #             else:
-        #                 false_positive_tin += 1
+        for metric in metrics:
+            pp = metric[0] + metric[1]
+            precision = metric[0] / pp if pp > 0 else 0
+            recall = metric[0] / metric[3]
+            f1 = 2 * precision * recall / \
+                (precision + recall) if precision + recall > 0 else 0
 
-        #         else:
-        #             if predictions_array[i]:
-        #                 true_positive_tin += 1
-        #             else:
-        #                 false_positive_unt += 1
-
-        # metrics = [(true_positive_not, false_positive_not, 'NOT'),
-        #            (true_positive_off, false_positive_off, 'OFF'),
-        #            (true_positive_unt, false_positive_unt, 'UNT'),
-        #            (true_positive_tin, false_positive_tin, 'TIN'),
-        #            (true_positive_ind, false_positive_ind, 'IND'),
-        #            (true_positive_grp, false_positive_grp, 'GRP'),
-        #            (true_positive_oth, false_positive_oth, 'OTH')]
-
-        # for metric in metrics:
-        #     pp = metric[0] + metric[1]
-        #     precision = metric[0] / pp if pp > 0 else 0
-        #     recall = metric[0] / category_frequency[metric[2]]
-        #     f1 = 2 * precision * recall / \
-        #         (precision + recall) if precision + recall > 0 else 0
-
-        #     print(f'{metric[2]}, {precision}, {recall}, {f1}')
+            print(f'{metric[2]}, {precision}, {recall}, {f1}')
 
 
 if __name__ == '__main__':

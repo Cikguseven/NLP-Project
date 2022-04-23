@@ -1895,6 +1895,7 @@ offensive_lexicon = {
 "pedo",
 "pedobear",
 "pedophile",
+"pedophiles"
 "pedophilia",
 "pedophiliac",
 "pee",

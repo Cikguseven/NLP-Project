@@ -10,7 +10,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import main_config
 import numpy as np
 from bad_words import offensive_lexicon
-import spacy
+import target_classifier
 
 
 def custom_sigmoid(x):
@@ -76,19 +76,19 @@ sonar_weight = 1
 lexicon_weight = 15
 flair_weight = 1
 
-spacy.require_gpu()
-spacy_models = [f for f in listdir(
-    main_config.NER_model_directory) if 'v7' in f]
-
 
 def model_aggregator(comments: list,
-                     uncased_comments: list,
-                     task: str):
+                     uncased_comments: list):
 
     length = len(comments)
 
-    overall_score = np.zeros(length)
-    overall_weight = 0
+    task_a_score = np.zeros(length)
+    task_a_weight = 0
+
+    task_b_score = np.zeros(length)
+    task_b_weight = 0
+
+    # Combine all 3 tasks, port target classifier to this file, generate spacy and train
 
     if task == 'a':
         for classifier, index, wrong_label, case in tc_tuples:
@@ -105,19 +105,19 @@ def model_aggregator(comments: list,
                 else:
                     weight = 1
 
-                overall_score += np.array(classifier_score) * weight
-                overall_weight += weight
+                task_a_score += np.array(classifier_score) * weight
+                task_a_weight += weight
 
             else:
                 classifier_score = [0 if result['generated_text']
                                     == wrong_label else 1 for result in results]
 
-                overall_score += np.array(classifier_score)
-                overall_weight += 1
+                task_a_score += np.array(classifier_score)
+                task_a_weight += 1
 
-        overall_score += np.array(detoxify_model.predict(comments)['toxicity'])
-        overall_score += np.array(detoxify_model.predict(comments)['insult'])
-        overall_weight += detoxify_weight
+        task_a_score += np.array(detoxify_model.predict(comments)['toxicity'])
+        task_a_score += np.array(detoxify_model.predict(comments)['insult'])
+        task_a_weight += detoxify_weight
 
         for i in range(length):
             vader_score = custom_sigmoid(sentiment_vader(comments[i]))
@@ -136,11 +136,11 @@ def model_aggregator(comments: list,
             flair_score = 1 - \
                 flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
 
-            overall_score[i] += (vader_score * vader_weight + textblob_score * textblob_weight + sonar_score * sonar_weight + lexicon_score * lexicon_weight + flair_score * flair_weight)
+            task_a_score[i] += (vader_score * vader_weight + textblob_score * textblob_weight + sonar_score * sonar_weight + lexicon_score * lexicon_weight + flair_score * flair_weight)
         
-        overall_weight += vader_weight + textblob_weight + sonar_weight + lexicon_weight + flair_weight
+        task_a_weight += vader_weight + textblob_weight + sonar_weight + lexicon_weight + flair_weight
 
-        overall_score /= overall_weight
+        task_a_score /= task_a_weight
 
     elif task == 'b':
         for classifier, index, wrong_label, case, weight in tc_tuples:
@@ -148,21 +148,21 @@ def model_aggregator(comments: list,
                 results = classifier(comments)
 
                 if index == 5:
-                    overall_score += np.array([1 - result['score'] if result['label'] in (
+                    task_b_score += np.array([1 - result['score'] if result['label'] in (
                         'LABEL_0', 'LABEL_1') else result['score'] for result in results]) * weight
-                    overall_weight += weight
+                    task_b_weight += weight
 
                 elif index < 8:
-                    overall_score += np.array([1 - result['score'] if result['label'] == wrong_label else result['score'] for result in results]) * weight
-                    overall_weight += weight
+                    task_b_score += np.array([1 - result['score'] if result['label'] == wrong_label else result['score'] for result in results]) * weight
+                    task_b_weight += weight
 
                 else:
-                    overall_score += np.array([0 if result['generated_text']
+                    task_b_score += np.array([0 if result['generated_text']
                                                == wrong_label else 1 for result in results]) * weight
-                    overall_weight += weight
+                    task_b_weight += weight
 
-        overall_score += np.array(detoxify_model.predict(comments)['insult']) * detoxify_weight
-        overall_weight += detoxify_weight
+        task_b_score += np.array(detoxify_model.predict(comments)['insult']) * detoxify_weight
+        task_b_weight += detoxify_weight
 
         for i in range(length):
             sonar_output = sonar_model.ping(text=comments[i])['classes']
@@ -174,17 +174,14 @@ def model_aggregator(comments: list,
             flair_score = 1 - \
                 flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
 
-            overall_score[i] += sonar_score * sonar_weight + flair_score * flair_weight
+            task_b_score[i] += sonar_score * sonar_weight + flair_score * flair_weight
         
-        overall_weight += sonar_weight + flair_weight
+        task_b_weight += sonar_weight + flair_weight
 
-        overall_score /= overall_weight
+        task_b_score /= task_b_weight
 
     elif task == 'c':
-        nlp_trf = spacy.load('en_core_web_trf')
-
-        nlp_ner = spacy.load(main_config.NER_model)
-
+        overall_score = target_classifier.weak_classifier(comments)
 
     return overall_score
 
