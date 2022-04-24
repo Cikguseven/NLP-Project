@@ -37,9 +37,9 @@ gold_labels = 'gold_labels_reddit.txt'
 with open(gold_labels) as f:
     answers = [line.strip().split() for line in f]
 
-validation_split = 100
+validation_split = 0.25
 
-version = 'v0_handlabelled_uncased_80_10_'
+version = 'v0_weak_signals_'
 
 spacy_training_file = version + 'training.spacy'
 spacy_validation_file = version + 'vaildation.spacy'
@@ -56,53 +56,58 @@ def training_tweets_getter():
     return tweets
 
 
-def balanced_tweets_getter():
+def balanced_tweets_getter(analysis_set: bool):
     with open(balanced_tweet_file, encoding='utf-8') as f:
         tweets = [line.split('\t') for line in f]
 
     tweets.pop(0)
-    for tweet in tweets:
+
+    if analysis_set:
+        for tweet in tweets:
         tweet[4] = tweet[4].strip()
 
-    nn_tweets = []
-    nn_counter = 0
+        nn_tweets = []
+        nn_counter = 0
 
-    ou_tweets = []
+        ou_tweets = []
 
-    ot_tweets = []
-    ot_counter = 0
+        ot_tweets = []
+        ot_counter = 0
 
-    ind_tweets = []
-    ind_counter = 0
+        ind_tweets = []
+        ind_counter = 0
 
-    grp_tweets = []
-    grp_counter = 0
+        grp_tweets = []
+        grp_counter = 0
 
-    oth_tweets = []
+        oth_tweets = []
 
-    for tweet in tweets:
-        if nn_counter < 1102 and tweet[2] == 'NOT':
-            nn_tweets.append(tweet[1])
-            nn_counter += 1
-        elif tweet[3] == 'UNT':
-            ou_tweets.append(tweet[1])
-        elif ot_counter < 551 and tweet[3] == 'TIN':
-            ot_tweets.append(tweet[1])
-            ot_counter += 1
+        for tweet in tweets:
+            if nn_counter < 1102 and tweet[2] == 'NOT':
+                nn_tweets.append(tweet[1])
+                nn_counter += 1
+            elif tweet[3] == 'UNT':
+                ou_tweets.append(tweet[1])
+            elif ot_counter < 551 and tweet[3] == 'TIN':
+                ot_tweets.append(tweet[1])
+                ot_counter += 1
 
-        if tweet[4] == 'OTH':
-            oth_tweets.append(tweet[1])
-        elif tweet[4] == 'IND' and ind_counter < 430:
-            ind_tweets.append(tweet[1])
-            ind_counter += 1
-        elif tweet[4] == 'GRP' and grp_counter < 430:
-            grp_tweets.append(tweet[1])
-            grp_counter += 1
+            if tweet[4] == 'OTH':
+                oth_tweets.append(tweet[1])
+            elif tweet[4] == 'IND' and ind_counter < 430:
+                ind_tweets.append(tweet[1])
+                ind_counter += 1
+            elif tweet[4] == 'GRP' and grp_counter < 430:
+                grp_tweets.append(tweet[1])
+                grp_counter += 1
 
-    output_tweets = nn_tweets + ou_tweets + \
-        ot_tweets + oth_tweets + ind_tweets + grp_tweets
+        output_tweets = nn_tweets + ou_tweets + \
+            ot_tweets + oth_tweets + ind_tweets + grp_tweets
 
-    return output_tweets
+        return output_tweets
+
+    else:
+        return tweets
 
 
 def test_tweets_getter():

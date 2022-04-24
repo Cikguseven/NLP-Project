@@ -64,29 +64,7 @@ def evaluate_model(
 if __name__ == '__main__':
     spacy.require_gpu()
 
-    olid_training_data = main_config.training_tweets_getter()
-
-    nn_tweets = []
-    nn_counter = 0
-
-    ou_tweets = []
-    ou_counter = 0
-
-    ot_tweets = []
-    ot_counter = 0
-
-    for tweet in olid_training_data:
-        if tweet[2] == 'NOT' and nn_counter < 1048:
-            nn_tweets.append(tweet[1])
-            nn_counter += 1
-        elif tweet[3] == 'UNT':
-            ou_tweets.append(tweet[1])
-            ou_counter += 1
-        elif ot_counter < 524:
-            ot_tweets.append(tweet[1])
-            ot_counter += 1
-
-    sample_tweets = nn_tweets + ou_tweets + ot_tweets
+    olid_training_data = main_config.balanced_tweets_getter(analysis_set=True)
 
     # Import unique filtered comments for testing
     filtered_tweets = comment_filter.c_filter(
@@ -97,7 +75,7 @@ if __name__ == '__main__':
         length_max=9999,
         uncased=False,
         unique=False,
-        input_list=sample_tweets)
+        input_list=olid_training_data)
 
     evaluate_model(
         test_tweets=filtered_tweets)

@@ -69,7 +69,7 @@ models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased', 1),
           (tc_8, 'tc_8', 'POSITIVE', 'cased', 1),
           (tc_9, 'tc_9', 'no-hate-speech', 'cased', 1),
           (bad_words.offensive_lexicon, 'lexicon', None, 'uncased', 15),
-          (target_classifier.weak_classifier, 'spacy', None, 'cased', 1),
+          (target_classifier.weak_classifier, 'target_classifier', None, 'cased', 1),
           (vader, 'vader', None, 'cased', 1),
           (textblob, 'textblob', None, 'cased', 1),
           (sonar_model, 'sonar', None, 'cased', 1),
@@ -78,10 +78,11 @@ models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased', 1),
           (flair_model, 'flair', None, 'cased', 1)]
 
 
-def model_aggregator(comments: list,
-                     uncased_comments: list):
+def model_aggregator(comments: list):
 
     length = len(comments)
+
+    uncased_comments = [comment.lower() for comment in comments]
 
     task_a_score = np.zeros(length)
     task_a_weight = 0
@@ -89,7 +90,6 @@ def model_aggregator(comments: list,
     task_b_score = np.zeros(length)
     task_b_weight = 0
 
-    # Combine all 3 tasks, port target classifier to this file, generate spacy and train
     for classifier, name, keyword, case, weight in models:
 
         print(name)
@@ -114,7 +114,10 @@ def model_aggregator(comments: list,
 
         elif 'lexicon' in name:
             classifier_array_a = [1 if any(offensive_word in uncased_comment for offensive_word in offensive_lexicon) else 0 for uncased_comment in uncased_comments]
-        
+
+        elif 'target' in name:
+            task_c_score = classifier(comments)
+
         elif 'vader' in name:
             classifier_array_a = [custom_sigmoid(vader(comment)) for comment in comments]
 
@@ -147,7 +150,6 @@ def model_aggregator(comments: list,
         else:
             print('missing name')
 
-
         task_a_score += np.array(classifier_array_a) * weight
         task_a_weight += weight
 
@@ -155,14 +157,10 @@ def model_aggregator(comments: list,
             task_b_score += np.array(classifier_array_b) * weight
             task_b_weight += weight
 
+    task_a_score /= task_a_weight
+    task_b_score /= task_a_weight
 
-
-
-
-    elif task == 'c':
-        overall_score = target_classifier.weak_classifier(comments)
-
-    return overall_score
+    return task_a_score, task_b_score, task_c_score
 
 
 if __name__ == '__main__':
@@ -179,18 +177,6 @@ if __name__ == '__main__':
         unique=False,
         input_file=main_config.hand_labelled_comments)
 
-    filtered_uncased_comments = comment_filter.c_filter(
-        shuffle=False,
-        remove_username=False,
-        remove_commas=True,
-        length_min=0,
-        length_max=99,
-        uncased=True,
-        unique=False,
-        input_file=main_config.hand_labelled_comments)
-
     print(
         model_aggregator(
-            comments=filtered_cased_comments,
-            uncased_comments=filtered_uncased_comments,
-            task='b'))
+            comments=filtered_cased_comments))
