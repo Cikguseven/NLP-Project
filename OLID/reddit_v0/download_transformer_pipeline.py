@@ -1,8 +1,5 @@
 from transformers import pipeline
 
-tc_0 = pipeline(task='text-classification', model="siebert/sentiment-roberta-large-english")
-tc_0.save_pretrained('./pipelines/tc_0')
-
 tc_1 = pipeline(task='text-classification', model="distilbert-base-uncased-finetuned-sst-2-english")
 tc_1.save_pretrained('./pipelines/tc_1')
 
@@ -24,5 +21,8 @@ tc_6.save_pretrained('./pipelines/tc_6')
 tc_7 = pipeline(task='text-classification', model="Hate-speech-CNERG/dehatebert-mono-english")
 tc_7.save_pretrained('./pipelines/tc_7')
 
-tc_8 = pipeline(task='text2text-generation', model="Narrativa/byt5-base-tweet-hate-detection")
+tc_8 = pipeline(task='text-classification', model="siebert/sentiment-roberta-large-english")
 tc_8.save_pretrained('./pipelines/tc_8')
+
+tc_9 = pipeline(task='text2text-generation', model="Narrativa/byt5-base-tweet-hate-detection")
+tc_9.save_pretrained('./pipelines/tc_9')

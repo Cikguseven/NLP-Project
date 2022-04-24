@@ -37,9 +37,6 @@ task_c_answers = ['OTH'] * 430 + ['IND'] * 430 + ['GRP'] * 430
 def evaluate(test_tweets: list, uncased_test_tweets: list):
 
     # Hate speech text classifier models from Hugging Face
-    tc_0 = pipeline(task='text-classification', model="./pipelines/tc_0/",
-                    tokenizer="./pipelines/tc_0/", device=0)
-
     tc_1 = pipeline(task='text-classification', model="./pipelines/tc_1/",
                     tokenizer="./pipelines/tc_1/", device=0)
 
@@ -61,24 +58,27 @@ def evaluate(test_tweets: list, uncased_test_tweets: list):
     tc_7 = pipeline(task='text-classification', model="./pipelines/tc_7/",
                     tokenizer="./pipelines/tc_7/", device=0)
 
+    tc_8 = pipeline(task='text-classification', model="./pipelines/tc_8/",
+                    tokenizer="./pipelines/tc_8/", device=0)
+
     sonar = Sonar()
 
     detoxify = Detoxify('unbiased', device='cuda')
 
     flair = TextClassifier.load('sentiment')
 
-    models = [(tc_0, 'tc_0', 'POSITIVE', 'cased', 1),
-              (tc_1, 'tc_1', 'POSITIVE', 'uncased', 2),
-              (tc_2, 'tc_2', 'LABEL_0', 'cased', 3),
-              (tc_3, 'tc_3', 'LABEL_0', 'cased', 4),
-              (tc_4, 'tc_4', 'Non-Offensive', 'cased', 5),
-              (tc_5, 'tc_5', 'LABEL_0', 'cased', 6),
-              (tc_5, 'tc_5_inverse1', 'LABEL_0', 'cased', 7),
-              (tc_5, 'tc_5_inverse12', 'LABEL_0', 'cased', 8),
-              (tc_6, 'tc_6', 'NO_HATE', 'cased', 9),
-              (tc_7, 'tc_7', 'NON_HATE', 'cased', 10),
-              (sentiment_vader, 'sentiment_vader', 'Non-Offensive', 'cased', 11),
-              (sentiment_textblob, 'sentiment_textblob', 'LABEL_0', 'cased', 12),
+    models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased', 1),
+              (tc_2, 'tc_2', 'LABEL_0', 'cased', 2),
+              (tc_3, 'tc_3', 'LABEL_0', 'cased', 3),
+              (tc_4, 'tc_4', 'Non-Offensive', 'cased', 4),
+              (tc_5, 'tc_5', 'LABEL_0', 'cased', 5),
+              (tc_5, 'tc_5_inverse1', 'LABEL_0', 'cased', 6),
+              (tc_5, 'tc_5_inverse12', 'LABEL_0', 'cased', 7),
+              (tc_6, 'tc_6', 'NO_HATE', 'cased', 8),
+              (tc_7, 'tc_7', 'NON_HATE', 'cased', 9),
+              (tc_8, 'tc_8', 'POSITIVE', 'cased', 10),
+              (vader, 'sentiment_vader', 'Non-Offensive', 'cased', 11),
+              (textblob, 'sentiment_textblob', 'LABEL_0', 'cased', 12),
               (sonar, 'sonar_hate', 'NO_HATE', 'cased', 13),
               (sonar, 'sonar_hatf', 'NO_HATE', 'cased', 14),
               (sonar, 'sonar_ol', 'NO_HATE', 'cased', 15),
@@ -113,11 +113,11 @@ def evaluate(test_tweets: list, uncased_test_tweets: list):
             else:
                 classifier_score = [1 - result['score'] if result['label'] == wrong_label else result['score'] for result in results]
                 
-        elif 'sentiment' in name:
-            if 'vader' in name:
-                classifier_score = [custom_sigmoid(sentiment_vader(tweet)) for tweet in test_tweets]
-            else:
-                classifier_score = [custom_sigmoid(sentiment_textblob(tweet)) for tweet in test_tweets]
+        elif 'vader' in name:
+            classifier_score = [custom_sigmoid(vader(tweet)) for tweet in test_tweets]
+
+        elif 'textblob' in name:
+                classifier_score = [custom_sigmoid(textblob(tweet)) for tweet in test_tweets]
 
         elif 'sonar' in name:
             sonar_inverse_neither_score = np.array([1 - \
@@ -194,23 +194,23 @@ def evaluate(test_tweets: list, uncased_test_tweets: list):
 
 def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
 
-    tc_8 = pipeline(task='text2text-generation', model="./pipelines/tc_8/",
-                    tokenizer="./pipelines/tc_8/", device=0)
+    tc_9 = pipeline(task='text2text-generation', model="./pipelines/tc_9/",
+                    tokenizer="./pipelines/tc_9/", device=0)
 
-    # binary_models = [(tc_8, 'tc_8', 'no-hate-speech'),
+    # binary_models = [(tc_9, 'tc_9', 'no-hate-speech'),
     #                  (offensive_lexicon, 'offensive_lexicon', 'LABEL_0'),
     #                  (target_classifier.weak_classifier, 'spacy', None)]
 
-    binary_models = [(tc_8, 'tc_8', 'no-hate-speech'),
-                     (offensive_lexicon, 'offensive_lexicon', 'LABEL_0')]
+    binary_models = [(tc_9, 'tc_9', 'no-hate-speech'),
+                     (offensive_lexicon, 'lexicon', 'LABEL_0')]
 
     for classifier, name, wrong_label in binary_models:
-        if '8' in name:
+        if '9' in name:
             results = classifier(test_tweets)
             classifier_score = [0 if result['generated_text'] == wrong_label else 1 for result in results]
             predictions_array = np.array(classifier_score)
 
-        elif 'offensive' in name:
+        elif 'lexicon' in name:
             classifier_score = [1 if any(offensive_word in uncased_tweet for offensive_word in offensive_lexicon) else 0 for uncased_tweet in uncased_test_tweets]
             predictions_array = np.array(classifier_score)
 

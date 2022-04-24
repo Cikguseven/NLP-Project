@@ -17,18 +17,15 @@ def custom_sigmoid(x):
     return 1 / (1 + exp(2.5 * x + 0.125))
 
 
-def sentiment_vader(sentence):
+def vader(sentence):
     return SentimentIntensityAnalyzer().polarity_scores(sentence)['compound']
 
 
-def sentiment_textblob(sentence):
+def textblob(sentence):
     return TextBlob(sentence).sentiment.polarity
 
 
 # Hate speech text classifier models from Hugging Face
-tc_0 = pipeline(task='text-classification', model="./pipelines/tc_0/",
-                tokenizer="./pipelines/tc_0/", device=0)
-
 tc_1 = pipeline(task='text-classification', model="./pipelines/tc_1/",
                 tokenizer="./pipelines/tc_1/", device=0)
 
@@ -50,18 +47,11 @@ tc_6 = pipeline(task='text-classification', model="./pipelines/tc_6/",
 tc_7 = pipeline(task='text-classification', model="./pipelines/tc_7/",
                 tokenizer="./pipelines/tc_7/", device=0)
 
-tc_8 = pipeline(task='text2text-generation', model="./pipelines/tc_8/",
+tc_8 = pipeline(task='text-classification', model="./pipelines/tc_8/",
                 tokenizer="./pipelines/tc_8/", device=0)
 
-tc_tuples = [(tc_0, 0, 'POSITIVE', 'cased', 1),
-             (tc_1, 1, 'POSITIVE', 'uncased', 1),
-             (tc_2, 2, 'LABEL_0', 'cased', 0.5),
-             (tc_3, 3, 'LABEL_0', 'cased', 2),
-             (tc_4, 4, 'Non-Offensive', 'cased', 2),
-             (tc_5, 5, 'LABEL_0', 'cased', 2),
-             (tc_6, 6, 'NO_HATE', 'cased', 1),
-             (tc_7, 7, 'NON_HATE', 'cased', 1),
-             (tc_8, 8, 'no-hate-speech', 'cased', 1)]
+tc_9 = pipeline(task='text2text-generation', model="./pipelines/tc_9/",
+                tokenizer="./pipelines/tc_9/", device=0)
 
 sonar_model = Sonar()
 
@@ -69,12 +59,23 @@ detoxify_model = Detoxify('unbiased', device='cuda')
 
 flair_model = TextClassifier.load('sentiment')
 
-detoxify_weight = 2
-vader_weight = 1
-textblob_weight = 1
-sonar_weight = 1
-lexicon_weight = 15
-flair_weight = 1
+models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased', 1),
+          (tc_2, 'tc_2', 'LABEL_0', 'cased', 0.5),
+          (tc_3, 'tc_3', 'LABEL_0', 'cased', 2),
+          (tc_4, 'tc_4', 'Non-Offensive', 'cased', 2),
+          (tc_5, 'tc_5', 'LABEL_0', 'cased', 2),
+          (tc_6, 'tc_6', 'NO_HATE', 'cased', 1),
+          (tc_7, 'tc_7', 'NON_HATE', 'cased', 1),
+          (tc_8, 'tc_8', 'POSITIVE', 'cased', 1),
+          (tc_9, 'tc_9', 'no-hate-speech', 'cased', 1),
+          (offensive_lexicon, 'lexicon', None, 'uncased', 15),
+          (target_classifier.weak_classifier, 'spacy', None, 'cased', 1),
+          (vader, 'sentiment_vader', None, 'cased', 1),
+          (textblob, 'sentiment_textblob', None, 'cased', 1),
+          (sonar, 'sonar', None, 'cased', 1),
+          (detoxify, 'detoxify_toxicity', 'toxicity', 'cased', 1),
+          (detoxify, 'detoxify_insult', 'insult', 'cased', 1),
+          (flair, 'flair', None, 'cased', 1)]
 
 
 def model_aggregator(comments: list,
@@ -89,35 +90,46 @@ def model_aggregator(comments: list,
     task_b_weight = 0
 
     # Combine all 3 tasks, port target classifier to this file, generate spacy and train
+    for classifier, name, keyword, case, weight in models:
 
-    if task == 'a':
-        for classifier, index, wrong_label, case in tc_tuples:
+        print(name)
+
+        classifier_array_b = None
+
+        if 'tc_' in name:
             if case == 'uncased':
                 results = classifier(uncased_comments)
             else:
                 results = classifier(comments)
 
-            if index < 8:
-                classifier_score = [1 - result['score'] if result['label'] == wrong_label else result['score'] for result in results]
-
-                if 2 < index < 6:
-                    weight = 2
-                else:
-                    weight = 1
-
-                task_a_score += np.array(classifier_score) * weight
-                task_a_weight += weight
-
+            if '9' in name:
+                classifier_array_a = [0 if result['generated_text'] == keyword else 1 for result in results]
             else:
-                classifier_score = [0 if result['generated_text']
-                                    == wrong_label else 1 for result in results]
+                classifier_array_a = [1 - result['score'] if result['label'] == keyword else result['score'] for result in results]
 
-                task_a_score += np.array(classifier_score)
-                task_a_weight += 1
+            if int(name[0]) > 5:
+                classifier_array_b = classifier_array_a
+            elif '5' in name:
+                classifier_array_b = [1 - result['score'] if result['label'] in ('LABEL_0', 'LABEL_1') else result['score'] for result in results]
+        
+        elif 'vader' in name:
+            classifier_array_a = [custom_sigmoid(vader(tweet)) for tweet in test_tweets]
 
-        task_a_score += np.array(detoxify_model.predict(comments)['toxicity'])
-        task_a_score += np.array(detoxify_model.predict(comments)['insult'])
-        task_a_weight += detoxify_weight
+        elif 'textblob' in name:
+            classifier_array_a = [custom_sigmoid(textblob(tweet)) for tweet in test_tweets]
+
+        elif 'detoxify' in name:
+            classifier_array_a = detoxify_model.predict(comments)[keyword]
+
+            if keyword == 'insult':
+                classifier_array_b = classifier_array_a
+
+        task_a_score += np.array(classifier_array_a) * weight
+        task_a_weight += weight
+
+        if classifier_array_b is not None:
+            task_b_score += np.array(classifier_array_b) * weight
+            task_b_weight += weight
 
         for i in range(length):
             vader_score = custom_sigmoid(sentiment_vader(comments[i]))
@@ -143,26 +155,7 @@ def model_aggregator(comments: list,
         task_a_score /= task_a_weight
 
     elif task == 'b':
-        for classifier, index, wrong_label, case, weight in tc_tuples:
-            if index == 0 or index > 4:
-                results = classifier(comments)
-
-                if index == 5:
-                    task_b_score += np.array([1 - result['score'] if result['label'] in (
-                        'LABEL_0', 'LABEL_1') else result['score'] for result in results]) * weight
-                    task_b_weight += weight
-
-                elif index < 8:
-                    task_b_score += np.array([1 - result['score'] if result['label'] == wrong_label else result['score'] for result in results]) * weight
-                    task_b_weight += weight
-
-                else:
-                    task_b_score += np.array([0 if result['generated_text']
-                                               == wrong_label else 1 for result in results]) * weight
-                    task_b_weight += weight
-
-        task_b_score += np.array(detoxify_model.predict(comments)['insult']) * detoxify_weight
-        task_b_weight += detoxify_weight
+        for classifier, index, keyword, case, weight in tc_tuples:
 
         for i in range(length):
             sonar_output = sonar_model.ping(text=comments[i])['classes']

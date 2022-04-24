@@ -1,3 +1,6 @@
-z = [1, 2, 3]
+z = ['0', '4', '5']
 
-print(max(z, key=z.count))
+y = 'tc_7'
+
+if any(index in y for index in z):
+	print('o')
