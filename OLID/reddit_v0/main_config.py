@@ -64,7 +64,7 @@ def balanced_tweets_getter(analysis_set: bool):
 
     if analysis_set:
         for tweet in tweets:
-        tweet[4] = tweet[4].strip()
+            tweet[4] = tweet[4].strip()
 
         nn_tweets = []
         nn_counter = 0
