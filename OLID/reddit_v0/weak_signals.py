@@ -7,9 +7,9 @@ from os import listdir
 from textblob import TextBlob
 from transformers import pipeline
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import bad_words
 import main_config
 import numpy as np
-from bad_words import offensive_lexicon
 import target_classifier
 
 
@@ -68,14 +68,14 @@ models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased', 1),
           (tc_7, 'tc_7', 'NON_HATE', 'cased', 1),
           (tc_8, 'tc_8', 'POSITIVE', 'cased', 1),
           (tc_9, 'tc_9', 'no-hate-speech', 'cased', 1),
-          (offensive_lexicon, 'lexicon', None, 'uncased', 15),
+          (bad_words.offensive_lexicon, 'lexicon', None, 'uncased', 15),
           (target_classifier.weak_classifier, 'spacy', None, 'cased', 1),
-          (vader, 'sentiment_vader', None, 'cased', 1),
-          (textblob, 'sentiment_textblob', None, 'cased', 1),
-          (sonar, 'sonar', None, 'cased', 1),
-          (detoxify, 'detoxify_toxicity', 'toxicity', 'cased', 1),
-          (detoxify, 'detoxify_insult', 'insult', 'cased', 1),
-          (flair, 'flair', None, 'cased', 1)]
+          (vader, 'vader', None, 'cased', 1),
+          (textblob, 'textblob', None, 'cased', 1),
+          (sonar_model, 'sonar', None, 'cased', 1),
+          (detoxify_model, 'detoxify_toxicity', 'toxicity', 'cased', 1),
+          (detoxify_model, 'detoxify_insult', 'insult', 'cased', 1),
+          (flair_model, 'flair', None, 'cased', 1)]
 
 
 def model_aggregator(comments: list,
@@ -111,18 +111,42 @@ def model_aggregator(comments: list,
                 classifier_array_b = classifier_array_a
             elif '5' in name:
                 classifier_array_b = [1 - result['score'] if result['label'] in ('LABEL_0', 'LABEL_1') else result['score'] for result in results]
+
+        elif 'lexicon' in name:
+            classifier_array_a = [1 if any(offensive_word in uncased_comment for offensive_word in offensive_lexicon) else 0 for uncased_comment in uncased_comments]
         
         elif 'vader' in name:
-            classifier_array_a = [custom_sigmoid(vader(tweet)) for tweet in test_tweets]
+            classifier_array_a = [custom_sigmoid(vader(comment)) for comment in comments]
 
         elif 'textblob' in name:
-            classifier_array_a = [custom_sigmoid(textblob(tweet)) for tweet in test_tweets]
+            classifier_array_a = [custom_sigmoid(textblob(comment)) for comment in comments]
+
+        elif 'sonar' in name:
+            sonar_results = [classifier.ping(text=comment)['classes'] for comment in comments]
+            classifier_array_a = np.array([1 - result[2]['confidence'] for result in sonar_results])
+            classifier_array_b = np.array([result[0]['confidence'] for result in sonar_results]) / classifier_array_a
 
         elif 'detoxify' in name:
             classifier_array_a = detoxify_model.predict(comments)[keyword]
 
             if keyword == 'insult':
                 classifier_array_b = classifier_array_a
+
+        elif 'flair' in name:
+            classifier_array_a = []
+            
+            for comment in comments:
+                flair_sentence = Sentence(comment)
+                classifier.predict(flair_sentence)
+                flair_result = sentence.labels[0].to_dict()
+                flair_score = 1 - flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
+                classifier_array_a.append(flair_score)
+
+            classifier_array_b = classifier_array_a
+
+        else:
+            print('missing name')
+
 
         task_a_score += np.array(classifier_array_a) * weight
         task_a_weight += weight
@@ -131,47 +155,9 @@ def model_aggregator(comments: list,
             task_b_score += np.array(classifier_array_b) * weight
             task_b_weight += weight
 
-        for i in range(length):
-            vader_score = custom_sigmoid(sentiment_vader(comments[i]))
 
-            textblob_score = custom_sigmoid(sentiment_textblob(comments[i]))
 
-            sonar_score = 1 - \
-                sonar_model.ping(text=comments[i])['classes'][2]['confidence']
 
-            lexicon_score = 1 if any(
-                offensive_word in uncased_comments[i] for offensive_word in offensive_lexicon) else 0
-
-            sentence = Sentence(comments[i])
-            flair_model.predict(sentence)
-            flair_result = sentence.labels[0].to_dict()
-            flair_score = 1 - \
-                flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
-
-            task_a_score[i] += (vader_score * vader_weight + textblob_score * textblob_weight + sonar_score * sonar_weight + lexicon_score * lexicon_weight + flair_score * flair_weight)
-        
-        task_a_weight += vader_weight + textblob_weight + sonar_weight + lexicon_weight + flair_weight
-
-        task_a_score /= task_a_weight
-
-    elif task == 'b':
-        for classifier, index, keyword, case, weight in tc_tuples:
-
-        for i in range(length):
-            sonar_output = sonar_model.ping(text=comments[i])['classes']
-            sonar_score = sonar_output[0]['confidence'] / (1 - sonar_output[2]['confidence'])
-
-            sentence = Sentence(comments[i])
-            flair_model.predict(sentence)
-            flair_result = sentence.labels[0].to_dict()
-            flair_score = 1 - \
-                flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
-
-            task_b_score[i] += sonar_score * sonar_weight + flair_score * flair_weight
-        
-        task_b_weight += sonar_weight + flair_weight
-
-        task_b_score /= task_b_weight
 
     elif task == 'c':
         overall_score = target_classifier.weak_classifier(comments)

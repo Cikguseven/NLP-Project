@@ -1,6 +1,9 @@
-z = ['0', '4', '5']
+from hatesonar import Sonar
 
-y = 'tc_7'
+sonar = Sonar()
 
-if any(index in y for index in z):
-	print('o')
+s = ['help', 'fuck', 'god damn it']
+
+z = [sonar.ping(text=comment)['classes'] for comment in s]
+
+print(z)

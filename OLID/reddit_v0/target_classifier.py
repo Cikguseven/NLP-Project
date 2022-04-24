@@ -1,6 +1,5 @@
 from bad_words import offensive_lexicon
 from bisect import bisect_left
-from collections import Counter 
 from tqdm import tqdm
 import comment_filter
 import labelling_functions_data
