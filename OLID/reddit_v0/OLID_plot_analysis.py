@@ -5,7 +5,6 @@ import main_config
 import matplotlib.pyplot as plt
 import numpy as np
 import spacy
-import weak_signals
 
 spacy.require_gpu()
 
@@ -28,21 +27,16 @@ def evaluate_model(
 
         print(model)
 
-        if 'weak_signals_function' in model:
-            task_a_predictions_array = weak_signals.model_aggregator(test_tweets[:860], uncased_test_tweets[:860], 'a')
-            task_b_predictions_array = weak_signals.model_aggregator(test_tweets[860:1100], uncased_test_tweets[860:1100], 'b')
+        nlp = spacy.load(main_config.model_directory +
+                         model + '/model-best')
 
+        if 'uncased' in model:
+            docs = list(nlp.pipe(uncased_test_tweets))
         else:
-            nlp = spacy.load(main_config.model_directory +
-                             model + '/model-best')
+            docs = list(nlp.pipe(test_tweets))
 
-            if 'uncased' in model:
-                docs = list(nlp.pipe(uncased_test_tweets))
-            else:
-                docs = list(nlp.pipe(test_tweets))
-
-            task_a_predictions_array = np.array([docs[i].cats['offensive'] for i in range(860)])
-            task_b_predictions_array = np.array([docs[i].cats['targeted'] for i in range(860, 1100)])
+        task_a_predictions_array = np.array([docs[i].cats['offensive'] for i in range(860)])
+        task_b_predictions_array = np.array([docs[i].cats['targeted'] for i in range(860, 1100)])
 
         precision, recall, thresholds = precision_recall_curve(
             task_a_answers_array, task_a_predictions_array)
@@ -79,7 +73,7 @@ def evaluate_model(
 
 if __name__ == '__main__':
     custom_models = [f for f in listdir(
-        main_config.model_directory)]
+        main_config.model_directory) if 'olid' in f or 'weak' in f]
 
     specific_model = ['weak_signals_function']
 
@@ -97,6 +91,6 @@ if __name__ == '__main__':
         input_list=main_config.test_tweets_getter())
 
     evaluate_model(
-        models=all_models,
+        models=custom_models,
         test_tweets=filtered_tweets[:],
         test_answers=main_config.answers_getter())

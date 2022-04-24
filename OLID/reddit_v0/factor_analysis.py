@@ -201,20 +201,10 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
     #                  (offensive_lexicon, 'offensive_lexicon', 'LABEL_0'),
     #                  (target_classifier.weak_classifier, 'spacy', None)]
 
-    binary_models = [(tc_9, 'tc_9', 'no-hate-speech'),
-                     (offensive_lexicon, 'lexicon', 'LABEL_0')]
+    binary_models = [(target_classifier.weak_classifier, 'spacy', None)]
 
     for classifier, name, wrong_label in binary_models:
-        if '9' in name:
-            results = classifier(test_tweets)
-            classifier_score = [0 if result['generated_text'] == wrong_label else 1 for result in results]
-            predictions_array = np.array(classifier_score)
-
-        elif 'lexicon' in name:
-            classifier_score = [1 if any(offensive_word in uncased_tweet for offensive_word in offensive_lexicon) else 0 for uncased_tweet in uncased_test_tweets]
-            predictions_array = np.array(classifier_score)
-
-        elif 'spacy' in name:
+        if 'spacy' in name:
             results = classifier(test_tweets[2204:])
 
             cm = confusion_matrix(task_c_answers, results, labels=["OTH", "IND", "GRP"])
@@ -222,57 +212,67 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
 
             disp.plot(values_format='')
             plt.show()
+            
+        else:
+            if '9' in name:
+                results = classifier(test_tweets)
+                classifier_score = [0 if result['generated_text'] == wrong_label else 1 for result in results]
+                predictions_array = np.array(classifier_score)
 
-        true_positive_not = 0
-        false_positive_not = 0
+            elif 'lexicon' in name:
+                classifier_score = [1 if any(offensive_word in uncased_tweet for offensive_word in offensive_lexicon) else 0 for uncased_tweet in uncased_test_tweets]
+                predictions_array = np.array(classifier_score)
 
-        true_positive_off = 0
-        false_positive_off = 0
+            true_positive_not = 0
+            false_positive_not = 0
 
-        true_positive_unt = 0
-        false_positive_unt = 0
+            true_positive_off = 0
+            false_positive_off = 0
 
-        true_positive_tin = 0
-        false_positive_tin = 0
+            true_positive_unt = 0
+            false_positive_unt = 0
 
-        for i in range(3494):
-            if i < 1102:
-                if predictions_array[i] == 0:
-                    true_positive_not += 1
-                else:
-                    false_positive_off += 1
+            true_positive_tin = 0
+            false_positive_tin = 0
 
-            else:
-                if predictions_array[i]:
-                    true_positive_off += 1
-                else:
-                    false_positive_not += 1
-
-                if i < 1653:
+            for i in range(3494):
+                if i < 1102:
                     if predictions_array[i] == 0:
-                        true_positive_unt += 1
+                        true_positive_not += 1
                     else:
-                        false_positive_tin += 1
+                        false_positive_off += 1
 
                 else:
                     if predictions_array[i]:
-                        true_positive_tin += 1
+                        true_positive_off += 1
                     else:
-                        false_positive_unt += 1
+                        false_positive_not += 1
 
-        metrics = [(true_positive_not, false_positive_not, 'NOT', 1102),
-                   (true_positive_off, false_positive_off, 'OFF', 2392),
-                   (true_positive_unt, false_positive_unt, 'UNT', 551),
-                   (true_positive_tin, false_positive_tin, 'TIN', 1841)]
+                    if i < 1653:
+                        if predictions_array[i] == 0:
+                            true_positive_unt += 1
+                        else:
+                            false_positive_tin += 1
 
-        for metric in metrics:
-            pp = metric[0] + metric[1]
-            precision = metric[0] / pp if pp > 0 else 0
-            recall = metric[0] / metric[3]
-            f1 = 2 * precision * recall / \
-                (precision + recall) if precision + recall > 0 else 0
+                    else:
+                        if predictions_array[i]:
+                            true_positive_tin += 1
+                        else:
+                            false_positive_unt += 1
 
-            print(f'{metric[2]}, {precision}, {recall}, {f1}')
+            metrics = [(true_positive_not, false_positive_not, 'NOT', 1102),
+                       (true_positive_off, false_positive_off, 'OFF', 2392),
+                       (true_positive_unt, false_positive_unt, 'UNT', 551),
+                       (true_positive_tin, false_positive_tin, 'TIN', 1841)]
+
+            for metric in metrics:
+                pp = metric[0] + metric[1]
+                precision = metric[0] / pp if pp > 0 else 0
+                recall = metric[0] / metric[3]
+                f1 = 2 * precision * recall / \
+                    (precision + recall) if precision + recall > 0 else 0
+
+                print(f'{metric[2]}, {precision}, {recall}, {f1}')
 
 
 if __name__ == '__main__':

@@ -8,8 +8,6 @@ import weak_signals
 start = time.time()
 
 
-
-
 def spacy_file_creator(
         comments: list,
         gold_labels: list,
@@ -105,27 +103,29 @@ if __name__ == '__main__':
     import time
     start = time.time()
 
-    olid_training_data = main_config.balanced_tweets_getter(analysis_set=False)
+    olid_training_data = main_config.training_tweets_getter(unlabelled=True)
 
     # Import unique filtered comments for testing and validation
     filtered_comments = comment_filter.c_filter(
-        shuffle=False,
+        shuffle=True,
         remove_username=False,
         remove_commas=False,
         length_min=0,
         length_max=9999,
         uncased=False,
         unique=False,
-        input_file=olid_training_data)
+        input_list=olid_training_data)[:3000]
 
     comment_count = len(filtered_comments)
+
+    print(comment_count)
 
     spacy_file_creator(
         comments=filtered_comments[:],
         gold_labels=main_config.answers[:900],
         length=comment_count,
         weak_supervision_mode=True,
-        training_validation_split=int(main_config.validation_split * length),
+        training_validation_split=int(main_config.validation_split * comment_count),
         output_training=main_config.spacy_training_file,
         output_vaildation=main_config.spacy_validation_file)
 

@@ -107,13 +107,13 @@ def model_aggregator(comments: list):
             else:
                 classifier_array_a = [1 - result['score'] if result['label'] == keyword else result['score'] for result in results]
 
-            if int(name[0]) > 5:
+            if int(name[-1]) > 5:
                 classifier_array_b = classifier_array_a
             elif '5' in name:
                 classifier_array_b = [1 - result['score'] if result['label'] in ('LABEL_0', 'LABEL_1') else result['score'] for result in results]
 
         elif 'lexicon' in name:
-            classifier_array_a = [1 if any(offensive_word in uncased_comment for offensive_word in offensive_lexicon) else 0 for uncased_comment in uncased_comments]
+            classifier_array_a = [1 if any(offensive_word in uncased_comment for offensive_word in bad_words.offensive_lexicon) else 0 for uncased_comment in uncased_comments]
 
         elif 'target' in name:
             task_c_score = classifier(comments)
@@ -130,7 +130,7 @@ def model_aggregator(comments: list):
             classifier_array_b = np.array([result[0]['confidence'] for result in sonar_results]) / classifier_array_a
 
         elif 'detoxify' in name:
-            classifier_array_a = detoxify_model.predict(comments)[keyword]
+            classifier_array_a = [detoxify_model.predict(comment)[keyword] for comment in comments]
 
             if keyword == 'insult':
                 classifier_array_b = classifier_array_a
@@ -141,7 +141,7 @@ def model_aggregator(comments: list):
             for comment in comments:
                 flair_sentence = Sentence(comment)
                 classifier.predict(flair_sentence)
-                flair_result = sentence.labels[0].to_dict()
+                flair_result = flair_sentence.labels[0].to_dict()
                 flair_score = 1 - flair_result['confidence'] if flair_result['value'] == 'POSITIVE' else flair_result['confidence']
                 classifier_array_a.append(flair_score)
 

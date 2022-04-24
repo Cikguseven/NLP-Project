@@ -70,11 +70,13 @@ def weak_classifier(sentences: list):
 
         if noun_verb_pos and offensive_word_pos:
             average_offensive_pos = statistics.mean(offensive_word_pos)
-            closest_index = take_closest([x for x in noun_verb_pos if x != average_offensive_pos], average_offensive_pos)
-            if closest_index in ent_pos:
-                total_targets.append(entity_to_target(ent_pos[closest_index]))
-            else:
-                total_targets.append(entity_to_target(noun_verb_pos[closest_index]))
+            noun_verb_pos_list = [x for x in noun_verb_pos if x != average_offensive_pos]
+            if len(noun_verb_pos_list) > 0:
+                closest_index = take_closest(noun_verb_pos_list, average_offensive_pos)
+                if closest_index in ent_pos:
+                    total_targets.append(entity_to_target(ent_pos[closest_index]))
+                else:
+                    total_targets.append(entity_to_target(noun_verb_pos[closest_index]))
 
         total_targets += [result for word in list(noun_verb_pos.values()) + list(ent_pos.values()) if (result := entity_to_target(word))]
         new_targets = list(filter(None, total_targets))

@@ -45,7 +45,7 @@ spacy_training_file = version + 'training.spacy'
 spacy_validation_file = version + 'vaildation.spacy'
 
 
-def training_tweets_getter():
+def training_tweets_getter(unlabelled: bool):
     with open(training_tweet_file, encoding='utf-8') as f:
         tweets = [line.split('\t') for line in f]
 
@@ -53,7 +53,11 @@ def training_tweets_getter():
     for tweet in tweets:
         tweet[4] = tweet[4].strip()
 
-    return tweets
+    if unlabelled:        
+        output_tweets = [tweet[1] for tweet in tweets]
+        return output_tweets
+    else:
+        return tweets
 
 
 def balanced_tweets_getter(analysis_set: bool):
@@ -107,7 +111,8 @@ def balanced_tweets_getter(analysis_set: bool):
         return output_tweets
 
     else:
-        return tweets
+        output_tweets = [tweet[1] for tweet in tweets]
+        return output_tweets
 
 
 def test_tweets_getter():
