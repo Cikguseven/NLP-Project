@@ -86,10 +86,13 @@ def weak_classifier(sentences: list):
         else:
             results.append('OTH')
 
+        print(docs[i].text)
+        print(new_targets)
+
     return results
 
 if __name__ == '__main__':
-    olid_balanced_tweets = main_config.balanced_tweets_getter()
+    olid_balanced_tweets = main_config.balanced_tweets_getter(analysis_set=True)
 
     # Import unique filtered comments for testing
     filtered_tweets = comment_filter.c_filter(

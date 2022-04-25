@@ -1,3 +1,6 @@
-z = 'akhbasad'
+from bad_words import offensive_lexicon
 
-print(z[-1])
+z = 'fuckll'
+
+if any(offensive_word in z for offensive_word in offensive_lexicon):
+	print('a')

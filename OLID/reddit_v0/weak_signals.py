@@ -10,6 +10,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import bad_words
 import main_config
 import numpy as np
+import re
 import target_classifier
 
 
@@ -75,8 +76,7 @@ models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased', 1),
           (detoxify_model, 'detoxify_toxicity', 'toxicity', 'cased', 1),
           (detoxify_model, 'detoxify_insult', 'insult', 'cased', 1),
           (flair_model, 'flair', None, 'cased', 1)]
-
-                    # (target_classifier.weak_classifier, 'target_classifier', None, 'cased', 1),
+         # (target_classifier.weak_classifier, 'target_classifier', None, 'cased', 1),
 
 
 def model_aggregator(comments: list):
@@ -114,7 +114,11 @@ def model_aggregator(comments: list):
                 classifier_array_b = [1 - result['score'] if result['label'] in ('LABEL_0', 'LABEL_1') else result['score'] for result in results]
 
         elif 'lexicon' in name:
-            classifier_array_a = [1 if any(offensive_word in uncased_comment for offensive_word in bad_words.offensive_lexicon) else 0 for uncased_comment in uncased_comments]
+            classifier_array_a = np.zeros(length)
+            for index, uncased_comment in enumerate(uncased_comments):
+                for offensive_word in bad_words.offensive_lexicon:
+                    if re.search(r'(?<![^\W_])' + offensive_word + r'(?![^\W_])', uncased_comment):
+                        classifier_array_a[index] = 1
 
         elif 'target' in name:
             task_c_score = classifier(comments)

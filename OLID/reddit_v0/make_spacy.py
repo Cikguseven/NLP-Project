@@ -2,10 +2,7 @@ from spacy.tokens import DocBin
 import comment_filter
 import main_config
 import spacy
-import time
 import weak_signals
-
-start = time.time()
 
 
 def spacy_file_creator(
@@ -26,7 +23,7 @@ def spacy_file_creator(
     if weak_supervision_mode:
         task_a_labels, task_b_labels, task_c_labels = weak_signals.model_aggregator(comments)
 
-        threshold = 0.35
+        threshold = 
 
         for i in range(length):
             categories = {
@@ -107,14 +104,14 @@ if __name__ == '__main__':
 
     # Import unique filtered comments for testing and validation
     filtered_comments = comment_filter.c_filter(
-        shuffle=True,
+        shuffle=False,
         remove_username=False,
         remove_commas=False,
         length_min=0,
         length_max=9999,
         uncased=False,
         unique=False,
-        input_list=olid_training_data)[:3000]
+        input_list=olid_training_data)[:]
 
     comment_count = len(filtered_comments)
 
