@@ -25,8 +25,12 @@ def evaluate_model(
 
     figure, axis = plt.subplots(2, 2)
 
-    task_a_predictions_array = weak_signals.model_aggregator(test_tweets, uncased_test_tweets, 'a')
-    task_b_predictions_array = weak_signals.model_aggregator(test_tweets[1048:], uncased_test_tweets[1048:], 'b')
+    for model in models:
+
+        print(model)
+
+        task_a_predictions_array = weak_signals.model_aggregator(test_tweets, uncased_test_tweets, 'a')
+        task_b_predictions_array = weak_signals.model_aggregator(test_tweets[1048:], uncased_test_tweets[1048:], 'b')
 
     precision, recall, thresholds = precision_recall_curve(
         task_a_answers_array, task_a_predictions_array)

@@ -17,6 +17,9 @@ def spacy_file_creator(
         output_training: str,
         output_vaildation: str):
 
+    spacy.require_gpu()
+    nlp = spacy.load('en_core_web_trf')
+
     db_training = DocBin()
     db_validation = DocBin()
 
@@ -59,9 +62,6 @@ def spacy_file_creator(
                 db_training.add(doc)
 
     else:
-        spacy.require_gpu()
-        nlp = spacy.load('en_core_web_trf')
-
         for i in range(length):
             categories = {
                 'offensive': 0.0,
