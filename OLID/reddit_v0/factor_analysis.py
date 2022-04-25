@@ -13,8 +13,11 @@ import main_config
 import matplotlib.pyplot as plt
 import numpy as np
 import re
+import sys
 import target_classifier
 import weak_signals
+
+np.set_printoptions(threshold=sys.maxsize)
 
 
 def custom_sigmoid(x):
@@ -197,6 +200,7 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
                     for offensive_word in bad_words.offensive_lexicon:
                         if re.search(r'(?<![^\W_])' + offensive_word + r'(?![^\W_])', uncased_comment):
                             predictions_array[index] = 1
+                            break
 
             true_positive_not = 0
             false_positive_not = 0

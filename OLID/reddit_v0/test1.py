@@ -1,6 +1,13 @@
-from bad_words import offensive_lexicon
+import matplotlib.pyplot as plt
+import numpy as np
 
-z = 'fuckll'
+f1 = []
 
-if any(offensive_word in z for offensive_word in offensive_lexicon):
-	print('a')
+for p, r in zip(precision, recall):
+	f1.append(2 * p * r / (p + r))
+
+threshold = np.array(threshold)
+f1 = np.array(f1)
+
+plt.plot(threshold, f1)
+plt.show()

@@ -119,6 +119,7 @@ def model_aggregator(comments: list):
                 for offensive_word in bad_words.offensive_lexicon:
                     if re.search(r'(?<![^\W_])' + offensive_word + r'(?![^\W_])', uncased_comment):
                         classifier_array_a[index] = 1
+                        break
 
         elif 'target' in name:
             task_c_score = classifier(comments)
