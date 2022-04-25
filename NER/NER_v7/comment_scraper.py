@@ -1,17 +1,23 @@
 import main_config
-
 import praw
 import random
 import time
+
+sys.path.insert(1, os.path.join(sys.path[0], '../'))
+import config
+
+
+def random_seed():
+    return 0.0
 
 
 # Function to scrapes comments and authors from a chosen subreddit
 def c_scraper(output_file: str, subreddit: str, scrape_limit: int):
     start = time.time()
 
-    reddit = praw.Reddit(client_id='KQpseqhxhSGWZ0CXQrdCkQ',
-                         client_secret='Xsbo93sniLTYdisbEqlIoBzTNpZDFA',
-                         user_agent='MyBot/0.0.1')
+    reddit = praw.Reddit(client_id=config.client_id,
+                         client_secret=config.client_secret,
+                         user_agent=config.user_agent)
 
     target_subreddit = reddit.subreddit(subreddit)
 

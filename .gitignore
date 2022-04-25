@@ -3,3 +3,4 @@ old_models/
 data/
 *.spacy
 *.bin
+config.py

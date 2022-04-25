@@ -1,7 +1,11 @@
+from main_config import *
 import praw
 import random
-from main_config import *
+import sys
 import time
+
+sys.path.insert(1, os.path.join(sys.path[0], '../'))
+import config
 
 
 def random_seed():
@@ -12,9 +16,9 @@ def random_seed():
 def c_scraper():
     start = time.time()
 
-    reddit = praw.Reddit(client_id='KQpseqhxhSGWZ0CXQrdCkQ',
-                         client_secret='Xsbo93sniLTYdisbEqlIoBzTNpZDFA',
-                         user_agent='MyBot/0.0.1')
+    reddit = praw.Reddit(client_id=config.client_id,
+                         client_secret=config.client_secret,
+                         user_agent=config.user_agent)
 
     subreddit = reddit.subreddit('Singapore')
 
