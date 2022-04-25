@@ -23,7 +23,8 @@ def spacy_file_creator(
     if weak_supervision_mode:
         task_a_labels, task_b_labels, task_c_labels = weak_signals.model_aggregator(comments)
 
-        threshold = 
+        threshold_a = 0.25
+        threshold_b = 0.25
 
         for i in range(length):
             categories = {
@@ -34,20 +35,20 @@ def spacy_file_creator(
                 'other': 0.0
             }
 
-            if task_a_labels[i] > threshold:
+            if task_a_labels[i] > threshold_a:
                 categories['offensive'] = 1.0
 
-                if task_b_labels[i] > threshold:
-                    categories['targeted'] = 1.0
+            if task_b_labels[i] > threshold_b:
+                categories['targeted'] = 1.0
 
-                    if task_c_labels[i] == 'IND':
-                        categories['individual'] = 1.0
+            if task_c_labels[i] == 'IND':
+                categories['individual'] = 1.0
 
-                    elif task_c_labels[i] == 'GRP':
-                        categories['group'] = 1.0
+            elif task_c_labels[i] == 'GRP':
+                categories['group'] = 1.0
 
-                    else:
-                        categories['other'] = 1.0
+            else:
+                categories['other'] = 1.0
 
             doc = nlp.make_doc(comments[i])
             doc.cats = categories
