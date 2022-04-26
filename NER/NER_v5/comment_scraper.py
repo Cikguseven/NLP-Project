@@ -8,10 +8,6 @@ sys.path.insert(1, os.path.join(sys.path[0], '../'))
 import config
 
 
-def random_seed():
-    return 0.0
-
-
 # Function to scrapes comments and authors from r/sg subreddit
 def c_scraper():
     start = time.time()
@@ -41,14 +37,6 @@ def c_scraper():
                         x = comment.body.replace("\n", " ")
                         f.write(f"{post.id}|{comment.author}, {x}\n")
                         counter += 1
-
-        lines = f.readlines()
-    
-    # Shuffles comments based on fixed seed
-    random.shuffle(lines, random_seed)
-    
-    with open(scraped_comments, "w", encoding='utf-8') as f:
-        f.writelines(lines)
 
     end = time.time()
     duration = round(end - start, 2)

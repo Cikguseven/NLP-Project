@@ -7,10 +7,6 @@ sys.path.insert(1, os.path.join(sys.path[0], '../'))
 import config
 
 
-def random_seed():
-    return 0.0
-
-
 # Function to scrapes comments and authors from a chosen subreddit
 def c_scraper(output_file: str, subreddit: str, scrape_limit: int):
     start = time.time()
