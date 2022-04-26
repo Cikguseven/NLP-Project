@@ -2654,13 +2654,8 @@ print(precision[index_max])
 print(recall[index_max])
 print(threshold[index_max])
 
-# threshold = np.array(threshold_b)
-# f1 = np.array(f1)
+threshold = np.array(threshold)
+f1 = np.array(f1)
 
-# plt.plot(threshold, f1)
-# plt.show()
-
-# for x in threshold_b:
-#     print(x)
-
-
+plt.plot(threshold, f1)
+plt.show()

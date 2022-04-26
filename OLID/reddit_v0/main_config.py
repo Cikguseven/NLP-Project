@@ -39,7 +39,7 @@ with open(gold_labels) as f:
 
 validation_split = 0.25
 
-version = 'v0_weak_signals_'
+version = 'v0_weak_signals_30a_5b'
 
 spacy_training_file = version + 'training.spacy'
 spacy_validation_file = version + 'vaildation.spacy'

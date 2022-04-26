@@ -117,6 +117,8 @@ def evaluate(test_tweets: list, uncased_test_tweets: list, test_answers: list, b
         else:
             print(model)
 
+            name = model
+
             nlp = spacy.load(main_config.model_directory + model + '/model-best')
 
             if 'uncased' in model:
@@ -138,12 +140,6 @@ def evaluate(test_tweets: list, uncased_test_tweets: list, test_answers: list, b
                     precision, recall, thresholds = precision_recall_curve(
                         task_b_answers_array, task_b_predictions_array)
                     x = 1
-
-                print(precision)
-                print(recall)
-                print(thresholds)
-                print()
-                print()
 
                 if index > 19:
                     axis[0, x].plot(recall, precision, label=name, ls=':')
