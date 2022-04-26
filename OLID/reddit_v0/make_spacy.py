@@ -105,7 +105,7 @@ if __name__ == '__main__':
 
     # Import unique filtered comments for testing and validation
     filtered_comments = comment_filter.c_filter(
-        shuffle=False,
+        shuffle=True,
         remove_username=False,
         remove_commas=False,
         length_min=0,

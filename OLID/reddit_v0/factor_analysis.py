@@ -4,6 +4,7 @@ from flair.data import Sentence
 from flair.models import TextClassifier
 from hatesonar import Sonar
 from math import exp
+from os import listdir
 from sklearn.metrics import precision_recall_curve, roc_curve, confusion_matrix, ConfusionMatrixDisplay
 from textblob import TextBlob
 from transformers import pipeline
@@ -13,6 +14,7 @@ import main_config
 import matplotlib.pyplot as plt
 import numpy as np
 import re
+import spacy
 import sys
 import target_classifier
 import weak_signals
@@ -44,14 +46,19 @@ def evaluate(test_tweets: list, uncased_test_tweets: list, test_answers: list, b
         task_a_answers_array = np.array([1 if x == 'OFF' else 0 for x in test_answers[:860]])
         task_b_answers_array = np.array([1 if x == 'TIN' else 0 for x in test_answers[860:1100]])
 
-    for classifier, name, wrong_label, case, index in models:
-
-        print(name)
-
-        classifier_score = []
-        task_b_predictions_array = None
+    for index, model in enumerate(models):
 
         if balanced:
+            classifier = model[0]
+            name = model[1]
+            wrong_label = model[2]
+            case = model[3]
+
+            print(name)
+
+            classifier_score = []
+            task_b_predictions_array = None
+
             if 'tc_' in name:
                 if case == 'uncased':
                     results = classifier(uncased_test_tweets)
@@ -108,6 +115,8 @@ def evaluate(test_tweets: list, uncased_test_tweets: list, test_answers: list, b
                 task_b_predictions_array = task_b_predictions_array[1102:]
 
         else:
+            print(model)
+
             nlp = spacy.load(main_config.model_directory + model + '/model-best')
 
             if 'uncased' in model:
@@ -196,9 +205,9 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
 
             elif 'lexicon' in name:
                 predictions_array = np.zeros(length)
-                for index, uncased_comment in enumerate(uncased_comments):
-                    for offensive_word in bad_words.offensive_lexicon:
-                        if re.search(r'(?<![^\W_])' + offensive_word + r'(?![^\W_])', uncased_comment):
+                for index, uncased_tweet in enumerate(uncased_test_tweets):
+                    for offensive_word in offensive_lexicon:
+                        if re.search(r'(?<![^\W_])' + offensive_word + r'(?![^\W_])', uncased_tweet):
                             predictions_array[index] = 1
                             break
 
@@ -256,7 +265,7 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
 
 if __name__ == '__main__':
 
-    use_balanced_olid = True
+    use_balanced_olid = False
 
     if use_balanced_olid:
         get_tweets = main_config.balanced_tweets_getter(analysis_set=True)
@@ -309,41 +318,41 @@ if __name__ == '__main__':
 
     # flair = TextClassifier.load('sentiment')
 
-    # models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased', 1),
-    #           (tc_2, 'tc_2', 'LABEL_0', 'cased', 2),
-    #           (tc_3, 'tc_3', 'LABEL_0', 'cased', 3),
-    #           (tc_4, 'tc_4', 'Non-Offensive', 'cased', 4),
-    #           (tc_5, 'tc_5', 'LABEL_0', 'cased', 5),
-    #           (tc_5, 'tc_5_inverse1', 'LABEL_0', 'cased', 6),
-    #           (tc_5, 'tc_5_inverse12', 'LABEL_0', 'cased', 7),
-    #           (tc_6, 'tc_6', 'NO_HATE', 'cased', 8),
-    #           (tc_7, 'tc_7', 'NON_HATE', 'cased', 9),
-    #           (tc_8, 'tc_8', 'POSITIVE', 'cased', 10),
-    #           (vader, 'sentiment_vader', 'Non-Offensive', 'cased', 11),
-    #           (textblob, 'sentiment_textblob', 'LABEL_0', 'cased', 12),
-    #           (sonar, 'sonar_hate', 'NO_HATE', 'cased', 13),
-    #           (sonar, 'sonar_hatf', 'NO_HATE', 'cased', 14),
-    #           (sonar, 'sonar_ol', 'NO_HATE', 'cased', 15),
-    #           (sonar, 'sonar_olf', 'NO_HATE', 'cased', 16),
-    #           (detoxify, 'detoxify_toxicity', 'NON_HATE', 'cased', 17),
-    #           (detoxify, 'detoxify_severe_toxicity', 'NON_HATE', 'cased', 18),
-    #           (detoxify, 'detoxify_obscene', 'NON_HATE', 'cased', 19),
-    #           (detoxify, 'detoxify_identity_attack', 'NON_HATE', 'cased', 20),
-    #           (detoxify, 'detoxify_insult', 'NON_HATE', 'cased', 21),
-    #           (detoxify, 'detoxify_threat', 'NON_HATE', 'cased', 22),
-    #           (detoxify, 'detoxify_sexual_explicit', 'NON_HATE', 'cased', 23),
-    #           (flair, 'flair', None, 'cased', 24)]
+    # models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased'),
+    #           (tc_2, 'tc_2', 'LABEL_0', 'cased'),
+    #           (tc_3, 'tc_3', 'LABEL_0', 'cased'),
+    #           (tc_4, 'tc_4', 'Non-Offensive', 'cased'),
+    #           (tc_5, 'tc_5', 'LABEL_0', 'cased'),
+    #           (tc_5, 'tc_5_inverse1', 'LABEL_0', 'cased'),
+    #           (tc_5, 'tc_5_inverse12', 'LABEL_0', 'cased'),
+    #           (tc_6, 'tc_6', 'NO_HATE', 'cased'),
+    #           (tc_7, 'tc_7', 'NON_HATE', 'cased'),
+    #           (tc_8, 'tc_8', 'POSITIVE', 'cased'),
+    #           (vader, 'sentiment_vader', 'Non-Offensive', 'cased'),
+    #           (textblob, 'sentiment_textblob', 'LABEL_0', 'cased'),
+    #           (sonar, 'sonar_hate', 'NO_HATE', 'cased'),
+    #           (sonar, 'sonar_hatf', 'NO_HATE', 'cased'),
+    #           (sonar, 'sonar_ol', 'NO_HATE', 'cased'),
+    #           (sonar, 'sonar_olf', 'NO_HATE', 'cased'),
+    #           (detoxify, 'detoxify_toxicity', 'NON_HATE', 'cased'),
+    #           (detoxify, 'detoxify_severe_toxicity', 'NON_HATE', 'cased'),
+    #           (detoxify, 'detoxify_obscene', 'NON_HATE', 'cased'),
+    #           (detoxify, 'detoxify_identity_attack', 'NON_HATE', 'cased'),
+    #           (detoxify, 'detoxify_insult', 'NON_HATE', 'cased'),
+    #           (detoxify, 'detoxify_threat', 'NON_HATE', 'cased'),
+    #           (detoxify, 'detoxify_sexual_explicit', 'NON_HATE', 'cased'),
+    #           (flair, 'flair', None, 'cased')]
 
-    # spacy_models = [f for f in listdir(main_config.model_directory) if 'olid' in f or 'weak' in f]
+    spacy_models = [f for f in listdir(main_config.model_directory) if 'olid' in f or 'weak' in f]
 
-    custom_model = [(weak_signals.model_aggregator, 'ws', None, None, 0)]
+    # custom_model = [(weak_signals.model_aggregator, 'ws', None, None, 0)]
 
     evaluate(
         test_tweets=filtered_tweets[:],
         uncased_test_tweets=uncased_tweets[:],
         test_answers=main_config.answers_getter(),
         balanced=use_balanced_olid,
-        models=custom_model)
+        models=spacy_models)
 
     # evaluate_binary(
     #     test_tweets=filtered_tweets,

@@ -34,9 +34,6 @@ def entity_to_target(entity: str):
         else:
             return 'GRP'
 
-    # elif entity[0].isupper() or entity[-1] == 's':
-    #     return 'GRP'
-
     elif uncased_entity in labelling_functions_data.individual:
         return 'IND'
 
@@ -86,9 +83,6 @@ def weak_classifier(sentences: list):
         else:
             results.append('OTH')
 
-        print(docs[i].text)
-        print(new_targets)
-
     return results
 
 if __name__ == '__main__':
@@ -105,4 +99,4 @@ if __name__ == '__main__':
         unique=False,
         input_list=olid_balanced_tweets)
 
-    weak_classifier(filtered_tweets[3480:])
+    weak_classifier(filtered_tweets[348:])
