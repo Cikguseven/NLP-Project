@@ -70,13 +70,13 @@ models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased', 1),
           (tc_8, 'tc_8', 'POSITIVE', 'cased', 1),
           (tc_9, 'tc_9', 'no-hate-speech', 'cased', 1),
           (bad_words.offensive_lexicon, 'lexicon', None, 'uncased', 15),
+          (target_classifier.weak_classifier, 'target_classifier', None, 'cased', 1),
           (vader, 'vader', None, 'cased', 1),
           (textblob, 'textblob', None, 'cased', 1),
           (sonar_model, 'sonar', None, 'cased', 1),
           (detoxify_model, 'detoxify_toxicity', 'toxicity', 'cased', 1),
           (detoxify_model, 'detoxify_insult', 'insult', 'cased', 1),
           (flair_model, 'flair', None, 'cased', 1)]
-         # (target_classifier.weak_classifier, 'target_classifier', None, 'cased', 1),
 
 
 def model_aggregator(comments: list):
@@ -166,7 +166,7 @@ def model_aggregator(comments: list):
     task_a_score /= task_a_weight
     task_b_score /= task_a_weight
 
-    return task_a_score, task_b_score
+    return task_a_score, task_b_score, task_c_score
 
 
 if __name__ == '__main__':
