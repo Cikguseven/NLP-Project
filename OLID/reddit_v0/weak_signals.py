@@ -153,9 +153,6 @@ def model_aggregator(comments: list):
 
             classifier_array_b = classifier_array_a
 
-        else:
-            print('missing name')
-
         task_a_score += np.array(classifier_array_a) * weight
         task_a_weight += weight
 

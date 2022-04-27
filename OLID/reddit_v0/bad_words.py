@@ -1032,6 +1032,7 @@ offensive_lexicon = {
 "freakfuck",
 "freakyfucker",
 "freefuck",
+"freelancer",
 "freex",
 "frigg",
 "frigga",

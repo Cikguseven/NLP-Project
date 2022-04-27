@@ -23,7 +23,7 @@ def spacy_file_creator(
     if weak_supervision_mode:
         task_a_labels, task_b_labels, task_c_labels = weak_signals.model_aggregator(comments)
 
-        threshold_a = 0.3
+        threshold_a = 0.4
         threshold_b = 0.05
 
         for i in range(length):

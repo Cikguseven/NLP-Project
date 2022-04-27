@@ -37,6 +37,9 @@ uncased_regex_replacements = [
     (r'(?<![^\W_])rofl{1,}(?![^\W_])', ''),
     (r'(?<![^\W_])xd{1,}(?![^\W_])', ''),
     (r'(?<![^\W_])(?:a*(?:ha)+h?|(?:l+o+)+l+)(?![^\W_])', ''),
+    (r'(?<![^\W_])lah{1,}(?![^\W_])', ''),
+    (r'(?<![^\W_])gagt(?![^\W_])', ''),
+    (r'(?<![^\W_])pcwx(?![^\W_])', ''),
 
     # Context specific replacements
     (r'(?<![^\W_])/s(?![^\W_])', ' I am being sarcastic'),
