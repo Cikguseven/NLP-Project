@@ -112,7 +112,7 @@ if __name__ == '__main__':
         length_max=9999,
         uncased=False,
         unique=False,
-        input_list=olid_training_data)[:]
+        input_list=olid_training_data)[:10000]
 
     comment_count = len(filtered_comments)
 

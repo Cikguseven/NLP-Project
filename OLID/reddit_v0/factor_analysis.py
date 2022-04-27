@@ -178,11 +178,10 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
     tc_9 = pipeline(task='text2text-generation', model="./pipelines/tc_9/",
                     tokenizer="./pipelines/tc_9/", device=0)
 
-    # binary_models = [(tc_9, 'tc_9', 'no-hate-speech'),
-    #                  (offensive_lexicon, 'offensive_lexicon', 'LABEL_0'),
-    #                  (target_classifier.weak_classifier, 'spacy', None)]
+    binary_models = [(tc_9, 'tc_9', 'no-hate-speech'),
+                     (offensive_lexicon, 'offensive_lexicon', 'LABEL_0')]
 
-    binary_models = [(target_classifier.weak_classifier, 'spacy', None)]
+    # binary_models = [(target_classifier.weak_classifier, 'spacy', None)]
 
     for classifier, name, wrong_label in binary_models:
         if 'spacy' in name:
@@ -261,7 +260,7 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
 
 if __name__ == '__main__':
 
-    use_balanced_olid = False
+    use_balanced_olid = True
 
     if use_balanced_olid:
         get_tweets = main_config.balanced_tweets_getter(analysis_set=True)
@@ -339,17 +338,17 @@ if __name__ == '__main__':
     #           (detoxify, 'detoxify_sexual_explicit', 'NON_HATE', 'cased'),
     #           (flair, 'flair', None, 'cased')]
 
-    spacy_models = [f for f in listdir(main_config.model_directory) if 'olid' in f or 'weak' in f]
+    # spacy_models = [f for f in listdir(main_config.model_directory) if 'olid' in f or 'weak' in f]
 
     # custom_model = [(weak_signals.model_aggregator, 'ws', None, None, 0)]
 
-    evaluate(
-        test_tweets=filtered_tweets[:],
-        uncased_test_tweets=uncased_tweets[:],
-        test_answers=main_config.answers_getter(),
-        balanced=use_balanced_olid,
-        models=spacy_models)
+    # evaluate(
+    #     test_tweets=filtered_tweets[:],
+    #     uncased_test_tweets=uncased_tweets[:],
+    #     test_answers=main_config.answers_getter(),
+    #     balanced=use_balanced_olid,
+    #     models=spacy_models)
 
-    # evaluate_binary(
-    #     test_tweets=filtered_tweets,
-    #     uncased_test_tweets=uncased_tweets)
+    evaluate_binary(
+        test_tweets=filtered_tweets,
+        uncased_test_tweets=uncased_tweets)

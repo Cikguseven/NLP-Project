@@ -2654,8 +2654,16 @@ print(precision[index_max])
 print(recall[index_max])
 print(threshold[index_max])
 
-threshold = np.array(threshold)
-f1 = np.array(f1)
+# # Threshold vs F1 curve
+# threshold = np.array(threshold)
+# f1 = np.array(f1)
 
-plt.plot(threshold, f1)
+# plt.plot(threshold, f1)
+
+# PRC Curve
+precision = np.array(precision)
+recall = np.array(recall)
+
+plt.plot(recall, precision)
+
 plt.show()
