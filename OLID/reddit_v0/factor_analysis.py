@@ -260,7 +260,7 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
 
 if __name__ == '__main__':
 
-    use_balanced_olid = True
+    use_balanced_olid = False
 
     if use_balanced_olid:
         get_tweets = main_config.balanced_tweets_getter(analysis_set=True)
@@ -277,8 +277,6 @@ if __name__ == '__main__':
         uncased=False,
         unique=False,
         input_list=get_tweets)
-
-    print(len(filtered_tweets))
 
     uncased_tweets = [tweet.lower() for tweet in filtered_tweets]
 
@@ -338,17 +336,17 @@ if __name__ == '__main__':
     #           (detoxify, 'detoxify_sexual_explicit', 'NON_HATE', 'cased'),
     #           (flair, 'flair', None, 'cased')]
 
-    # spacy_models = [f for f in listdir(main_config.model_directory) if 'olid' in f or 'weak' in f]
+    spacy_models = [f for f in listdir(main_config.model_directory) if 'olid' in f or 'weak' in f]
 
     # custom_model = [(weak_signals.model_aggregator, 'ws', None, None, 0)]
 
-    # evaluate(
-    #     test_tweets=filtered_tweets[:],
-    #     uncased_test_tweets=uncased_tweets[:],
-    #     test_answers=main_config.answers_getter(),
-    #     balanced=use_balanced_olid,
-    #     models=spacy_models)
+    evaluate(
+        test_tweets=filtered_tweets[:],
+        uncased_test_tweets=uncased_tweets[:],
+        test_answers=main_config.answers_getter(),
+        balanced=use_balanced_olid,
+        models=spacy_models)
 
-    evaluate_binary(
-        test_tweets=filtered_tweets,
-        uncased_test_tweets=uncased_tweets)
+    # evaluate_binary(
+    #     test_tweets=filtered_tweets,
+    #     uncased_test_tweets=uncased_tweets)
