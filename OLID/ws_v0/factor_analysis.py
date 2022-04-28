@@ -327,7 +327,7 @@ if __name__ == '__main__':
     #           (detoxify, 'detoxify_sexual_explicit', 'NON_HATE', 'cased'),
     #           (flair, 'flair', None, 'cased')]
 
-    spacy_models = [f for f in listdir(main_config.model_directory) if 'olid' in f or 'weak' in f]
+    spacy_models = [f for f in listdir(main_config.model_directory) if 'reddit' not in f]
 
     # custom_model = [(weak_signals.model_aggregator, 'ws', None, None, 0)]
 

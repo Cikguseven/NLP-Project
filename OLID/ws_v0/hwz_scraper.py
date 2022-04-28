@@ -1,94 +1,60 @@
 from bs4 import BeautifulSoup
-import urllib
-import urllib.request
-import re
-import pandas as pd
+from tqdm import tqdm
 import numpy as np
-import os
-from datetime import datetime
+import pandas as pd
+import re
 import requests
-import csv
-import textblob
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 
-headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"}
 
-url = "https://forums.hardwarezone.com.sg/eat-drink-man-woman-16/%5Bbionix-accident%5D-second-photo-accident-leaked-5931722.html"
-    
-resp = requests.get(url, headers=headers)
-content = resp.text
-soup = BeautifulSoup(content, "lxml")
-letters = soup.find_all("div", attrs={"id": re.compile ("^post_message_\d+")})
-print(letters)
+def get_posts(target_forum_url):
+    site_url = "https://forums.hardwarezone.com.sg"
 
-#Choose the main site URL
-site_url = 'https://forums.hardwarezone.com.sg'
-
-# Get the threads
-
-def getPosts(thread_url):
-    #print(thread_url)
-    lastThreadPage = False
-    thread_cols = ['thread_url', 'userid', 'timestamp', 'post_text', 'post_number', 'post_id'] 
+    thread_cols = ['thread_url', 'username', 'comment'] 
     thread_df = pd.DataFrame(columns=thread_cols)
-    thread_page_url = thread_url
 
-    while(not lastThreadPage):
-        #print(thread_page_url)
-        r3 = requests.get(thread_page_url)
-        thread_page = r3.text
-        thread_page_soup = BeautifulSoup(thread_page, 'html.parser')
+    response = requests.get(target_forum_url)
+    main_forum_page = response.text
+    page_soup = BeautifulSoup(main_forum_page, 'lxml')
 
-        if (thread_page_soup.find('a', text='Next ›') == None):
-            lastThreadPage = True
-        else:
-            thread_page_url = site_url + thread_page_soup.find('a', text='Next ›')['href']
+    regular_threads = page_soup.find('div', class_="structItemContainer-group js-threadList")
+    threads = [tag['href'] for tag in regular_threads.find_all("a", {"data-tp-primary": "on"})]
 
-        thread_page_posts = thread_page_soup.find('div', {'id': 'posts'})
-        
-        try: 
-            for post in thread_page_posts.find_all('div', {'class': 'post-wrapper'}):
-                userid_url = post.find('a', {'class': 'bigusername'})['href']
-                userid = ''.join(filter(lambda x: x.isdigit(), userid_url))
+    for thread in tqdm(threads):
+        thread_url = site_url + thread + 'page-'
 
-                datetime_raw = post.find('a', {'name': lambda x: x and x.find('post') == 0}).nextSibling.strip()
-                date_list = datetime_raw.split(',')[0].split('-')
-                iso_date = '-'.join(list(reversed(date_list)))
-                hour = int(datetime_raw.split(' ')[1][0:2])
-                if(datetime_raw.split(' ')[2] == 'PM' and hour < 12):
-                    hour += 12
-                hour_str = str(hour)
-                if(hour < 10):
-                    hour_str = '0' + str(hour)
-                minute = datetime_raw.split(':')[1][0:2]
-                iso_datetime = iso_date + 'T' + hour_str + ':' + minute
+        not_last_page = True
+        counter = 1
 
-                post_text = ""
-                try:
-                    post_text = post.find('div', {'class': 'post_message'}).get_text(' ', strip=True)
-                except AttributeError as e: 
-                    pass
+        while not_last_page and counter < 3:
+            thread_response = requests.get(thread_url + str(counter))
+            thread_page = thread_response.text
+            thread_page_soup = BeautifulSoup(thread_page, 'lxml')
 
-                post_number = int(post.find('a', {'id': lambda x: x and 'postcount' in x, 'target': 'new'}).find('strong').get_text())
+            counter += 1
 
-                post_id = int(post.find('a', {'id': lambda x: x and 'postcount' in x, 'target': 'new'})['id'].lstrip('postcount'))
-                              
-                row = pd.DataFrame([[thread_url, userid, iso_datetime, post_text, post_number, post_id]], columns=thread_cols)
-                if(len(thread_df)==0):
-                    thread_df = row
-                else:
-                    thread_df = thread_df.append(row, ignore_index=True) #df.append doesn't work inplace
-        except:
-            row = pd.DataFrame([[thread_url, "", "", "", np.nan, np.nan]], columns=thread_cols) #posts missing, thread may have been deleted
-            if(len(thread_df)==0):
-                thread_df = row
-            else:
-                thread_df = thread_df.append(row, ignore_index=True) #df.append doesn't work inplace
-    thread_df['post_text'] = thread_df['post_text'].map(lambda x: x.encode('unicode-escape').decode('utf-8'))
+            if not thread_page_soup.find('a', class_='pageNav-jump pageNav-jump--next'):
+                not_last_page = False
+
+            for post in thread_page_soup.find_all('article', class_="message"):
+                results = post.get_text(' ', strip=True)
+
+                if results[1].isspace():
+                    results = results[2:]
+
+                username = results.split()[0]
+
+                start_index = re.search(r"((A|P)M|ago|\d+) #[0-9,]", results).end()
+                if start_index + 1 < len(results):
+                    comment = results[start_index:]
+
+                    row = pd.DataFrame([[thread, username, comment]], columns=thread_cols)
+                    thread_df = pd.concat([thread_df, row], ignore_index=True)
 
     return thread_df
 
-#Save the data into a csv for cleaning
-getPosts(thread_url).to_csv("bionix2.csv", encoding='utf-8')
+forum = "https://forums.hardwarezone.com.sg/forums/eat-drink-man-woman.16/"
+
+get_posts(forum).to_csv("hwz.csv", encoding='utf-8')
+
+
