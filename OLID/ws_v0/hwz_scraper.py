@@ -26,7 +26,7 @@ def get_posts(target_forum_url):
         not_last_page = True
         counter = 1
 
-        while not_last_page and counter < 3:
+        while not_last_page and counter < 100:
             thread_response = requests.get(thread_url + str(counter))
             thread_page = thread_response.text
             thread_page_soup = BeautifulSoup(thread_page, 'lxml')
@@ -56,5 +56,3 @@ def get_posts(target_forum_url):
 forum = "https://forums.hardwarezone.com.sg/forums/eat-drink-man-woman.16/"
 
 get_posts(forum).to_csv("hwz.csv", encoding='utf-8')
-
-
