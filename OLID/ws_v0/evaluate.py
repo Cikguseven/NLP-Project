@@ -5,7 +5,7 @@ import comment_filter
 import spacy
 import time
 
-# spacy.require_gpu()
+spacy.require_gpu()
 
 
 def evaluate_model(

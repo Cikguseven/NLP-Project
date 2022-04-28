@@ -16,17 +16,12 @@ import seaborn as sns
 headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"}
 
 url = "https://forums.hardwarezone.com.sg/eat-drink-man-woman-16/%5Bbionix-accident%5D-second-photo-accident-leaked-5931722.html"
-
-
-for i in url:
-    thread_url = url.format(i)
-    print(thread_url)
     
-# resp = requests.get (thread_url, headers=headers)
-# content = resp.text
-# soup = BeautifulSoup(content, "lxml")
-# letters = soup.find_all("div", attrs={"id": re.compile ("^post_message_\d+")})
-# print (letters)
+resp = requests.get(url, headers=headers)
+content = resp.text
+soup = BeautifulSoup(content, "lxml")
+letters = soup.find_all("div", attrs={"id": re.compile ("^post_message_\d+")})
+print(letters)
 
 #Choose the main site URL
 site_url = 'https://forums.hardwarezone.com.sg'

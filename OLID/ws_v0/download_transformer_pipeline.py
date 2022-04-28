@@ -23,6 +23,3 @@ tc_7.save_pretrained('./pipelines/tc_7')
 
 tc_8 = pipeline(task='text-classification', model="siebert/sentiment-roberta-large-english")
 tc_8.save_pretrained('./pipelines/tc_8')
-
-tc_9 = pipeline(task='text2text-generation', model="Narrativa/byt5-base-tweet-hate-detection")
-tc_9.save_pretrained('./pipelines/tc_9')

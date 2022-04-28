@@ -51,9 +51,6 @@ tc_7 = pipeline(task='text-classification', model="./pipelines/tc_7/",
 tc_8 = pipeline(task='text-classification', model="./pipelines/tc_8/",
                 tokenizer="./pipelines/tc_8/", device=0)
 
-tc_9 = pipeline(task='text2text-generation', model="./pipelines/tc_9/",
-                tokenizer="./pipelines/tc_9/", device=0)
-
 sonar_model = Sonar()
 
 detoxify_model = Detoxify('unbiased', device='cuda')
@@ -68,8 +65,7 @@ models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased', 1),
           (tc_6, 'tc_6', 'NO_HATE', 'cased', 1),
           (tc_7, 'tc_7', 'NON_HATE', 'cased', 1),
           (tc_8, 'tc_8', 'POSITIVE', 'cased', 1),
-          (tc_9, 'tc_9', 'no-hate-speech', 'cased', 1),
-          (bad_words.offensive_lexicon, 'lexicon', None, 'uncased', 15),
+          (bad_words.offensive_lexicon, 'lexicon', None, 'uncased', 5),
           (target_classifier.weak_classifier, 'target_classifier', None, 'cased', 1),
           (vader, 'vader', None, 'cased', 1),
           (textblob, 'textblob', None, 'cased', 1),
@@ -103,10 +99,7 @@ def model_aggregator(comments: list):
             else:
                 results = classifier(comments)
 
-            if '9' in name:
-                classifier_array_a = [0 if result['generated_text'] == keyword else 1 for result in results]
-            else:
-                classifier_array_a = [1 - result['score'] if result['label'] == keyword else result['score'] for result in results]
+            classifier_array_a = [1 - result['score'] if result['label'] == keyword else result['score'] for result in results]
 
             if int(name[-1]) > 5:
                 classifier_array_b = classifier_array_a

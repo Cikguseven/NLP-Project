@@ -5,7 +5,7 @@ from flair.models import TextClassifier
 from hatesonar import Sonar
 from math import exp
 from os import listdir
-from sklearn.metrics import precision_recall_curve, roc_curve, confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import precision_recall_curve, roc_curve, ConfusionMatrixDisplay
 from textblob import TextBlob
 from transformers import pipeline
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -41,7 +41,6 @@ def evaluate(test_tweets: list, uncased_test_tweets: list, test_answers: list, b
     if balanced:
         task_a_answers_array = np.concatenate([np.zeros(1102), np.ones(2392)])
         task_b_answers_array = np.concatenate([np.zeros(551), np.ones(1841)])
-        task_c_answers = ['OTH'] * 430 + ['IND'] * 430 + ['GRP'] * 430
     else:
         task_a_answers_array = np.array([1 if x == 'OFF' else 0 for x in test_answers[:860]])
         task_b_answers_array = np.array([1 if x == 'TIN' else 0 for x in test_answers[860:1100]])
@@ -175,16 +174,14 @@ def evaluate(test_tweets: list, uncased_test_tweets: list, test_answers: list, b
 
 def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
 
-    tc_9 = pipeline(task='text2text-generation', model="./pipelines/tc_9/",
-                    tokenizer="./pipelines/tc_9/", device=0)
-
-    binary_models = [(tc_9, 'tc_9', 'no-hate-speech'),
-                     (offensive_lexicon, 'offensive_lexicon', 'LABEL_0')]
+    binary_models = [(offensive_lexicon, 'offensive_lexicon', 'LABEL_0')]
 
     # binary_models = [(target_classifier.weak_classifier, 'spacy', None)]
 
     for classifier, name, wrong_label in binary_models:
         if 'spacy' in name:
+            task_c_answers = ['OTH'] * 430 + ['IND'] * 430 + ['GRP'] * 430
+
             results = classifier(test_tweets[2204:])
 
             disp = ConfusionMatrixDisplay.from_predictions(task_c_answers, results, labels=["OTH", "IND", "GRP"], normalize='true')
@@ -193,18 +190,12 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
             plt.show()
             
         else:
-            if '9' in name:
-                results = classifier(test_tweets)
-                classifier_score = [0 if result['generated_text'] == wrong_label else 1 for result in results]
-                predictions_array = np.array(classifier_score)
-
-            elif 'lexicon' in name:
-                predictions_array = np.zeros(length)
-                for index, uncased_tweet in enumerate(uncased_test_tweets):
-                    for offensive_word in offensive_lexicon:
-                        if re.search(r'(?<![^\W_])' + offensive_word + r'(?![^\W_])', uncased_tweet):
-                            predictions_array[index] = 1
-                            break
+            predictions_array = np.zeros(3494)
+            for index, uncased_tweet in enumerate(uncased_test_tweets):
+                for offensive_word in offensive_lexicon:
+                    if re.search(r'(?<![^\W_])' + offensive_word + r'(?![^\W_])', uncased_tweet):
+                        predictions_array[index] = 1
+                        break
 
             true_positive_not = 0
             false_positive_not = 0
