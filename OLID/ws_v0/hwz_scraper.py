@@ -6,7 +6,6 @@ import re
 import requests
 
 
-
 def get_posts(target_forum_url):
     site_url = "https://forums.hardwarezone.com.sg"
 
@@ -21,13 +20,12 @@ def get_posts(target_forum_url):
     threads = [tag['href'] for tag in regular_threads.find_all("a", {"data-tp-primary": "on"})]
 
     for thread in tqdm(threads):
-        thread_url = site_url + thread + 'page-'
-
         not_last_page = True
         counter = 1
 
         while not_last_page and counter < 100:
-            thread_response = requests.get(thread_url + str(counter))
+            thread_url = site_url + thread + 'page-' + str(counter)
+            thread_response = requests.get(thread_url)
             thread_page = thread_response.text
             thread_page_soup = BeautifulSoup(thread_page, 'lxml')
 
@@ -44,15 +42,31 @@ def get_posts(target_forum_url):
 
                 username = results.split()[0]
 
-                start_index = re.search(r"((A|P)M|ago|\d+) #[0-9,]", results).end()
+                start_index = re.search(r"((A|P)M|ago|\d+) #\d+(,\d+)*", results).end()
                 if start_index + 1 < len(results):
                     comment = results[start_index:]
 
-                    row = pd.DataFrame([[thread, username, comment]], columns=thread_cols)
+                    row = pd.DataFrame([[thread_url, username, comment]], columns=thread_cols)
                     thread_df = pd.concat([thread_df, row], ignore_index=True)
 
     return thread_df
 
 forum = "https://forums.hardwarezone.com.sg/forums/eat-drink-man-woman.16/"
 
-get_posts(forum).to_csv("hwz.csv", encoding='utf-8')
+df = get_posts(forum)
+
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
+
+def remove_parent(text):
+    return re.sub('^(.*said: ).*Click to expand\.\.\.','', text)
+
+def remove_reactions(text):
+    return re.sub('Reactions: .*','', text)
+
+df['comment'] = df.comment.apply(remove_parent)
+df['comment'] = df.comment.apply(remove_reactions)
+
+df.dropna(inplace = True)
+
+df.to_csv("hwz.csv", encoding='utf-8', index=False)

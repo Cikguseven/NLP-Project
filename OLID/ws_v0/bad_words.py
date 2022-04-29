@@ -430,6 +430,8 @@ offensive_lexicon = {
 "catholics",
 "cawk",
 "ccb",
+"ceca",
+"cecas",
 "cemetery",
 "cervix",
 "chao chee bye",
