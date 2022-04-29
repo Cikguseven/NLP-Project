@@ -4,3 +4,4 @@ data/
 *.spacy
 *.bin
 config.py
+*GABPOSTS*
