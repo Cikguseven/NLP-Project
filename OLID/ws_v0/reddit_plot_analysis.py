@@ -29,23 +29,18 @@ def evaluate_model(
 
         print(model)
 
-        if 'weak_signals_function' in model:
-            task_a_predictions_array = weak_signals.model_aggregator(test_comments, uncased_test_comments, 'a')
-            task_b_predictions_array = weak_signals.model_aggregator(test_comments, uncased_test_comments, 'b')
+        nlp = spacy.load(main_config.model_directory +
+                         model + '/model-best')
 
+        if 'uncased' in model:
+            docs = list(nlp.pipe(uncased_test_comments))
         else:
-            nlp = spacy.load(main_config.model_directory +
-                             model + '/model-best')
+            docs = list(nlp.pipe(test_comments))
 
-            if 'uncased' in model:
-                docs = list(nlp.pipe(uncased_test_comments))
-            else:
-                docs = list(nlp.pipe(test_comments))
-
-            task_a_predictions_array = np.array(
-                [doc.cats['offensive'] for doc in docs])
-            task_b_predictions_array = np.array(
-                [doc.cats['targeted'] for doc in docs])
+        task_a_predictions_array = np.array(
+            [doc.cats['offensive'] for doc in docs])
+        task_b_predictions_array = np.array(
+            [doc.cats['targeted'] for doc in docs])
 
         precision, recall, thresholds = precision_recall_curve(
             task_a_answers_array, task_a_predictions_array)
@@ -82,11 +77,7 @@ def evaluate_model(
 
 if __name__ == '__main__':
     custom_models = [f for f in listdir(
-        main_config.model_directory)]
-
-    specific_model = ['weak_signals_function']
-
-    all_models = custom_models + specific_model
+        main_config.model_directory) if 'b_' in f]
 
     # Import unique filtered comments for testing
     filtered_comments = comment_filter.c_filter(
@@ -99,7 +90,7 @@ if __name__ == '__main__':
         unique=False,
         input_file=main_config.hand_labelled_comments)
 
-    comment_limit = 900
+    comment_limit = 0
 
     evaluate_model(
         models=custom_models,

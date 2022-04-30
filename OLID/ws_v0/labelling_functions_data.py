@@ -492,6 +492,7 @@ group = [
 other = [
 "battle",
 "country",
+"city",
 "cup",
 "day",
 "festival",

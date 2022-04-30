@@ -58,11 +58,14 @@ df = get_posts(forum)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
+
 def remove_parent(text):
     return re.sub('^(.*said: ).*Click to expand\.\.\.','', text)
 
+
 def remove_reactions(text):
     return re.sub('Reactions: .*','', text)
+
 
 df['comment'] = df.comment.apply(remove_parent)
 df['comment'] = df.comment.apply(remove_reactions)
@@ -70,3 +73,5 @@ df['comment'] = df.comment.apply(remove_reactions)
 df.dropna(inplace = True)
 
 df.to_csv("hwz.csv", encoding='utf-8', index=False)
+
+
