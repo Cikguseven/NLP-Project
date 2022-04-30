@@ -251,7 +251,7 @@ def evaluate_binary(test_tweets: list, uncased_test_tweets: list):
 
 if __name__ == '__main__':
 
-    use_balanced_olid = False
+    use_balanced_olid = True
 
     if use_balanced_olid:
         get_tweets = main_config.balanced_tweets_getter(analysis_set=True)

@@ -1,6 +1,9 @@
 import comment_filter
 import main_config
 import spacy
+from os import listdir
+
+spacy.require_gpu()
 
 with open('hwz.csv', encoding='utf-8') as f:
 	hwz_comments = [line.split(',', 2)[2].strip() for line in f]
@@ -31,6 +34,9 @@ filtered_gab_comments = comment_filter.c_filter(
     
 models = [f for f in listdir(main_config.model_directory) if 'b_' in f]
 
+offensive_threshold = 0.5
+targeted_threshold = 0.5
+
 for model in models:
 
     print(model)
@@ -38,12 +44,38 @@ for model in models:
     nlp = spacy.load(main_config.model_directory +
                         model + '/model-best')
 
-    docs = list(nlp.pipe(filtered_hwz_comments))
+    data = [('hwz', filtered_hwz_comments), ('gab', filtered_gab_comments)]
 
-    task_a_predictions = [doc.cats['offensive'] for doc in docs]
-    task_b_predictions = [doc.cats['targeted'] for doc in docs]
-    task_c_ind_predictions = [doc.cats['individual'] for doc in docs]
-    task_c_grp_predictions = [doc.cats['group'] for doc in docs]
-    task_c_oth_predictions = [doc.cats['other'] for doc in docs]
+    for d in data:
+        docs = list(nlp.pipe(d[1]))
 
-    
+        off = 0
+        tin = 0
+        ind = 0
+        grp = 0
+        oth = 0
+
+        for doc in docs:
+            result = doc.cats
+
+            if result["offensive"] > offensive_threshold:
+                off += 1
+
+                if result["targeted"] > targeted_threshold:
+                    tin += 1
+
+                    result.pop('offensive')
+                    result.pop('targeted')
+                    prediction = max(result, key=result.get)
+
+                    if prediction == 'individual':
+                        ind += 1
+
+                    elif prediction == 'group':
+                        grp += 1
+
+                    elif prediction == 'other':
+                        oth += 1
+
+        print(f'{d[0]}: {off} | {tin} | {ind} | {grp} | {oth}')
+
