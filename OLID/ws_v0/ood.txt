@@ -1,0 +1,33 @@
+7494 filtered comments
+6266 filtered comments
+v0_weak_signals_25a_25b_lexicon15
+hwz: 1634 | 0 | 1225 | 370 | 39
+gab: 2591 | 0 | 1944 | 622 | 25
+v0_weak_signals_30a_5b_lexicon15
+hwz: 1679 | 1363 | 1293 | 342 | 44
+gab: 2790 | 2490 | 2141 | 634 | 15
+v0_weak_signals_40a_5b_lexicon15
+hwz: 1855 | 1542 | 1392 | 343 | 120
+gab: 2622 | 2367 | 2026 | 542 | 54
+ws_v0_30a_10b_lexicon5
+hwz: 2526 | 1522 | 1637 | 833 | 56
+gab: 3194 | 2314 | 2218 | 963 | 13
+ws_v1_30a_10b_lexicon12_tc9removed
+hwz: 2183 | 753 | 1517 | 597 | 69
+gab: 2879 | 1691 | 2146 | 712 | 21
+ws_v1_30a_10b_lexicon1_tc9removed
+hwz: 2774 | 2623 | 2046 | 596 | 132
+gab: 3242 | 3001 | 2493 | 719 | 30
+ws_v1_30a_10b_lexicon20_tc9removed
+hwz: 2250 | 315 | 1685 | 486 | 79
+gab: 2951 | 916 | 2223 | 699 | 29
+ws_v1_40a_10b_lexicon1_tc9removed
+hwz: 1107 | 1099 | 856 | 206 | 45
+gab: 2100 | 2080 | 1652 | 418 | 30
+ws_v1_50a_10b_lexicon10_tc9removed
+hwz: 2906 | 1041 | 2263 | 527 | 116
+gab: 2728 | 1845 | 2110 | 590 | 28
+ws_v1_50a_10b_lexicon1_tc9removed
+hwz: 495 | 494 | 385 | 101 | 9
+gab: 1169 | 1159 | 944 | 214 | 11
+[Finished in 679.0s]

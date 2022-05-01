@@ -10,72 +10,67 @@ with open('hwz.csv', encoding='utf-8') as f:
 
 hwz_comments.pop(0)
 
-# Import unique filtered comments for testing
-filtered_hwz_comments = comment_filter.c_filter(
-    shuffle=False,
-    remove_username=False,
-    remove_commas=False,
-    length_min=10,
-    length_max=9999,
-    uncased=False,
-    unique=True,
-    input_list=hwz_comments)
-
-# Import unique filtered comments for testing
-filtered_gab_comments = comment_filter.c_filter(
-    shuffle=False,
-    remove_username=False,
-    remove_commas=False,
-    length_min=10,
-    length_max=9999,
-    uncased=False,
-    unique=True,
-    input_file='gab_comments.txt')
-    
-models = [f for f in listdir(main_config.model_directory) if 'b_' in f]
-
 offensive_threshold = 0.5
 targeted_threshold = 0.5
 
-for model in models:
+# Import unique filtered comments for testing
+filtered_hwz_comments = comment_filter.c_filter(
+    shuffle=True,
+    remove_username=False,
+    remove_commas=False,
+    length_min=10,
+    length_max=99,
+    uncased=False,
+    unique=True,
+    'edmw_mode',
+    input_list=hwz_comments)
 
-    print(model)
+nlp_hwz = spacy.load(main_config.model_directory + 'ws_v1_50a_10b_lexicon10_tc9removed' + '/model-best')
 
-    nlp = spacy.load(main_config.model_directory +
-                        model + '/model-best')
+docs_hwz = list(nlp_hwz.pipe(filtered_hwz_comments))
 
-    data = [('hwz', filtered_hwz_comments), ('gab', filtered_gab_comments)]
+# # Import unique filtered comments for testing
+# filtered_gab_comments = comment_filter.c_filter(
+#     shuffle=True,
+#     remove_username=False,
+#     remove_commas=False,
+#     length_min=10,
+#     length_max=99,
+#     uncased=False,
+#     unique=True,
+#     input_file='gab_comments.txt')
 
-    for d in data:
-        docs = list(nlp.pipe(d[1]))
+# nlp_gab = spacy.load(main_config.model_directory + 'ws_v1_30a_10b_lexicon1_tc9removed' + '/model-best')
 
-        off = 0
-        tin = 0
-        ind = 0
-        grp = 0
-        oth = 0
+# docs_gab = list(nlp_gab.pipe(filtered_gab_comments))
 
-        for doc in docs:
-            result = doc.cats
+for doc in docs_hwz:
+    result = doc.cats
 
-            if result["offensive"] > offensive_threshold:
-                off += 1
+    off = "NOT"
+    tin = "NULL"
+    c = "NULL"
 
-                if result["targeted"] > targeted_threshold:
-                    tin += 1
+    if result["offensive"] > offensive_threshold:
+        off = "OFF"
 
-                    result.pop('offensive')
-                    result.pop('targeted')
-                    prediction = max(result, key=result.get)
+        if result["targeted"] > targeted_threshold:
+            tin = "TIN"
 
-                    if prediction == 'individual':
-                        ind += 1
+            result.pop('offensive')
+            result.pop('targeted')
+            prediction = max(result, key=result.get)
 
-                    elif prediction == 'group':
-                        grp += 1
+            if prediction == 'individual':
+                c = "IND"
 
-                    elif prediction == 'other':
-                        oth += 1
+            elif prediction == 'group':
+                c = "GRP"
 
-        print(f'{d[0]}: {off} | {tin} | {ind} | {grp} | {oth}')
+            else:
+                c = "OTH"
 
+        else:
+            tin = "UNT"
+
+    print(f'{doc.text} | {off} | {tin} | {c}')

@@ -31,6 +31,7 @@ def c_filter(
     length_max: int,
     uncased: bool, 
     unique: bool,
+    *args,
     **kwargs):
 
     wordsegment.load()
@@ -69,6 +70,10 @@ def c_filter(
             comment = ' '.join(line_tokens)
 
             comment = emoji.demojize(comment)
+
+            if 'edmw_mode' in args:
+                for old, new in shared_filters.edmw_replacements:
+                    comment = re.sub(old, new, comment, flags=re.I)
 
             for old, new in shared_filters.uncased_regex_replacements:
                 comment = re.sub(old, new, comment, flags=re.I)
