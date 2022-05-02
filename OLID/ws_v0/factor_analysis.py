@@ -1,5 +1,5 @@
 from os import listdir
-from sklearn.metrics import precision_recall_curve, roc_curve, ConfusionMatrixDisplay
+from sklearn.metrics import precision_recall_curve, roc_curve, confusion_matrix, ConfusionMatrixDisplay
 import comment_filter
 import main_config
 import matplotlib.pyplot as plt
@@ -24,20 +24,14 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
         a_limit = 2204
         b_lower = 1102
         b_limit = 2204
-        c_limit = 3494
-
-        off_count = 1102
-        not_count = 1102
-        tin_count = 551
-        unt_count = 551
-        ind_count = 430
-        grp_count = 430
-        oth_count = 430
 
     else:
         task_a_answers_array = np.array([1 if x == 'OFF' else 0 for x in test_answers[:860]])
         task_b_answers_array = np.array([1 if x == 'TIN' else 0 for x in test_answers[860:1100]])
-        task_c_answers = test_answers[1100:]
+
+        a_limit = 860
+        b_lower = 860
+        b_limit = 1100
 
     for index, model in enumerate(models):
        
@@ -126,15 +120,17 @@ def evaluate_c(test_tweets: list, test_answers: list, balanced: bool, model: str
         else:
             results.append('OTH')
 
-    disp = ConfusionMatrixDisplay.from_predictions(task_c_answers, results, labels=["OTH", "IND", "GRP"], normalize='true')
+    cm = confusion_matrix(task_c_answers, results, labels=["OTH", "IND", "GRP"], normalize='true')
 
-    disp.plot(values_format='')
+    disp = ConfusionMatrixDisplay(cm, display_labels=["OTH", "IND", "GRP"])
+
+    disp.plot()
     plt.show()
 
 
 if __name__ == '__main__':
 
-    use_balanced_olid = True
+    use_balanced_olid = False
 
     if use_balanced_olid:
         get_tweets = main_config.balanced_tweets_getter(analysis_set=True)
@@ -154,14 +150,14 @@ if __name__ == '__main__':
 
     spacy_models = [f for f in listdir(main_config.model_directory) if 'reddit' not in f]
 
-    # evaluate(
-    #     test_tweets=filtered_tweets[:],
-    #     test_answers=main_config.answers_getter(),
-    #     balanced=use_balanced_olid,
-    #     models=spacy_models)
-
-    evaluate_c(
+    evaluate(
         test_tweets=filtered_tweets[:],
         test_answers=main_config.answers_getter(),
         balanced=use_balanced_olid,
-        model='ws_v1_50a_10b_lexicon10_tc9removed')
+        models=spacy_models)
+
+    # evaluate_c(
+    #     test_tweets=filtered_tweets[:],
+    #     test_answers=main_config.answers_getter(),
+    #     balanced=use_balanced_olid,
+    #     model='ws_v1_50a_10b_lexicon10_tc9removed')
