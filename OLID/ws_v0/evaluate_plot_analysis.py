@@ -161,6 +161,7 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
 
         print('C')
         print([f1_ind, f1_grp, f1_oth, macro_f1])
+        print()
 
 
 if __name__ == '__main__':

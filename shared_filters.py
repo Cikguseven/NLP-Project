@@ -1253,7 +1253,6 @@ edmw_replacements = [
 (r'(?<![^\W_])ljw(?![^\W_])', 'sprout nonsense'),
 (r'(?<![^\W_])lk(?![^\W_])', 'like'),
 (r'(?<![^\W_])lkk(?![^\W_])', 'very old'),
-(r'(?<![^\W_])lky(?![^\W_])', 'Lee Kuan Yew'),
 (r'(?<![^\W_])llello(?![^\W_])', 'cocaine'),
 (r'(?<![^\W_])llpof(?![^\W_])', 'liar liar pants on fire'),
 (r'(?<![^\W_])lls(?![^\W_])', 'laughing like shit'),
@@ -2283,4 +2282,11 @@ edmw_replacements = [
 (r'(?<![^\W_])zmg(?![^\W_])', 'oh my god'),
 (r'(?<![^\W_])zoh my god(?![^\W_])', 'oh my god'),
 (r'(?<![^\W_])zomg(?![^\W_])', 'oh my god'),
-(r'(?<![^\W_])zzz(?![^\W_])', 'bored')]
+(r'(?<![^\W_])zzz(?![^\W_])', 'bored'),
+(r'(?<![^\W_])Sent from EDMWER app!', ''),
+(r'(?<![^\W_])Posted from PCWX using portal technology', ''),
+(r'(?<![^\W_])Sent from .+ using GAGT', ''),
+(r'(?<![^\W_])pettanko(?![^\W_])', 'flat chested girl'),
+(r'(?<![^\W_])wfo(?![^\W_])', 'work from office'),
+(r'(?<![^\W_])wfh(?![^\W_])', 'work from home'),
+(r'(?<![^\W_])Last edited:.+((A|P)M|ago|\d+)', '')]
