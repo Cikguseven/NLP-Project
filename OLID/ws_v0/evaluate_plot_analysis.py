@@ -11,23 +11,35 @@ import sys
 spacy.require_gpu()
 np.set_printoptions(threshold=sys.maxsize)
 
+
+def f1_score(p, r):
+    if p + r > 0:
+        return 2 * p * r / (p + r)
+    else:
+        return 0
+
+
 def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list):
 
     figure, axis = plt.subplots(2, 2)
 
     if balanced:
-        task_a_answers_array = np.concatenate([np.zeros(1102), np.ones(2392)])
-        task_b_answers_array = np.concatenate([np.zeros(551), np.ones(1841)])
+        task_a_answers_array = np.concatenate([np.zeros(1102), np.ones(1102)])
+        task_b_answers_array = np.concatenate([np.zeros(551), np.ones(551)])
         task_c_answers = ['OTH'] * 430 + ['IND'] * 430 + ['GRP'] * 430
 
-        a_limit = 3494
+        a_limit = 2204
         b_lower = 1102
-        b_limit = a_limit
-        c_lower = 2204
-        c_limit = a_limit
-        off_count = 2392
+        b_limit = 2204
+        c_limit = 3494
+
+        off_count = 1102
         not_count = 1102
-        tin_count = 1841
+        tin_count = 551
+        unt_count = 551
+        ind_count = 430
+        grp_count = 430
+        oth_count = 430
 
     else:
         task_a_answers_array = np.array([1 if x == 'OFF' else 0 for x in test_answers[:860]])
@@ -35,10 +47,17 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
         task_c_answers = test_answers[1100:]
 
         a_limit = 860
-        b_lower = a_limit
+        b_lower = 860
         b_limit = 1100
-        c_lower = b_limit
         c_limit = 1313
+
+        off_count = 240
+        not_count = 620
+        tin_count = 213
+        unt_count = 27
+        ind_count = 100
+        grp_count = 78
+        oth_count = 35
 
     for index, model in enumerate(models):
 
@@ -50,7 +69,53 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
         task_a_predictions_array = np.array([docs[i].cats['offensive'] for i in range(a_limit)])
         task_b_predictions_array = np.array([docs[i].cats['targeted'] for i in range(b_lower, b_limit)])
 
-        for i in range(c_lower, c_limit):
+        tasks = ['A', 'B']
+
+        for task in tasks:
+            if task == 'A':
+                precision, recall, thresholds = precision_recall_curve(task_a_answers_array, task_a_predictions_array)
+                total_pos = off_count
+                total_neg = not_count
+            else:
+                precision, recall, thresholds = precision_recall_curve(
+                    task_b_answers_array, task_b_predictions_array)
+                total_pos = tin_count
+                total_neg = unt_count
+
+            precision = precision[:-1]
+            recall = recall[:-1]
+
+            final_f1 = [0, 0, 0]
+
+            for p, r in zip(precision, recall):
+                f1 = f1_score(p, r)
+                tp_count = int(r * total_pos)
+                fp_count = tp_count // p - tp_count
+                tn_count = total_neg - fp_count
+                fn_count = int((1 - r) * total_pos)
+                if tn_count > 0:
+                    neg_p = tn_count / (tn_count + fn_count)
+                    neg_r = tn_count / total_neg
+                    neg_f1 = f1_score(neg_p, neg_r)
+                else:
+                    neg_f1 = 0
+                macro_f1 = (f1  + neg_f1) / 2
+                if macro_f1 > final_f1[-1]:
+                    final_f1 = [f1, neg_f1, macro_f1]
+
+            print(task)
+            print(final_f1)
+
+        tp_ind = 0
+        fp_ind = 0
+
+        tp_grp = 0
+        fp_grp = 0
+
+        tp_oth = 0
+        fp_oth = 0
+
+        for i in range(b_limit, c_limit):
             result = docs[i].cats
 
             result.pop('offensive')
@@ -59,105 +124,48 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
             prediction = max(result, key=result.get)
 
             if prediction == 'individual':
-                results.append('IND')
                 if task_c_answers[i - c_limit] == 'IND':
-                    true_positive_ind += 1
+                    tp_ind += 1
                 else:
-                    false_positive_ind += 1
+                    fp_ind += 1
 
             elif prediction == 'group':
-                results.append('GRP')
                 if task_c_answers[i - c_limit] == 'GRP':
-                    true_positive_grp += 1
+                    tp_grp += 1
                 else:
-                    false_positive_grp += 1
+                    fp_grp += 1
 
             else:
-                results.append('OTH')
                 if task_c_answers[i - c_limit] == 'OTH':
-                    true_positive_oth += 1
+                    tp_oth += 1
                 else:
-                    false_positive_oth += 1
+                    fp_oth += 1
 
-        tasks = ['A', 'B']
+        precision_ind = tp_ind / (tp_ind + fp_ind)
+        recall_ind = tp_ind / ind_count
+        f1_ind = f1_score(precision_ind, recall_ind) 
 
-        for task in tasks:
-            if task == 'A':
-                precision, recall, thresholds = precision_recall_curve(task_a_answers_array, task_a_predictions_array)
-                pos_count = off_count
-            else:
-                precision, recall, thresholds = precision_recall_curve(
-                    task_b_answers_array, task_b_predictions_array)
-
-            del precision[-1]
-            del recall[-1]
-
-            macro_f1 = (0, 0, 0, 0)
-
-            for p, r in zip(precision, recall):
-                normal_f1 = 2 * p * r / (p + r)
-                tp_count = r * total_pos
+        precision_grp = tp_grp / (tp_grp + fp_grp)
+        recall_grp = tp_grp / grp_count
+        f1_grp = f1_score(precision_grp, recall_grp) 
 
 
+        if tp_oth + fp_oth > 0:
+            precision_oth = tp_oth / (tp_oth + fp_oth)
+            recall_oth = tp_oth / oth_count
+            f1_oth = f1_score(precision_oth, recall_oth)
+        else:
+            f1_oth = 0
 
+        macro_f1 = (f1_ind + f1_grp + f1_oth) / 3
 
-   
-
-            true_positive_not = 0
-            false_positive_not = 0
-
-            true_positive_off = 0
-            false_positive_off = 0
-
-            true_positive_unt = 0
-            false_positive_unt = 0
-
-            true_positive_tin = 0
-            false_positive_tin = 0
-
-            for i in range(3494):
-                if i < 1102:
-                    if predictions_array[i] == 0:
-                        true_positive_not += 1
-                    else:
-                        false_positive_off += 1
-
-                else:
-                    if predictions_array[i]:
-                        true_positive_off += 1
-                    else:
-                        false_positive_not += 1
-
-                    if i < 1653:
-                        if predictions_array[i] == 0:
-                            true_positive_unt += 1
-                        else:
-                            false_positive_tin += 1
-
-                    else:
-                        if predictions_array[i]:
-                            true_positive_tin += 1
-                        else:
-                            false_positive_unt += 1
-
-            metrics = [(true_positive_not, false_positive_not, 'NOT', 1102),
-                       (true_positive_off, false_positive_off, 'OFF', 2392),
-                       (true_positive_unt, false_positive_unt, 'UNT', 551),
-                       (true_positive_tin, false_positive_tin, 'TIN', 1841)]
-
-            for metric in metrics:
-                pp = metric[0] + metric[1]
-                precision = metric[0] / pp if pp > 0 else 0
-                recall = metric[0] / metric[3]
-                f1 = 2 * precision * recall / \
-                    (precision + recall) if precision + recall > 0 else 0
-
-                print(f'{metric[2]}, {precision}, {recall}, {f1}')
+        print('C')
+        print([f1_ind, f1_grp, f1_oth, macro_f1])
 
 
 if __name__ == '__main__':
 
-    use_balanced_olid = True
+    use_balanced_olid = False
 
     if use_balanced_olid:
         get_tweets = main_config.balanced_tweets_getter(analysis_set=True)
@@ -178,12 +186,6 @@ if __name__ == '__main__':
     models = [f for f in listdir(main_config.model_directory) if 'b_' in f and 'uncased' not in f]
 
     evaluate(
-        test_tweets=filtered_tweets[:],
-        test_answers=main_config.answers_getter(),
-        balanced=use_balanced_olid,
-        models=models)
-
-    evaluate_c(
         test_tweets=filtered_tweets[:],
         test_answers=main_config.answers_getter(),
         balanced=use_balanced_olid,
