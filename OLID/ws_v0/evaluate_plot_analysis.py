@@ -184,7 +184,7 @@ if __name__ == '__main__':
         unique=False,
         input_list=get_tweets)
 
-    models = [f for f in listdir(main_config.model_directory) if 'b_' in f and 'uncased' not in f]
+    models = [f for f in listdir(main_config.model_directory) if 'olid' in f and 'uncased' not in f]
 
     evaluate(
         test_tweets=filtered_tweets[:],
