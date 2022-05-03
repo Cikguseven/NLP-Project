@@ -1651,6 +1651,7 @@ offensive_lexicon = {
 "mexican",
 "mgger",
 "mggor",
+"mgtow",
 "mick",
 "mickeyfinn",
 "microbe",

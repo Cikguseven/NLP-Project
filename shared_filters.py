@@ -2289,4 +2289,6 @@ edmw_replacements = [
 (r'(?<![^\W_])pettanko(?![^\W_])', 'flat chested girl'),
 (r'(?<![^\W_])wfo(?![^\W_])', 'work from office'),
 (r'(?<![^\W_])wfh(?![^\W_])', 'work from home'),
-(r'(?<![^\W_])Last edited:.+((A|P)M|ago|\d+)', '')]
+(r'(?<![^\W_])Last edited:.+((A|P)M|ago|\d+)', ''),
+(r'(?<![^\W_])Click to expand\.(?![^\W_])', ''),
+(r'(?<![^\W_])bbfa(?![^\W_])', 'fat person')]
