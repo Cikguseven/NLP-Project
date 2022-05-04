@@ -29,10 +29,8 @@ def entity_to_target(entity: str):
     if entity in ('LOC', 'MISC', 'ORG', 'PER'):
         if entity == 'PER':
             return 'IND'
-        elif entity == 'MISC':
-            return 'OTH'
         else:
-            return 'GRP'
+            return 'OTH'
 
     elif uncased_entity in labelling_functions_data.individual:
         return 'IND'

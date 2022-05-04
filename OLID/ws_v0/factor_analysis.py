@@ -130,7 +130,7 @@ def evaluate_c(test_tweets: list, test_answers: list, balanced: bool, model: str
 
 if __name__ == '__main__':
 
-    use_balanced_olid = False
+    use_balanced_olid = True
 
     if use_balanced_olid:
         get_tweets = main_config.balanced_tweets_getter(analysis_set=True)
@@ -148,16 +148,16 @@ if __name__ == '__main__':
         unique=False,
         input_list=get_tweets)
 
-    spacy_models = [f for f in listdir(main_config.model_directory) if 'reddit' not in f]
+    spacy_models = [f for f in listdir(main_config.model_directory) if 'v1' in f and 'reddit' not in f and 'uncased' not in f]
 
-    evaluate(
-        test_tweets=filtered_tweets[:],
-        test_answers=main_config.answers_getter(),
-        balanced=use_balanced_olid,
-        models=spacy_models)
-
-    # evaluate_c(
+    # evaluate(
     #     test_tweets=filtered_tweets[:],
     #     test_answers=main_config.answers_getter(),
     #     balanced=use_balanced_olid,
-    #     model='ws_v1_50a_10b_lexicon10_tc9removed')
+    #     models=spacy_models)
+
+    evaluate_c(
+        test_tweets=filtered_tweets[:],
+        test_answers=main_config.answers_getter(),
+        balanced=use_balanced_olid,
+        model='ws_v1_50a_10b_lexicon10_tc9removed')
