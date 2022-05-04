@@ -2299,4 +2299,5 @@ edmw_replacements = [
 (r'(?<![^\W_])jhb(?![^\W_])', 'malaysian girl'),
 (r'(?<![^\W_])bo\s?hua(?![^\W_])', 'not worth'),
 (r'(?<![^\W_])er\s?xin(?![^\W_])', 'disgusting'),
-(r'(?<![^\W_])cheekon(?![^\W_])', 'prostitute')]
+(r'(?<![^\W_])cheekon(?![^\W_])', 'prostitute'),
+(r'(?<![^\W_])huan\s?kia(?![^\W_])', 'foreigner')]
