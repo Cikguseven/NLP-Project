@@ -10,7 +10,7 @@ with open('hwz.csv', encoding='utf-8') as f:
 
 hwz_comments.pop(0)
 
-offensive_threshold = 0.5
+offensive_threshold = 0.6
 targeted_threshold = 0.5
 
 # Import unique filtered comments for testing
@@ -22,8 +22,8 @@ filtered_hwz_comments = comment_filter.c_filter(
     length_max=99,
     uncased=False,
     unique=True,
-    'edmw_mode',
-    input_list=hwz_comments)
+    edmw=True,
+    input_list=hwz_comments[:1000])
 
 nlp_hwz = spacy.load(main_config.model_directory + 'ws_v1_50a_10b_lexicon10_tc9removed' + '/model-best')
 
