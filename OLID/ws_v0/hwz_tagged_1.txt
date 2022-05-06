@@ -1009,15 +1009,7 @@ You mean to say you only do these AFTER you seen this case? I thought it was a p
 
 you shd be thankful you have a wife unlike us bbfas | OFF | TIN | GRP
 
-4 NOT
-115 UNT
-177 IND
-153 GRP
-55 OTH
-
------------------------------------------------------------------
-
-now all i can think of for paktor is east coast and mbs and fullerton. my happy birthday will say stay at home better so comfortable | NOT | NULL | NULL
+now all i can think of for paktor is east coast and mbs and fullerton. my husband will say stay at home better so comfortable | NOT | NULL | NULL
 
 Mommy going to sleep liow. Hope everyone have happy dreams and feel free to continue your chats with each other as long as treat each other nicely | NOT | NULL | NULL
 
@@ -1099,19 +1091,13 @@ I think what thread starter trying to say is, do not treat this forum as a news 
 
 You can put specific users under ignore. I have quite a few spammers on my list. | NOT | NULL | NULL
 
-first hand news is ok. thread starter has beef with regurgitated news that was oredi circulating in major news sources like straits times and shinmin. | NOT | NULL | NULL
-
 Not ask me anything thread I will answer insensitive qns niah. | NOT | NULL | NULL
 
-been there once before lock down mosquito quite a lot as there is holes everywhere and unknown water there | NOT | NULL | NULL
-
-How many children you have? How do you cope with being a stay at home mummy? I'male a fellow female here. | NOT | NULL | NULL
+How many children you have? How do you cope with being a stay at home mummy? I'm a fellow female here. | NOT | NULL | NULL
 
 Do you expect your child/children to fully provide you for your retirement? | NOT | NULL | NULL
 
 you earn 7k a month as rolex owner no worries sister! | NOT | NULL | NULL
-
-Tech siao why do not go into tech, become carton boy? | NOT | NULL | NULL
 
 nice of you to not let your kids be another gen of sandwich generation. | NOT | NULL | NULL
 
@@ -1150,8 +1136,6 @@ Mummy so eng? Anyway always confused you all, so many mummy aunt in the userid s
 gui feeling a bit tired a bit sad lately | NOT | NULL | NULL
 
 I know but I cannot think of what is in teochew | NOT | NULL | NULL
-
-I am Teochew but I cannot speak. my hokkien still half plus 6 not applicable. | NOT | NULL | NULL
 
 got so many mommies whatever? I only know people keep thinking i am do not know what Mummy1234 | NOT | NULL | NULL
 
@@ -1211,10 +1195,6 @@ Think many people complacent in psle so never do the best they could have. But j
 
 got money then go Malaysia , easy to be doc there as long as got $$ | NOT | NULL | NULL
 
-I am 39. Last time my grandma tried to speak Teochew to me but I was like ?. need my dad to translate not applicable | NOT | NULL | NULL
-
-My mum is Hokkien. so my parents speak Hokkien at home not applicable. so my hokkien is speak little bit, listen no limit not applicable. Teochew is cannot make it. | NOT | NULL | NULL
-
 but she missed her IP sch . IP no need to Take 'o' level mah. But at least i think she learnt her lesson . She is working harder in second sch liow | NOT | NULL | NULL
 
 Mommy going to sleep liow. Wishing everyone happy dreams tonight | NOT | NULL | NULL
@@ -1243,9 +1223,7 @@ The tuition fee of private US unis is simply jaw dropping | NOT | NULL | NULL
 
 I know this girl who went to Berkeley, completed her double major in slightly less than 3 years. Can save school fees | NOT | NULL | NULL
 
-I'male wondering what is the pricing of food in schools nowadays. | NOT | NULL | NULL
-
-your kids not bad. I got a neighbor who his sister's ang moh kia can speak solid hokkien. Shock to hear him speak such good hokkien not applicable. | NOT | NULL | NULL
+I'm wondering what is the pricing of food in schools nowadays. | NOT | NULL | NULL
 
 $30/week include recess and lunch for mon-fri. I asked if they need more but they say enuff | NOT | NULL | NULL
 
@@ -1264,8 +1242,6 @@ quite exp. she told me 1 plate of chicken rice is like $2.50? My son said the sa
 yes i did read on that. It depends on how many units you take per term? Even if 3 yrs at least close to $400k too | NOT | NULL | NULL
 
 Nowadays US covid situation also jialat. You send her go over wont worry? | NOT | NULL | NULL
-
-ya. whenever he is at my neighbor stall and start speaking hokkien to his grand parents, everyone will look shocked except those who know them not applicable | NOT | NULL | NULL
 
 i did post in my 1st post that i wont answer sensitive qns. | NOT | NULL | NULL
 
@@ -1293,8 +1269,6 @@ thanks for the detailed explanation she might want to study psychology if she ca
 
 today never cause busy chatting with my daughter but today is really crowded. Mbs and suntec more crowded than last wkend. I went to collect my shake shack and there was a q of around 10+passengers outside waiting to dine in | NOT | NULL | NULL
 
----------------------------------------------------------
-
 psychology good, if Singapore cannot get into masters, can just go overseas complete masters and get jobs. Political science is good as well, if enjoy silver serpent life. I know of a friend who did this. He is already in management role in Government sector at 28, granted he got FCH which helps. Some people decide to go into duke nus after a while, might be another option to go into after she graduates and decides on wanting to go for medicine. | NOT | NULL | NULL
 
 Next time got upload photos, remember to tag me .in case i miss your thread. thanks auntie. | NOT | NULL | NULL
@@ -1303,23 +1277,15 @@ The story I heard is. no parent is abuser in that family that contributed to tha
 
 I always take their tuk tuk, no problem . | NOT | NULL | NULL
 
-Some parents also will say something similar, like Useless go jump down better. | NOT | NULL | NULL
+Some parents also will say something similar, like Useless go jump down better. | OFF | UNT | NULL
 
 no it depends. They will bring the person for psychiatric evaluation first and then if it is deemed the person has some issues usually wont leave mark but likely to have imh record | NOT | NULL | NULL
-
-this is really manipulation & gaslighting. disrespectful comment disguised as joke and then call you sensitive and ask you take a chill pill. | NOT | NULL | NULL
-
-i feel that people will treat others exactly the same way they treat themselves, so if someone is nasty to others then its simply because they'reply nasty to themselves. its a vicious cycle. | NOT | NULL | NULL
-
-Come in looking around, if next time my kena dispatch to india, i rather resign | NOT | NULL | NULL
 
 I suggest that you might want to consider asking her to study these career options first so she knows what she is getting into salaries, course requirements, school fees, type of roles, potential employers etc. Only give your support when she is fully committed to achieving a goal through her actions. not just show interest. | NOT | NULL | NULL
 
 children grow up not wanting the same for their own children how can it be normal? | NOT | NULL | NULL
 
 i also have a few on my ignore list. Kenna scolded for no reason one | NOT | NULL | NULL
-
-good, some people are just fit to be in there - the ignore list! | NOT | NULL | NULL
 
 that is cause back in those days, asian parents never treated their children as individuals but as neh extension of themselves. its a codependent behavior where boundaries are enmeshed but also very common. that is how so many people end up being damaged . | NOT | NULL | NULL
 
@@ -1332,8 +1298,6 @@ Personal trip . Then I learned to book bluebird on second trip. Third trip I jit
 hi maria, is it now not many pomelo around in market | NOT | NULL | NULL
 
 I always tell my daughter to go ask Mr Google first then we can discuss later. | NOT | NULL | NULL
-
-Good morning mummy What did your family eat for boyfriend not applicable | NOT | NULL | NULL
 
 as well as many many yrs of hard work working on the subreddit of s. | NOT | NULL | NULL
 
@@ -1353,25 +1317,15 @@ love, care, commitment for each other. Placing each other at the top of their pr
 
 Can chiu be my sugar mummy? my is a poor junior college arts boi boi | NOT | NULL | NULL
 
-Mirc a lot chio lian de could be lian style chioness with those nice tattoo | NOT | NULL | NULL
-
 This is to train them to self help la. not ask every big thing or small thing for the sake of asking or seek the easy way out. | NOT | NULL | NULL
 
 Had been in a long distance marriage for almost 20 yrs. I would say mutual trust is the fundamental, of course follow by love and commitment, not forgetting to accept the significant other as he/she is | NOT | NULL | NULL
-
-Who are on your ignore list ? hopefully I am not one of them not applicable I do not any on my list not applicable | NOT | NULL | NULL
-
-na. na ownself Happy jiu hao. Nowadays siao Langs a lot not applicable. | NOT | NULL | NULL
-
-you resign liao then they hire one indian to take over your job lo | NOT | NULL | NULL
 
 look into the mirror and tell yourself today is a happy day ok? | NOT | NULL | NULL
 
 I won't be at all surprised that there are some here with mental problems, some of whom go for professional therapy. At least you did tell the other party that you were putting them in your ignore list. I am not that polite, I do not bother to reply and just put them into my ignore list. | NOT | NULL | NULL
 
 gui is not that sad, just feeling down, still happily doing what i busy with | NOT | NULL | NULL
-
-Walaoeh.say until so jialat. I think thread starter better tender with immediate effect. | NOT | NULL | NULL
 
 it is the cost, not the number of years she won't be in Singapore | NOT | NULL | NULL
 
@@ -1381,17 +1335,13 @@ so many people ask me . do not really have . I just cook whatever my family memb
 
 that is becos you should always hold your wifey's hand even after married. If going out with children boh pianz but if got chance 2-person world then must hold | NOT | NULL | NULL
 
-you know what my happy birthday say when i tell him those elderly couple so sweet still holding hands. He say confirm is 2nd marriage and recently married niah | NOT | NULL | NULL
-
 why 3 yrs away do not think about it ? I thought its better to plan in advance? | NOT | NULL | NULL
 
-Sure not . Me and wife both mid 40s with kids . hold hands not our thing la. you sure you and happy birthday everytime hold hand go anywhere whatever | NOT | NULL | NULL
+Sure not . Me and wife both mid 40s with kids . hold hands not our thing la. you sure you and husband everytime hold hand go anywhere whatever | NOT | NULL | NULL
 
 this thread still ongoing ? Heypi Sunday afternoon to you all | NOT | NULL | NULL
 
 Come. Lets go ikea restaurant. I got family card. Can treat myself free kopi. | NOT | NULL | NULL
-
-Just asking not applicable thought will share what you do on a daily basis with him not applicable | NOT | NULL | NULL
 
 mommy bo lui $ buy free kopi for you | NOT | NULL | NULL
 
@@ -1409,11 +1359,9 @@ When will mommy finally acknowledge my as chiur illegitimate son? | NOT | NULL |
 
 you very . no choice. I treat myself la. ? | NOT | NULL | NULL
 
-Do your hubby n kids help you to do house chores bo not applicable | NOT | NULL | NULL
+Do your hubby n kids help you to do house chores bo | NOT | NULL | NULL
 
-then you really live up to the Maria's name not applicable | NOT | NULL | NULL
-
-children help during sch holidays. Sch term i do not want to touch them happy birthday in charge of washing toilets then i bao the rest. | NOT | NULL | NULL
+children help during sch holidays. Sch term i do not want to touch them husband in charge of washing toilets then i bao the rest. | NOT | NULL | NULL
 
 no go outside jiak. Will just tabao Today supposed to be Maria's off day | NOT | NULL | NULL
 
@@ -1443,10 +1391,6 @@ but some managed to live fairy tale happily ever after story mah | NOT | NULL | 
 
 no . do not everything get these to do. Housework is also exercising you know? | NOT | NULL | NULL
 
-that is why so many couples some ended up divorce some ended up staying together becos of children niah | NOT | NULL | NULL
-
-yes i read in articles before there are some whom do not even know they have a problem | NOT | NULL | NULL
-
 Yes, it is 2022 and there are children begging for money outside the hotel. | NOT | NULL | NULL
 
 yes, that is indeed wonderful. But I was referring to those who stay together only because of children. Kids are sharper than they think. | NOT | NULL | NULL
@@ -1455,7 +1399,7 @@ Thought is 8 x 3. 15 deg per sector. by the way 8 4 is 32 la. | NOT | NULL | NUL
 
 Do you think your marriage is successful? If so, what is your secret to staying married for so long. | NOT | NULL | NULL
 
-how long you do with your husband 1 time? 1/week 1/month 1/quater | NOT | NULL | NULL
+how long you do with your husband 1 time? 1/week 1/month 1/quater | OFF | UNT | NULL
 
 gui support my thread . Gam please bless me . wkend nothing much with covid now so i guess housework + brisk walking to my favorite mbs! And bonding with children. | NOT | NULL | NULL
 
@@ -1463,13 +1407,7 @@ not now. Used to have one 10+ yrs ago but that one gave a lot of trouble decided
 
 From what I understand, the 8 directions further subdivided into 3 more per direction, so total 24 directions. Just curious, is nice one for example, very different from N2 and N3? Anyone knows? | NOT | NULL | NULL
 
-what is it like to be in here with so many siaolangs and pervs | NOT | NULL | NULL
-
 Even we are staying apart most of the time and we valued our full freedom, we do not play our own game. My life revolved around my children and my hubby his work | NOT | NULL | NULL
-
-Everyday since last year May not applicable Classified as essential team by my management not applicable. thanks For the wishing not applicable mummy work from home not applicable? | NOT | NULL | NULL
-
-no not applicable i on my bmw to go to office not applicable I wish to work from home not applicable | NOT | NULL | NULL
 
 Good morning everybody its monday today but hope wont be blues later | NOT | NULL | NULL
 
@@ -1479,23 +1417,17 @@ How many boyfriend did you ever had including yr hubby? | NOT | NULL | NULL
 
 You got talk to him that holding hands is important to you? Or just grab his hand when you want to hold . Sometimes they paiseh to take the initiative or just do not bother, but not against it. | NOT | NULL | NULL
 
-Maybe he wants to lean on your shoulder instead but you take away his chance not applicable | NOT | NULL | NULL
+Maybe he wants to lean on your shoulder instead but you take away his chance | NOT | NULL | NULL
 
 cause eat a lot mah. I am rice bucket cannot live without carbo one | NOT | NULL | NULL
 
-cause i am Maria. maria always the first to wake up and last to sleep wake up earlier go for a short exercise . | NOT | NULL | NULL
-
 last time we go mbs sit down then i want to lean on his shoulder he say wait kenna stomped by people picture put on website So i do not bother liow. | NOT | NULL | NULL
 
-one only cause my mom only let us date after finishing studies Sorry never see you say including happy birthday. So its two. | NOT | NULL | NULL
+one only cause my mom only let us date after finishing studies Sorry never see you say including husband. So its two. | NOT | NULL | NULL
 
 so fast think of lunch no blue no blue if you can listen to songs during work go load your spotify n blast aways while working. | NOT | NULL | NULL
 
-you so clever not applicable? Next time i ask him to lean on my shoulder instead | NOT | NULL | NULL
-
 ya mummy work from home. Reading papers and eating brekkie now. going to start work soon, | NOT | NULL | NULL
-
-Can if your hubby approved this SOP not applicable can submit to him n seek his approval not applicable | NOT | NULL | NULL
 
 No sweat . He will inherit both parents and parents-in-law property in future. Nowadays parents likely educated and have quite a bit of savings as well. So looks jialat but may not actually be. | NOT | NULL | NULL
 
@@ -1508,18 +1440,6 @@ Solly. did not read all 32 pg. which IP schools your kids go to and how did they
 Please let me know next time you do this in MBS. I will assist in taking a photo and upload on Stomp. | NOT | NULL | NULL
 
 mama make dinner niah. Stir fry chap chye cabbage + vermicelli egg soup + yesterday's haee bee hiam cause i always make extra! | NOT | NULL | NULL
-
-if chiu tell my chiu armpit is mussel then my will be worries | NOT | NULL | NULL
-
-is normal bui rah.chiu havent reach mathilda zeh zeh standard yet.mai haolian | NOT | NULL | NULL
-
-Better bring you to modified twitter post faber then roll you down. | NOT | NULL | NULL
-
-For the sake of Edmwers, you should manage your anger and invite him along for neh one-time instagram-worthy photo. | NOT | NULL | NULL
-
-you meant chior bu is it not applicable or are you chia char bu not applicable | NOT | NULL | NULL
-
-i already rolled myself down this morning. See i show proof got proof one | NOT | NULL | NULL
 
 i do not know never measure cause i am 100% fats | NOT | NULL | NULL
 
@@ -1559,9 +1479,7 @@ not i like surprise . Everyday Maria want to become princess for 1 day mah picni
 
 read, watch tv/youtube, surf net, exercise. Very boring ? cause now cannot go out find nice food due to covid. | NOT | NULL | NULL
 
-. so you like surprise. . . , pinic by seaside romantic whatever? Feed mosquitos and not to mention sea-roaches . eeee . Wa, cannot cannot. If my wife ask me to picnic by seaside, i will do antigen rapid test test on her see she got fever or not. | NOT | NULL | NULL
-
-. Maria want to become princess for 1 day mah, sounds like a Pinoy maid waiting for her off-day . ok, joking At tonight see stars have to go Tekong Island la . East Coast beach at tonight no starts one la . Long time ago . bun knife in my courtship days go to the east coast jetty there ok la, quite romantic, concrete so no roaches . see aeroplane, no stars la | NOT | NULL | NULL
+. Maria want to become princess for 1 day mah, sounds like a Pinoy maid waiting for her off-day . ok, joking At tonight see stars have to go Tekong Island la . East Coast beach at tonight no starts one la . Long time ago . bk in my courtship days go to the east coast jetty there ok la, quite romantic, concrete so no roaches . see aeroplane, no stars la | NOT | NULL | NULL
 
 then he got plan before during pak tor days? all alsho all you planned de? | NOT | NULL | NULL
 
@@ -1579,17 +1497,11 @@ i do not read books nowadays. I mainly read those online news sites, magazines, 
 
 its so fun! Except when they start spewing expletives, scolding or insulting you for no reason | NOT | NULL | NULL
 
-What would you say are most important characteristics in choosing a man for marriage? Roughly how much does raising a child cost? What is the most charsiew moment you have experienced from your child so far? | NOT | NULL | NULL
-
-siaolang jiu si siaolang, they is like that one, sort sort sometimes ok but most of time not ok | NOT | NULL | NULL
-
 Eh say it again la it is not neh ask me anything. I thought it was you so free whatever Friday no work? Really homemommy? | NOT | NULL | NULL
 
 mai comprain la.with children is welly tiring huan .must priest children n your majesty | NOT | NULL | NULL
 
 what matters most is the accompany of your hubby. actually, I prefer to celebrate birthday at home too. | NOT | NULL | NULL
-
-I like the secret garden song not applicable I listen to mandarin version one not applicable | NOT | NULL | NULL
 
 actually i do not think its difficult . He knows what i want just that he cannot be bothered to do I very simple one do not need exp presents cause i can buy myself. anyway i always tell myself as long as he is good to the children and hopefully never tao jiak outside | NOT | NULL | NULL
 
@@ -1613,12 +1525,6 @@ Should be a basic thing Like can Google search some dining places then bring and
 
 what was his reply? do not feel that way la. think about it another way, he spends his off days with you at home, although not doing the things you want. probably because you both liao and, I believe you are a good cook at home | NOT | NULL | NULL
 
-Tell him not applicable! don hint, some guys jin wooden block one. | NOT | NULL | NULL
-
-Relax mummy not applicable think you need to tell him what you think not applicable like water n air not applicable you need it everyday but do not really feel the important of them till the day you lose them not applicable | NOT | NULL | NULL
-
-Mummy take care almost everything at home not applicable let him run the house for 1 week (you try go vacation with your parents or siblings), he will appreciate you more not applicable | NOT | NULL | NULL
-
 i like to celebrate with children too but sometimes just wish to have 2-person world occasionally | NOT | NULL | NULL
 
 tell already no use. If got use i wont be so sianz. I just feel that i am lowest on his priority ladder | NOT | NULL | NULL
@@ -1633,17 +1539,9 @@ i am the Maria here not majesty . He come home from work everything sui sui one.
 
 wa do not chiong too fast this series, just enjoy otherwise miss a lot of details. anyway this show quite happy go lucky (at the moment), like the simple joys in life, run too fast and you will miss smelling the flowers. | NOT | NULL | NULL
 
-Good. Home papa must be song song gao Joo koon lo. | NOT | NULL | NULL
-
-you deplete his energy la then he no energy to tao jiak la. | NOT | NULL | NULL
-
-they know their healthcare not enough capacity to handle the surge Sent from Mariana Trench | NOT | NULL | NULL
-
 you think 1 mth take care 2 kids need how much $$ lets say below primary school age | NOT | NULL | NULL
 
-good idea! But covid now you know last time i got frens children primary sch kind she can go overseas holiday with frens for a few days one then throw everything to happy birthday | NOT | NULL | NULL
-
-i wont eat outside one. I know not to cross the line. | NOT | NULL | NULL
+good idea! But covid now you know last time i got frens children primary sch kind she can go overseas holiday with frens for a few days one then throw everything to husband | NOT | NULL | NULL
 
 if mid include childcare expenses problem $1.5-2k. If low $1.2k should suffice. | NOT | NULL | NULL
 
@@ -1654,12 +1552,6 @@ Hometown Cha Cha Cha is nice. You can watch Yumi's cells, One the woman, The Vei
 Mommy I like most of the songs in your play list, esp Dua Lipa one and Gone by Lisa. Our taste quite similar by the way, do you hit the gym or just brisk walking? | NOT | NULL | NULL
 
 These are the recent pop songs in the chart. I came across these songs when my children blast their play list, kind of like them after some time. I guess mommy also like pop songs like me | NOT | NULL | NULL
-
-Not easy not applicable a lot of my friends eat outside not applicable | NOT | NULL | NULL
-
-Some of them eat anything that comes or they can find even is BBLA not applicable BBLA na | NOT | NULL | NULL
-
-why ? do not know better is it? no i trust that he wont tao jiak on me one. This one i am quite confident. He jiak bua bua at home where got enery to eat outside. | NOT | NULL | NULL
 
 instant messaging here to make mommy's thread into part 2 hahahha that will be fun | NOT | NULL | NULL
 
@@ -1675,17 +1567,13 @@ depends on the context and your partner character, I guess? if you know he is th
 
 Wa wei le this breakup abit not worth. Ya la, but it took away my inner peace and cannot sleep well say it again. | NOT | NULL | NULL
 
-you want attention that is why you come in n purposely trigger me yah? | NOT | NULL | NULL
+i only do brisk walking cause free one and i like the outdoors actually I'm quite curious cause since your children in university liow then usually you do what? Go taitai high tea, mani n pedi, facial, meetup with fellow taitais? | NOT | NULL | NULL
 
-i only do brisk walking cause free one and i like the outdoors actually i'male quite curious cause since your children in university liow then usually you do what? Go taitai high tea, mani n pedi, facial, meetup with fellow taitais? | NOT | NULL | NULL
-
-my Auntie. Surf eat drink man woman forum. Surf net read stuffs, watch tv. 9pm is free time. happy birthday also own free time. | NOT | NULL | NULL
+my Auntie. Surf eat drink man woman forum. Surf net read stuffs, watch tv. 9pm is free time. husband also own free time. | NOT | NULL | NULL
 
 quick quick go cuddle with him while doing chiur own stuff. use the fan to reduce the heat generated from the cuddle. | NOT | NULL | NULL
 
 channel surfing Kaylin got boyfriend mah? Single/attached? Mommy start matchmaking thread want to join? | NOT | NULL | NULL
-
-got not applicable. Last time edmwer post before. by the way why end sentence with not applicable? | NOT | NULL | NULL
 
 maybe kaylin actually is yandaokia Maybe Mommy actually is single chiobu? | NOT | NULL | NULL
 
@@ -1695,4 +1583,11 @@ what tv you watch? do not tell me those angmo dramas | NOT | NULL | NULL
 
 do not want la, you know a lot of people to matchmake ? might as well open dating agency then nx time call you | NOT | NULL | NULL
 
-Their zero covid can shift goal post. First is zero covid in the country. When xian kenna breached, they rename to dynamic zero covid, only covid i. Xian and contain it via lock down. Now almost dynamic zero covid failed and escape beyond xian to Shanghai, Guan zhou , even beijing, they shift goal post again to societal zero covid. That is identification all possible covid cases and put them in quarantine zone, thereby hoping to achieve zero covid in society outside the quarantine. That one looking to fail too. Wonder what's the next goal post? | NOT | NULL | NULL
+
+289 NOT
+117 UNT
+177 IND
+153 GRP
+55 OTH
+
+-----------------------------------------------------------------
