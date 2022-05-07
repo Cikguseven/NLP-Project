@@ -138,12 +138,9 @@ def answers_getter():
 
 def balanced_hwz_getter(undersampled: bool):
     with open('hwz_tagged_1.txt', encoding='utf-8') as f:
-        comments = [line.split('|') for line in f]
-
-    comments = [[x.strip() for x in comment] for comment in comments]
+        comments = [line.split('|')[0].strip for line in f]
 
     nn_counter = 0
-    ou_counter = 0
     oth_counter = 0
     ind_counter = 0
     grp_counter = 0
@@ -160,7 +157,7 @@ def balanced_hwz_getter(undersampled: bool):
                 nn_comments.append(comment)
                 nn_counter += 1
         elif comment[2] == 'UNT':
-            ou_comments.append(comment)
+            ou_comments.append(comment[0])
         elif comment[3] == 'IND':
             if not undersampled or (undersampled and ind_counter < 39):
                 ind_comments.append(comment)
@@ -175,6 +172,6 @@ def balanced_hwz_getter(undersampled: bool):
                 oth_counter += 1
 
     undersample_comments =  nn_comments + ou_comments + \
-        oth_comments + ind_comments + grp_comments
+        ind_comments + grp_comments + oth_comments
 
     return undersample_comments

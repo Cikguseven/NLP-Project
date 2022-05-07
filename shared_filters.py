@@ -2315,4 +2315,4 @@ edmw_replacements = [
 (r'(?<![^\W_])kopi(?![^\W_])', 'coffee'),
 (r'(?<![^\W_])bo\s?lui(?![^\W_])', 'no money'),
 (r'(?<![^\W_])pak\s?tor(?![^\W_])', 'dating'),
-(r'(?<![^\W_])solly(?![^\W_])', 'sorry'),]
+(r'(?<![^\W_])solly(?![^\W_])', 'sorry')]

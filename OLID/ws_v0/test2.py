@@ -1,3 +1,6 @@
-import main_config
+a = [1, 2]
+c = a.copy()
+c[0] = 3
 
-print(len(main_config.balanced_hwz_getter(False)))
+print(a)
+print(c)
