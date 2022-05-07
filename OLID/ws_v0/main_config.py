@@ -136,67 +136,45 @@ def answers_getter():
     return answers
 
 
-def answers_frequency(answers: list):
-    frequency = []
+def balanced_hwz_getter(undersampled: bool):
+    with open('hwz_tagged_1.txt', encoding='utf-8') as f:
+        comments = [line.split('|') for line in f]
 
-    for label in answers:
-        if label[0] == 'NOT':
-            frequency.append('NOT')
-        else:
-            frequency.append('OFF')
+    comments = [[x.strip() for x in comment] for comment in comments]
 
-            if label[1] == 'UNT':
-                frequency.append('UNT')
-            else:
-                frequency.append('TIN')
+    nn_counter = 0
+    ou_counter = 0
+    oth_counter = 0
+    ind_counter = 0
+    grp_counter = 0
 
-                if label[2] == 'IND':
-                    frequency.append('IND')
-                elif label[2] == 'GRP':
-                    frequency.append('GRP')
-                else:
-                    frequency.append('OTH')
+    nn_comments = []
+    ou_comments = []
+    ind_comments = []
+    grp_comments = []
+    oth_comments = []
 
-    return frequency
+    for comment in comments:
+        if comment[1] == 'NOT':
+            if not undersampled or (undersampled and nn_counter < 234):
+                nn_comments.append(comment)
+                nn_counter += 1
+        elif comment[2] == 'UNT':
+            ou_comments.append(comment)
+        elif comment[3] == 'IND':
+            if not undersampled or (undersampled and ind_counter < 39):
+                ind_comments.append(comment)
+                ind_counter += 1
+        elif comment[3] == 'GRP':
+            if not undersampled or (undersampled and grp_counter < 39):
+                grp_comments.append(comment)
+                grp_counter += 1
+        elif comment[3] == 'OTH':
+            if not undersampled or (undersampled and oth_counter < 39):
+                oth_comments.append(comment)
+                oth_counter += 1
 
+    undersample_comments =  nn_comments + ou_comments + \
+        oth_comments + ind_comments + grp_comments
 
-def preprocess(tweets: list, uncased: bool):
-    wordsegment.load()
-
-    for i in range(len(tweets)):
-
-        # User mention replacement
-        if tweets[i].find('@USER') != tweets[i].rfind('@USER'):
-            tweets[i] = tweets[i].replace('@USER', '')
-            tweets[i] = '@USERS ' + tweets[i]
-
-        # Hashtag segmentation
-        line_tokens = tweets[i].split(' ')
-        for j, t in enumerate(line_tokens):
-            if t.find('#') == 0:
-                line_tokens[j] = ' '.join(wordsegment.segment(t))
-        tweets[i] = ' '.join(line_tokens)
-
-        # Emoji to word
-        tweets[i] = emoji.demojize(tweets[i])
-
-        # Formatting and slang replacement
-        for old, new in shared_filters.uncased_regex_replacements:
-            tweets[i] = re.sub(old, new, tweets[i], flags=re.I)
-
-        for old, new in shared_filters.cased_regex_replacements:
-            tweets[i] = re.sub(old, new, tweets[i])
-
-        # Uncased text
-        if uncased:
-            tweets[i] = tweets[i].lower()
-
-        tweets[i] = tweets[i].strip()
-
-    return tweets
-
-
-def k_most_frequent_words(data: list, k: int):
-    split_data = [word for sentence in data for word in sentence.split()]
-    frequency = Counter(split_data)
-    return frequency.most_common(k)
+    return undersample_comments
