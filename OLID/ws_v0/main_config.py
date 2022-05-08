@@ -1,14 +1,3 @@
-from collections import Counter
-import comment_filter
-import emoji
-import os
-import re
-import sys
-import wordsegment
-
-sys.path.insert(1, os.path.join(sys.path[0], '../..'))
-import shared_filters
-
 olid_directory = '../OLID_dataset/'
 model_directory = '../models/'
 NER_model = '../../NER/models/v7/model-best'
@@ -29,13 +18,7 @@ test_answer_files = (test_answers_a_file,
 
 scraped_comments = 'redditsg.txt'
 hand_labelled_comments = 'redditsg_testing.txt'
-hand_labelled_comments_csv = 'redditsg_testing.csv'
-hand_labelled_comments_uncased_csv = 'redditsg_testing_uncased.csv'
 remaining_comments = 'redditsg_trainval.txt'
-
-gold_labels = 'gold_labels_reddit.txt'
-with open(gold_labels) as f:
-    answers = [line.strip().split() for line in f]
 
 validation_split = 0.25
 
@@ -137,8 +120,10 @@ def answers_getter():
 
 
 def balanced_hwz_getter(undersampled: bool):
-    with open('hwz_tagged_1.txt', encoding='utf-8') as f:
-        comments = [line.split('|')[0].strip for line in f]
+    with open('hwz_testing.txt', encoding='utf-8') as f:
+        comments = [line.split('|') for line in f]
+
+    comments = [[x.strip() for x in comment] for comment in comments]
 
     nn_counter = 0
     oth_counter = 0
@@ -154,24 +139,54 @@ def balanced_hwz_getter(undersampled: bool):
     for comment in comments:
         if comment[1] == 'NOT':
             if not undersampled or (undersampled and nn_counter < 234):
-                nn_comments.append(comment)
+                nn_comments.append(comment[0])
                 nn_counter += 1
         elif comment[2] == 'UNT':
             ou_comments.append(comment[0])
         elif comment[3] == 'IND':
             if not undersampled or (undersampled and ind_counter < 39):
-                ind_comments.append(comment)
+                ind_comments.append(comment[0])
                 ind_counter += 1
         elif comment[3] == 'GRP':
             if not undersampled or (undersampled and grp_counter < 39):
-                grp_comments.append(comment)
+                grp_comments.append(comment[0])
                 grp_counter += 1
         elif comment[3] == 'OTH':
             if not undersampled or (undersampled and oth_counter < 39):
-                oth_comments.append(comment)
+                oth_comments.append(comment[0])
                 oth_counter += 1
 
     undersample_comments =  nn_comments + ou_comments + \
         ind_comments + grp_comments + oth_comments
 
     return undersample_comments
+
+
+def balanced_reddit_getter():
+    with open(hand_labelled_comments, encoding='utf-8') as f:
+        comments = [line.split('|') for line in f]
+
+    comments = [[x.strip() for x in comment] for comment in comments]
+
+    nn_comments = []
+    ou_comments = []
+    ind_comments = []
+    grp_comments = []
+    oth_comments = []
+
+    for comment in comments:
+        if comment[1] == 'NOT':
+            nn_comments.append(comment[0])
+        elif comment[2] == 'UNT':
+            ou_comments.append(comment[0])
+        elif comment[3] == 'IND':
+            ind_comments.append(comment[0])
+        elif comment[3] == 'GRP':
+            grp_comments.append(comment[0])
+        elif comment[3] == 'OTH':
+            oth_comments.append(comment[0])
+
+    output_comments =  nn_comments + ou_comments + \
+        ind_comments + grp_comments + oth_comments
+
+    return output_comments

@@ -4,7 +4,6 @@ import comment_filter
 import main_config
 import matplotlib.pyplot as plt
 import numpy as np
-import re
 import spacy
 import sys
 
@@ -19,7 +18,6 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
     if balanced:
         task_a_answers_array = np.concatenate([np.zeros(1102), np.ones(1102)])
         task_b_answers_array = np.concatenate([np.zeros(551), np.ones(551)])
-        task_c_answers = ['OTH'] * 430 + ['IND'] * 430 + ['GRP'] * 430
 
         a_limit = 2204
         b_lower = 1102

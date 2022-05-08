@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 from tqdm import tqdm
-import numpy as np
 import pandas as pd
 import re
 import requests
@@ -73,5 +72,3 @@ df['comment'] = df.comment.apply(remove_reactions)
 df.dropna(inplace = True)
 
 df.to_csv("hwz.csv", encoding='utf-8', index=False)
-
-

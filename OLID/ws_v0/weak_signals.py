@@ -3,7 +3,6 @@ from flair.data import Sentence
 from flair.models import TextClassifier
 from hatesonar import Sonar
 from math import exp
-from os import listdir
 from textblob import TextBlob
 from transformers import pipeline
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer

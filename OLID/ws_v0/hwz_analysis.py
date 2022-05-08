@@ -1,6 +1,5 @@
-from bad_words import offensive_lexicon
 from os import listdir
-from sklearn.metrics import precision_recall_curve, roc_curve, ConfusionMatrixDisplay
+from sklearn.metrics import precision_recall_curve
 import comment_filter
 import main_config
 import matplotlib.pyplot as plt
@@ -26,15 +25,6 @@ def evaluate(test_comments: list, undersampled: bool, models: list):
     unt_count = 117
 
     if undersampled:
-        off_count = 502
-        not_count = 289
-        tin_count = 385
-        ind_count = 177
-        grp_count = 153
-        oth_count = 55
-        total_count = 791
-
-    else:
         off_count = 234
         not_count = 234
         tin_count = 117
@@ -42,6 +32,15 @@ def evaluate(test_comments: list, undersampled: bool, models: list):
         grp_count = 39
         oth_count = 39
         total_count = 468
+
+    else:
+        off_count = 502
+        not_count = 289
+        tin_count = 385
+        ind_count = 177
+        grp_count = 153
+        oth_count = 55
+        total_count = 791
 
     task_a_answers_array = np.concatenate([np.zeros(not_count), np.ones(off_count)])
     task_b_answers_array = np.concatenate([np.zeros(unt_count), np.ones(tin_count)])
@@ -154,9 +153,9 @@ def evaluate(test_comments: list, undersampled: bool, models: list):
 
 if __name__ == '__main__':
 
-    is_undersampled = True
+    is_undersampled = False
 
-    # HWZ evaluation
+    # HWZ EDMW comments evaluation
     filtered_hwz_comments = comment_filter.c_filter(
         shuffle=False,
         remove_username=False,
@@ -168,7 +167,7 @@ if __name__ == '__main__':
         edmw=True,
         input_list=main_config.balanced_hwz_getter(is_undersampled))
 
-    models = [f for f in listdir(main_config.model_directory) if 'olid' in f and 'uncased' not in f]
+    models = [f for f in listdir(main_config.model_directory) if 'uncased' not in f and 'reddit' not in f]
 
     evaluate(
         test_comments=filtered_hwz_comments,

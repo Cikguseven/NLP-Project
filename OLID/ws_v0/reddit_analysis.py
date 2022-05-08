@@ -18,55 +18,32 @@ def f1_score(p, r):
         return 0
 
 
-def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list):
+def evaluate(test_comments: list, models: list):
 
     figure, axis = plt.subplots(2, 2)
 
-    if balanced:
-        task_a_answers_array = np.concatenate([np.zeros(1102), np.ones(1102)])
-        task_b_answers_array = np.concatenate([np.zeros(551), np.ones(551)])
-        task_c_answers = ['OTH'] * 430 + ['IND'] * 430 + ['GRP'] * 430
+    not_count = 753
+    off_count = 247
+    unt_count = 28
+    tin_count = 219
+    ind_count = 52
+    grp_count = 93
+    oth_count = 74
+    total_count = 1000
 
-        a_limit = 2204
-        b_lower = 1102
-        b_limit = 2204
-        c_limit = 3494
-
-        off_count = 1102
-        not_count = 1102
-        tin_count = 551
-        unt_count = 551
-        ind_count = 430
-        grp_count = 430
-        oth_count = 430
-
-    else:
-        task_a_answers_array = np.array([1 if x == 'OFF' else 0 for x in test_answers[:860]])
-        task_b_answers_array = np.array([1 if x == 'TIN' else 0 for x in test_answers[860:1100]])
-        task_c_answers = test_answers[1100:]
-
-        a_limit = 860
-        b_lower = 860
-        b_limit = 1100
-        c_limit = 1313
-
-        off_count = 240
-        not_count = 620
-        tin_count = 213
-        unt_count = 27
-        ind_count = 100
-        grp_count = 78
-        oth_count = 35
+    task_a_answers_array = np.concatenate([np.zeros(not_count), np.ones(off_count)])
+    task_b_answers_array = np.concatenate([np.zeros(unt_count), np.ones(tin_count)])
+    task_c_answers = ['IND'] * ind_count + ['GRP'] * grp_count + ['OTH'] * oth_count
 
     for index, model in enumerate(models):
 
         print(model)
 
         nlp = spacy.load(main_config.model_directory + model + '/model-best')
-        docs = list(nlp.pipe(test_tweets))
+        docs = list(nlp.pipe(test_comments))
 
-        task_a_predictions_array = np.array([docs[i].cats['offensive'] for i in range(a_limit)])
-        task_b_predictions_array = np.array([docs[i].cats['targeted'] for i in range(b_lower, b_limit)])
+        task_a_predictions_array = np.array([doc.cats['offensive'] for doc in docs])
+        task_b_predictions_array = np.array([docs[i].cats['targeted'] for i in range(not_count, total_count)])
 
         tasks = ['A', 'B']
 
@@ -114,7 +91,7 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
         tp_oth = 0
         fp_oth = 0
 
-        for i in range(b_limit, c_limit):
+        for i in range(not_count + unt_count, total_count):
             result = docs[i].cats
 
             result.pop('offensive')
@@ -123,19 +100,19 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
             prediction = max(result, key=result.get)
 
             if prediction == 'individual':
-                if task_c_answers[i - c_limit] == 'IND':
+                if task_c_answers[i - total_count] == 'IND':
                     tp_ind += 1
                 else:
                     fp_ind += 1
 
             elif prediction == 'group':
-                if task_c_answers[i - c_limit] == 'GRP':
+                if task_c_answers[i - total_count] == 'GRP':
                     tp_grp += 1
                 else:
                     fp_grp += 1
 
             else:
-                if task_c_answers[i - c_limit] == 'OTH':
+                if task_c_answers[i - total_count] == 'OTH':
                     tp_oth += 1
                 else:
                     fp_oth += 1
@@ -165,30 +142,21 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
 
 if __name__ == '__main__':
 
-    # OLID evaluation
-    
-    use_balanced_olid = False
-
-    if use_balanced_olid:
-        get_tweets = main_config.balanced_tweets_getter(analysis_set=True)
-    else:
-        get_tweets = main_config.test_tweets_getter()
-
-    # Import unique filtered comments for testing
-    filtered_tweets = comment_filter.c_filter(
+    # r/SG comments evaluation
+    filtered_reddit_comments = comment_filter.c_filter(
         shuffle=False,
         remove_username=False,
         remove_commas=False,
         length_min=0,
-        length_max=9999,
+        length_max=999,
         uncased=False,
         unique=False,
-        input_list=get_tweets)
+        edmw=True,
+        input_list=main_config.balanced_reddit_getter())
 
-    models = [f for f in listdir(main_config.model_directory) if 'olid' in f and 'uncased' not in f]
+    models = [f for f in listdir(main_config.model_directory) if 'uncased' not in f and 'reddit' not in f]
 
     evaluate(
-        test_tweets=filtered_tweets[:],
-        test_answers=main_config.answers_getter(),
-        balanced=use_balanced_olid,
+        test_comments=filtered_reddit_comments,
         models=models)
+    
