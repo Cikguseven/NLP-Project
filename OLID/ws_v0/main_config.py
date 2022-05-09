@@ -21,7 +21,7 @@ handlabelled_hwz_comments = 'hwz_testing.txt'
 
 validation_split = 0.25
 
-version = 'wk13_ws_reddit_50a_10b'
+version = 'wk13_ws_reddit_50a_10b_'
 
 spacy_training_file = version + 'training.spacy'
 spacy_validation_file = version + 'vaildation.spacy'
@@ -167,3 +167,5 @@ def labelled_comments_getter(file: str, train_test: str):
     output_distribution = [nn_counter, ou_counter, ind_counter, grp_counter, oth_counter]
 
     return output_comments, output_distribution
+
+print(labelled_comments_getter(file=handlabelled_reddit_comments, train_test='train'))

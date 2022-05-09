@@ -115,10 +115,12 @@ if __name__ == '__main__':
         unique=False,
         input_list=training_comments)
 
+    comment_count = len(filtered_comments)
+
     spacy_file_creator(
         comments=filtered_comments[:],
         distribution=distribution,
-        length=len(filtered_comments),
+        length=comment_count,
         weak_supervision_mode=True,
         training_validation_split=int(main_config.validation_split * comment_count),
         output_training=main_config.spacy_training_file,
