@@ -1,7 +1,6 @@
 from bad_words import offensive_lexicon
 from bisect import bisect_left
 from tqdm import tqdm
-import comment_filter
 import labelling_functions_data
 import main_config
 import re
@@ -9,15 +8,15 @@ import spacy
 import statistics
 
 
-def take_closest(myList, myNumber):
-    pos = bisect_left(myList, myNumber)
+def take_closest(input_list, input_number):
+    pos = bisect_left(input_list, input_number)
     if pos == 0:
-        return myList[0]
-    if pos == len(myList):
-        return myList[-1]
-    before = myList[pos - 1]
-    after = myList[pos]
-    if after - myNumber < myNumber - before:
+        return input_list[0]
+    if pos == len(input_list):
+        return input_list[-1]
+    before = input_list[pos - 1]
+    after = input_list[pos]
+    if after - input_number < input_number - before:
         return after
     else:
         return before
@@ -82,19 +81,3 @@ def weak_classifier(sentences: list):
             results.append('OTH')
 
     return results
-
-if __name__ == '__main__':
-    olid_balanced_tweets = main_config.balanced_tweets_getter(analysis_set=True)
-
-    # Import unique filtered comments for testing
-    filtered_tweets = comment_filter.c_filter(
-        shuffle=False,
-        remove_username=False,
-        remove_commas=False,
-        length_min=0,
-        length_max=9999,
-        uncased=False,
-        unique=False,
-        input_list=olid_balanced_tweets)
-
-    weak_classifier(filtered_tweets[348:])

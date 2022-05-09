@@ -2,13 +2,10 @@ from os import listdir
 from sklearn.metrics import precision_recall_curve
 import comment_filter
 import main_config
-import matplotlib.pyplot as plt
 import numpy as np
 import spacy
-import sys
 
 spacy.require_gpu()
-np.set_printoptions(threshold=sys.maxsize)
 
 
 def f1_score(p, r):
@@ -18,29 +15,16 @@ def f1_score(p, r):
         return 0
 
 
-def evaluate(test_comments: list, undersampled: bool, models: list):
+def evaluate(test_comments: list, distribution: list, models: list):
 
-    figure, axis = plt.subplots(2, 2)
-
-    unt_count = 117
-
-    if undersampled:
-        off_count = 234
-        not_count = 234
-        tin_count = 117
-        ind_count = 39
-        grp_count = 39
-        oth_count = 39
-        total_count = 468
-
-    else:
-        off_count = 502
-        not_count = 289
-        tin_count = 385
-        ind_count = 177
-        grp_count = 153
-        oth_count = 55
-        total_count = 791
+    total_count = sum(distribution)
+    not_count = distribution[0]
+    off_count = total_count - not_count
+    unt_count = distribution[1]
+    tin_count = off_count - unt_count
+    ind_count = distribution[2]
+    grp_count = distribution[3]
+    oth_count = distribution[4]
 
     task_a_answers_array = np.concatenate([np.zeros(not_count), np.ones(off_count)])
     task_b_answers_array = np.concatenate([np.zeros(unt_count), np.ones(tin_count)])
@@ -153,10 +137,9 @@ def evaluate(test_comments: list, undersampled: bool, models: list):
 
 if __name__ == '__main__':
 
-    is_undersampled = False
+    comments, distribution = main_config.labelled_comments_getter(file=main_config.handlabelled_reddit_comments, train_test='test')
 
-    # HWZ EDMW comments evaluation
-    filtered_hwz_comments = comment_filter.c_filter(
+    filtered_comments = comment_filter.c_filter(
         shuffle=False,
         remove_username=False,
         remove_commas=False,
@@ -165,11 +148,12 @@ if __name__ == '__main__':
         uncased=False,
         unique=False,
         edmw=True,
-        input_list=main_config.balanced_hwz_getter(is_undersampled))
+        input_list=comments)
 
-    models = [f for f in listdir(main_config.model_directory) if 'uncased' not in f and 'reddit' not in f]
+    models = [f for f in listdir(main_config.model_directory) if 'uncased' not in f and 'reddit' in f]
 
     evaluate(
-        test_comments=filtered_hwz_comments,
-        undersampled=is_undersampled,
+        test_comments=filtered_comments,
+        distribution=distribution,
         models=models)
+    

@@ -1,6 +1,7 @@
-a = [1, 2]
-c = a.copy()
-c[0] = 3
+import numpy as np
 
-print(a)
-print(c)
+z = np.ones(8)
+
+z[:3] = 0
+
+print(z)
