@@ -137,23 +137,25 @@ def evaluate(test_comments: list, distribution: list, models: list):
 
 if __name__ == '__main__':
 
-    comments, distribution = main_config.labelled_comments_getter(file=main_config.handlabelled_reddit_comments, train_test='test')
+    comments, distribution = main_config.labelled_comments_getter(file=main_config.handlabelled_hwz_comments, train_test='test')
 
-    filtered_comments = comment_filter.c_filter(
-        shuffle=False,
-        remove_username=False,
-        remove_commas=False,
-        length_min=0,
-        length_max=999,
-        uncased=False,
-        unique=False,
-        edmw=True,
-        input_list=comments)
+    print(distribution)
 
-    models = [f for f in listdir(main_config.model_directory) if 'uncased' not in f and 'reddit' in f]
+    # filtered_comments = comment_filter.c_filter(
+    #     shuffle=False,
+    #     remove_username=False,
+    #     remove_commas=False,
+    #     length_min=0,
+    #     length_max=999,
+    #     uncased=False,
+    #     unique=False,
+    #     edmw=True,
+    #     input_list=comments)
 
-    evaluate(
-        test_comments=filtered_comments,
-        distribution=distribution,
-        models=models)
+    # models = [f for f in listdir(main_config.model_directory) if 'wk13' in f]
+
+    # evaluate(
+    #     test_comments=filtered_comments,
+    #     distribution=distribution,
+    #     models=models)
     
