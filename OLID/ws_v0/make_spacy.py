@@ -7,7 +7,7 @@ import weak_signals
 
 def spacy_file_creator(
         comments: list,
-        gold_labels: list,
+        distribution: list,
         length: int,
         weak_supervision_mode: bool,
         training_validation_split: int,
@@ -23,8 +23,8 @@ def spacy_file_creator(
     if weak_supervision_mode:
         task_a_labels, task_b_labels, task_c_labels = weak_signals.model_aggregator(comments)
 
-        threshold_a = 0.6
-        threshold_b = 0.15
+        threshold_a = 0.5
+        threshold_b = 0.1
 
         for i in range(length):
             categories = {
@@ -69,20 +69,20 @@ def spacy_file_creator(
                 'other': 0.0
             }
 
-            if gold_labels[i][0] == 'OFF':
+            if i >= distribution[0]:
                 categories['offensive'] = 1.0
 
-                if gold_labels[i][1] == 'TIN':
+                if i >= sum(distribution[:2]):
                     categories['targeted'] = 1.0
 
-                    if gold_labels[i][2] == 'IND':
-                        categories['individual'] = 1.0
+                    if i >= sum(distribution[:4]):
+                        categories['other'] = 1.0
 
-                    elif gold_labels[i][2] == 'GRP':
+                    elif i >= sum(distribution[:3]):
                         categories['group'] = 1.0
 
                     else:
-                        categories['other'] = 1.0
+                        categories['individual'] = 1.0
 
             doc = nlp.make_doc(comments[i])
             doc.cats = categories
@@ -98,41 +98,29 @@ def spacy_file_creator(
 
 
 if __name__ == '__main__':
-    import time
-    start = time.time()
+    # # OLID tweets
+    # training_comments = main_config.training_tweets_getter(unlabelled=True)
 
-    olid_training_data = main_config.training_tweets_getter(unlabelled=True)
+    # Reddit/HWZ comments
+    training_comments, distribution = main_config.labelled_comments_getter(file=main_config.handlabelled_reddit_comments, train_test='train')
 
     # Import unique filtered comments for testing and validation
     filtered_comments = comment_filter.c_filter(
-        shuffle=True,
+        shuffle=False,
         remove_username=False,
         remove_commas=False,
         length_min=0,
         length_max=9999,
         uncased=False,
         unique=False,
-        input_list=olid_training_data)[:10000]
-
-    comment_count = len(filtered_comments)
-
-    print(comment_count)
+        input_list=training_comments)
 
     spacy_file_creator(
         comments=filtered_comments[:],
-        gold_labels=main_config.answers[:900],
-        length=comment_count,
+        distribution=distribution,
+        length=len(filtered_comments),
         weak_supervision_mode=True,
         training_validation_split=int(main_config.validation_split * comment_count),
         output_training=main_config.spacy_training_file,
         output_vaildation=main_config.spacy_validation_file)
 
-    end = time.time()
-    t = round(end - start, 2)
-
-    if t > 60:
-        duration = str(int(t // 60)) + 'm ' + str(int(t % 60)) + 's'
-    else:
-        duration = str(t) + 's'
-
-    print(f'Time taken: {duration}')
