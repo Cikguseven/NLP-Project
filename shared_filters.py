@@ -6,7 +6,7 @@ bots = ['AmputatorBot', 'AutoModerator', 'bot-amos-counter',
 
 uncased_regex_replacements = [
     # Remove links and references to reddit users and subreddits
-    (r'(?<![^\W_])http\S+(?![^\W_])',  ' http'),
+    (r'(?<![^\W_])(http|www\.)\S+(?![^\W_])',  ' http'),
     (r'(?<![^\W_])/?u/\S+(?![^\W_])', ' USER'),
     (r'(?<![^\W_])/?r/', ' subreddit of '),
 
@@ -2316,4 +2316,6 @@ edmw_replacements = [
 (r'(?<![^\W_])bo\s?lui(?![^\W_])', 'no money'),
 (r'(?<![^\W_])pak\s?tor(?![^\W_])', 'dating'),
 (r'(?<![^\W_])solly(?![^\W_])', 'sorry'),
-(r'(?<![^\W_])bkk(?![^\W_])', 'Bangkok')]
+(r'(?<![^\W_])bkk(?![^\W_])', 'Bangkok'),
+(r'(?<![^\W_])mapbox polyline npm(?![^\W_])', ''),
+(r'(?<![^\W_])ma\s?fan(?![^\W_])', 'troublesome')]

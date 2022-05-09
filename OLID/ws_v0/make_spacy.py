@@ -102,7 +102,9 @@ if __name__ == '__main__':
     # training_comments = main_config.training_tweets_getter(unlabelled=True)
 
     # Reddit/HWZ comments
-    training_comments, distribution = main_config.labelled_comments_getter(file=main_config.handlabelled_reddit_comments, train_test='train')
+    training_comments, distribution = main_config.labelled_comments_getter(file=main_config.handlabelled_hwz_comments, train_test='train')
+
+    print(distribution)
 
     # Import unique filtered comments for testing and validation
     filtered_comments = comment_filter.c_filter(
