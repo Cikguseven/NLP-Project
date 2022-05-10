@@ -3,6 +3,7 @@ Using weak supervision to perform named entity recognition and offensive languag
 
 #### Quick start: 
 `pip install requirements.txt` in NER/OLID folder
+To scrape comments for NER, create a config.py file in the NER folder with Reddit API info. (Refer to `NER/example_config.py`)
 
 ## NER Performance
 
