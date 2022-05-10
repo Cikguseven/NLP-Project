@@ -1,4 +1,4 @@
-# NLP-Project
+# NLP Project
 Using weak supervision to perform named entity recognition and offensive language detection on r/Singapore comments
 
 #### Quick start: 
