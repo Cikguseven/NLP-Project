@@ -875,7 +875,7 @@ damn i laughed for a straight minute as a fellow POE player. | NOT | NULL | NULL
 Worked in a local sme, boss was a super proud ACS boy, self made millionair and all. Everyday hear him talk shit about RI | OFF | TIN | OTH
 After this campaign, please make sure to volunteer for Opposition parties if you want to. Politics is not about the 9 days, it is about the 5 years. | NOT | NULL | NULL
 Basically most sinkies Have Chinese name but can speak compo Chinese only | OFF | TIN | GRP
-even china has protests being in the same group as north korea is not a good look | NOT | NULL | NULL
+always it is the comments that deliver the juiciest shit | OFF | UNT | NULL
 gd some people here are either dense/malicious/stupid or all of the above | OFF | TIN | GRP
 Having those people in Parliament will be really entertaining. Now imagine 40-50 of them. | NOT | NULL | NULL
 I wonder if the WP is a coalition of Teochew supporters + young liberal people | NOT | NULL | NULL
@@ -884,7 +884,7 @@ Jamus Lim + Nicole Seah + HTR WP Dream Team | NOT | NULL | NULL
 MASSIVE L TO DE MASSIVE THROBBING COCK EGOS OF Chan Chun Sing AND THE CHAO CBS OF THE 4G LEADERSHIP MASSIVE L rest in peace CCBS DESERVER FUCK People's Action Party so this is what facebook comments look like ? | OFF | TIN | GRP
 Raeesah smear actually backfired on them Anyway I actually feel like social media could swing marginal races like with Sengkang group representation constituency | NOT | NULL | NULL
 Seriously tho, do they have anything else other than being a check and balance? | NOT | NULL | NULL
-Good job ! Thank you for sharing your art . | NOT | NULL | NULL
+This Elson Lee is candidate for douchebag of the year. | OFF | TIN | IND
 Plot twist. the Ukrainian rep was planting a bug on the guy | OFF | TIN | IND
 Tldr Serve national service. Go for ICT. Pass ippt. do not complain. | NOT | NULL | NULL
 Who say poorly motivated . All the ICT surveys say otherwise! I am being sarcastic in case anyone cannot see it. | OFF | TIN | GRP
@@ -944,11 +944,11 @@ Or the perp might have a higher calibre weapon or more. | NOT | NULL | NULL
 Signing entails a loss of policy flexibility. Betting the US wants to retain the choice rather than be constrained. A self imposed moratorium is different from a treaty accession. | NOT | NULL | NULL
 That we could merely use sharp elbows was pretty good already. Tuas 2018 is a vital learning lesson. | NOT | NULL | NULL
 The smart ACSian keeps such talk for kopi with the boys. Not in Parliament. He done mucked up . | OFF | TIN | IND
-This older traditionalist says it should be gone. Many others like myself think it is no one's business but the individuals. | NOT | NULL | NULL
+Holy shit, for a country so small we are the biggest contributor on that list. 4.5 thousand tons I know we are a major player in chemical engineering but I'd never imagine it would lead to this | OFF | UNT | NULL
 Typical AC vs RI banter, but keep it out of Parliament thanks | NOT | NULL | NULL
 We co-sponsored a UN resolution too. http The co-sponsoring list is there. | NOT | NULL | NULL
 Yeah it is true, AC has always been the one with more posh backgrounds compared to RI. | NOT | NULL | NULL
-Yeah, like how we did chores when we were young. Good way to bring them up. | NOT | NULL | NULL
+Fucking legend right here ok. She did well and we should be proud | OFF | UNT | NULL
 You asked the question once. Now you are just a troll. | OFF | TIN | IND
 They're putting everyone thru pain just to get at the boomers. If inconvenience is the aim, why not just stop boomers from going out? Put age in the safe entry, and deny them. Stop holding us all hostage what the fuck | OFF | TIN | OTH
 You speak of subreddit of Singapore as though as it is one entity with a single mind when in fact it is made up of many anonymous individuals of varied backgrounds who log on to reddit to kill some time. | NOT | NULL | NULL
@@ -959,7 +959,7 @@ Can 4D chess this one? Maybe the best way to repeal it is to file a bunch of pol
 I got a long story about gambling debt and whatnot. The dude looks like he is in his 40s. Saw a 30s looking tissue seller before. | NOT | NULL | NULL
 I sleep a lot more in university and now as a working adult, I actually have a proper sleep schedule. | NOT | NULL | NULL
 Pretty scary situation. One points towards the street. Two point toward each other. | NOT | NULL | NULL
-Sorry for being curious. How did that even work out with the mother's family? | NOT | NULL | NULL
+I hope they give him max applicable jail term and rotan the shit out of him, see how tough he really is. | OFF | TIN | IND
 brilliant! All the best and cannot wait to try it out! | NOT | NULL | NULL
 Not really. covid spreads via aerosol. So those gels probably have limited effectiveness with regards to covid specifically | NOT | NULL | NULL
 When you have an irresponsible Government that imports people during a pandemic like theres no tommorrow, ordinary and responsible Singaporeans suffer. | OFF | TIN | OTH
@@ -978,13 +978,13 @@ Was expecting like 10 warning shots to the chest. Guess I've been watching too m
 feel like that is a subset of watchers, most of the people i know still like the series, i guess it is fair because the anime is pretty high quality but I do not know knowing how it ends kills it for me | NOT | NULL | NULL
 unpopular opinion AOT ending is dogshit and is just a scuffed code geass, isayama wrote himself into a corner that he did not know how to get out of, the ending isn't really as deep as everyone thinks | OFF | TIN | IND
 'How do you even chao keng an antigen rapid test result?' Is this guy serious? | OFF | TIN | IND
-Hypodermic needle into edge of tin foil. Turn video resolution down. Darken room. | NOT | NULL | NULL
+you are the fucking talent singapore needs keep up the good work | OFF | UNT | NULL
 no. But can put vinegar in the buffer reagent bottle | NOT | NULL | NULL
 Obviously you do your shenanigans before starting the video. What your boss going to do? Send you a couriered antigen rapid test test and ask you to break the seal on the video? | NOT | NULL | NULL
 So can you climb walls and shoot webs from your wrists now? | OFF | TIN | IND
 So does China have a right to its territorial integrity in places like Taiwan? | NOT | NULL | NULL
 The dark dangerous forests of Yishun, where pursuing enemies will not follow | NOT | NULL | NULL
-We view pro business and pro worker as a zero sum game. that is sad | NOT | NULL | NULL
+Holy shit this is going up to the front page! | OFF | UNT | NULL
 Where did this quote come from? I vaguely remember it. | NOT | NULL | NULL
 all over this thread got people just basically blaming OP for not being thick skinned enough . so blatant | NOT | NULL | NULL
 Why are you so intent on defending him? If you do not like a practise, and you know the practise is important to someone's culture/identity, keep it to yourself. Insulting it would 100% be not right. | NOT | NULL | NULL
@@ -995,6 +995,6 @@ Everybody's struggle. You have similar issues with christian/buddhist/hindu advo
 Very sad news to hear such a young life taken. Rest in Peace. | NOT | NULL | NULL
 The Malay-Muslim culture is pretty much the end result of that combination if you ask me. | NOT | NULL | NULL
 I do not think that was ever a crime according to Singapore law | NOT | NULL | NULL
-dude please take care and reach out for assistance if you need any counselling. my god. i cannot imagine. | NOT | NULL | NULL
+Jesus fucking Christ. My thoughts and prayers go to everyone related ito RV in any sense. I cannot imagine how being a parent of said students in the school feel right now. Please stay safe, and take care. And to those making senseless jokes and memes, please stop. There's a time and place for everything, and it certainly isn't right here and now. | OFF | UNT | NULL
 heartbroken. my deepest condolences. and to the students needing counselling please reach out. | NOT | NULL | NULL
-I felt it in the west. It was really subtle, I thought it was the MRT construction nearby | NOT | NULL | NULL
+the map display used here is so much better than the dogshit full lcd screens used in the newer trains. you can see clearly at a glance where you are and where the train is going, whereas the lcd screen displays so little info. | OFF | UNT | NULL

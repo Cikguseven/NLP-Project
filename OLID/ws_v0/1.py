@@ -19,20 +19,22 @@ nlp = spacy.load(main_config.model_directory + 'ws_v1_50a_10b_lexicon10_tc9remov
 
 docs = list(nlp.pipe(filtered_comments))
 
-offensive_threshold = 0.5
+offensive_threshold = 0.7
+targeted_threshold = 0.2
 
-for doc in docs:
-	is_off = 'NOT'
-	is_tin = 'NULL'
-	target = 'NULL'
+for i in range(10000):
+    doc = docs[i]
+    is_off = 'NOT'
+    is_tin = 'NULL'
+    target = 'NULL'
 
-	result = doc.cats
+    result = doc.cats
 
     if result["offensive"] > offensive_threshold:
-    	is_off = 'OFF'
+        is_off = 'OFF'
 
-		if result["targeted"] > targeted_threshold:
-	        is_tin = 'TIN'
+        if result["targeted"] > targeted_threshold:
+            is_tin = 'TIN'
 
             result.pop('offensive')
             result.pop('targeted')
@@ -46,6 +48,7 @@ for doc in docs:
                 target = 'OTH'
 
         else:
-        	is_tin = 'UNT'
+            is_tin = 'UNT'
+            print(f'{doc.text} | OFF | UNT | NULL')
 
-    print(f'{doc.text} | {is_off} | {is_tin} | {target}')
+    #  print(f'{doc.text} | {is_off} | {is_tin} | {target}')

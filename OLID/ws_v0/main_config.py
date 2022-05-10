@@ -13,15 +13,14 @@ test_tweet_files = (test_tweets_a_file, test_tweets_b_file, test_tweets_c_file)
 test_answers_a_file = olid_directory + 'labels-levela.csv'
 test_answers_b_file = olid_directory + 'labels-levelb.csv'
 test_answers_c_file = olid_directory + 'labels-levelc.csv'
-test_answer_files = (test_answers_a_file,
-                     test_answers_b_file, test_answers_c_file)
+test_answer_files = (test_answers_a_file, test_answers_b_file, test_answers_c_file)
 
 handlabelled_reddit_comments = 'redditsg_testing.txt'
 handlabelled_hwz_comments = 'hwz_testing.txt'
 
 validation_split = 0.25
 
-version = 'wk13_ws_hwz_45a_12b'
+version = 'wk13_ws_reddit_45a_12b'
 
 spacy_training_file = version + '_training.spacy'
 spacy_validation_file = version + '_vaildation.spacy'
