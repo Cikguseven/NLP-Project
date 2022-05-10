@@ -1,6 +1,6 @@
 from os import getcwd
 
-scraped_comments = "redditsg.txt"
+scraped_comments = "redditsg1.txt"
 
 hand_labelled_comments = '500_cased.txt'
 

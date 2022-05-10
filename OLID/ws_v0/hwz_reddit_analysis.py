@@ -145,8 +145,6 @@ if __name__ == '__main__':
     comments, distribution = main_config.labelled_comments_getter(
         file=main_config.handlabelled_hwz_comments, train_test='test')
 
-    print(distribution)
-
     filtered_comments = comment_filter.c_filter(
         shuffle=False,
         remove_username=False,
@@ -158,7 +156,7 @@ if __name__ == '__main__':
         edmw=True,
         input_list=comments)
 
-    models = [f for f in listdir(main_config.model_directory) if 'wk13' in f]
+    models = [f for f in listdir(main_config.model_directory) if 'wk13' in f and 'hwz' in f]
 
     evaluate(
         test_comments=filtered_comments,

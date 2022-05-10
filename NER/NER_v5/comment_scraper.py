@@ -2,6 +2,7 @@ from main_config import *
 import praw
 import random
 import sys
+import os
 import time
 
 sys.path.insert(1, os.path.join(sys.path[0], '../'))
@@ -26,7 +27,7 @@ def c_scraper():
 
     with open(scraped_comments, "w", encoding='utf-8') as f:
         for filter in time_filters:
-            for post in subreddit.top(filter, limit=30):
+            for post in subreddit.top(filter, limit=10):
                 if post.id not in viewed_posts:
                     print(f'{filter}|{post.id}')
                     viewed_posts.append(post.id)
@@ -45,3 +46,5 @@ def c_scraper():
         duration = str(int(t // 60)) + 'm ' + str(int(t % 60)) + 's'
     else:
         duration = str(duration) + 's'
+
+c_scraper()
