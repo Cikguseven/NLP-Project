@@ -1,6 +1,9 @@
 # NLP-Project
 Using weak supervision to perform named entity recognition and offensive language detection on r/Singapore comments
 
+#### Quick start: 
+`pip install requirements.txt` in NER/OLID folder
+
 ## NER Performance
 
 ### Tested on 500 r/Singapore comments:
@@ -62,6 +65,7 @@ Using weak supervision to perform named entity recognition and offensive languag
 |Fine tuned spaCy transformer|70.6|48.5|42.2|53.8|  
   
 #### Workflow to obtain weak supervision/fine tuned spaCy transformer model:  
+`OLID/ws_v0/download_transformer_pipeline.py` (download hugging face transformers required for weak supervision pipeline)  
 `OLID/ws_v0/make_spacy.py` (pipeline to preprocess comments, apply and resolve aggregated labelling functions, serialize file for training)  
 `NER/NER_cli_train.ipynb` (jupyter notebook to train model in command line using serialized file)  
 `NER/NER_v7/*_analysis.py` (test OLID performance on chosen dataset from best model saved to disk after training) 
