@@ -998,12 +998,3 @@ I do not think that was ever a crime according to Singapore law	NOT	NULL	NULL
 dude pls take care and reach out for assistance if you need any counselling. my god. i cannot imagine.	NOT	NULL	NULL
 heartbroken. my deepest condolences. and to the students needing counselling pls reach out.	NOT	NULL	NULL
 I felt it in the west. It was really subtle, I thought it was the MRT construction nearby	NOT	NULL	NULL
-176
-172
-111
-61
-61
-
-Time taken: 5.88s
-
-[Finished in 8.7s]
