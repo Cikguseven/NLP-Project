@@ -23,8 +23,8 @@ def spacy_file_creator(
     if weak_supervision_mode:
         task_a_labels, task_b_labels, task_c_labels = weak_signals.model_aggregator(comments)
 
-        threshold_a = 0.5
-        threshold_b = 0.1
+        threshold_a = 0.6
+        threshold_b = 0.15
 
         for i in range(length):
             categories = {
@@ -102,7 +102,8 @@ if __name__ == '__main__':
     # training_comments = main_config.training_tweets_getter(unlabelled=True)
 
     # Reddit/HWZ comments
-    training_comments, distribution = main_config.labelled_comments_getter(file=main_config.handlabelled_hwz_comments, train_test='train')
+    training_comments, distribution = main_config.labelled_comments_getter(
+        file=main_config.handlabelled_hwz_comments, train_test='train')
 
     print(distribution)
 
@@ -119,12 +120,19 @@ if __name__ == '__main__':
 
     comment_count = len(filtered_comments)
 
+    is_ws = True
+
+    if is_ws:
+        print('Creating weak supervision spacy file')
+    else:
+        print('Creating finetune spacy file')
+
     spacy_file_creator(
         comments=filtered_comments[:],
         distribution=distribution,
         length=comment_count,
-        weak_supervision_mode=True,
-        training_validation_split=int(main_config.validation_split * comment_count),
+        weak_supervision_mode=is_ws,
+        training_validation_split=int(
+            main_config.validation_split * comment_count),
         output_training=main_config.spacy_training_file,
         output_vaildation=main_config.spacy_validation_file)
-

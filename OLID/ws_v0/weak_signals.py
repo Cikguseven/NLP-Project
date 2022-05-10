@@ -6,7 +6,7 @@ from math import exp
 from textblob import TextBlob
 from transformers import pipeline
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-import bad_words
+import labelling_functions_data
 import main_config
 import numpy as np
 import re
@@ -64,7 +64,7 @@ models = [(tc_1, 'tc_1', 'POSITIVE', 'uncased', 1),
           (tc_6, 'tc_6', 'NO_HATE', 'cased', 1),
           (tc_7, 'tc_7', 'NON_HATE', 'cased', 1),
           (tc_8, 'tc_8', 'POSITIVE', 'cased', 1),
-          (bad_words.offensive_lexicon, 'lexicon', None, 'uncased', 1),
+          (labelling_functions_data.offensive_lexicon, 'lexicon', None, 'uncased', 1),
           (target_classifier.weak_classifier, 'target_classifier', None, 'cased', 1),
           (vader, 'vader', None, 'cased', 1),
           (textblob, 'textblob', None, 'cased', 1),
@@ -108,7 +108,7 @@ def model_aggregator(comments: list):
         elif 'lexicon' in name:
             classifier_array_a = np.zeros(length)
             for index, uncased_comment in enumerate(uncased_comments):
-                for offensive_word in bad_words.offensive_lexicon:
+                for offensive_word in classifier:
                     if re.search(r'(?<![^\W_])' + offensive_word + r'(?![^\W_])', uncased_comment):
                         classifier_array_a[index] = 1
                         break
@@ -172,6 +172,4 @@ if __name__ == '__main__':
         unique=False,
         input_file=main_config.hand_labelled_comments)
 
-    print(
-        model_aggregator(
-            comments=filtered_cased_comments))
+    print(model_aggregator(comments=filtered_cased_comments))

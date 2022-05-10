@@ -26,9 +26,12 @@ def evaluate(test_comments: list, distribution: list, models: list):
     grp_count = distribution[3]
     oth_count = distribution[4]
 
-    task_a_answers_array = np.concatenate([np.zeros(not_count), np.ones(off_count)])
-    task_b_answers_array = np.concatenate([np.zeros(unt_count), np.ones(tin_count)])
-    task_c_answers = ['IND'] * ind_count + ['GRP'] * grp_count + ['OTH'] * oth_count
+    task_a_answers_array = np.concatenate(
+        [np.zeros(not_count), np.ones(off_count)])
+    task_b_answers_array = np.concatenate(
+        [np.zeros(unt_count), np.ones(tin_count)])
+    task_c_answers = ['IND'] * ind_count + \
+        ['GRP'] * grp_count + ['OTH'] * oth_count
 
     for index, model in enumerate(models):
 
@@ -37,14 +40,17 @@ def evaluate(test_comments: list, distribution: list, models: list):
         nlp = spacy.load(main_config.model_directory + model + '/model-best')
         docs = list(nlp.pipe(test_comments))
 
-        task_a_predictions_array = np.array([doc.cats['offensive'] for doc in docs])
-        task_b_predictions_array = np.array([docs[i].cats['targeted'] for i in range(not_count, total_count)])
+        task_a_predictions_array = np.array(
+            [doc.cats['offensive'] for doc in docs])
+        task_b_predictions_array = np.array(
+            [docs[i].cats['targeted'] for i in range(not_count, total_count)])
 
         tasks = ['A', 'B']
 
         for task in tasks:
             if task == 'A':
-                precision, recall, thresholds = precision_recall_curve(task_a_answers_array, task_a_predictions_array)
+                precision, recall, thresholds = precision_recall_curve(
+                    task_a_answers_array, task_a_predictions_array)
                 total_pos = off_count
                 total_neg = not_count
             else:
@@ -70,7 +76,7 @@ def evaluate(test_comments: list, distribution: list, models: list):
                     neg_f1 = f1_score(neg_p, neg_r)
                 else:
                     neg_f1 = 0
-                macro_f1 = (f1  + neg_f1) / 2
+                macro_f1 = (f1 + neg_f1) / 2
                 if macro_f1 > final_f1[-1]:
                     final_f1 = [f1, neg_f1, macro_f1]
 
@@ -114,12 +120,11 @@ def evaluate(test_comments: list, distribution: list, models: list):
 
         precision_ind = tp_ind / (tp_ind + fp_ind)
         recall_ind = tp_ind / ind_count
-        f1_ind = f1_score(precision_ind, recall_ind) 
+        f1_ind = f1_score(precision_ind, recall_ind)
 
         precision_grp = tp_grp / (tp_grp + fp_grp)
         recall_grp = tp_grp / grp_count
-        f1_grp = f1_score(precision_grp, recall_grp) 
-
+        f1_grp = f1_score(precision_grp, recall_grp)
 
         if tp_oth + fp_oth > 0:
             precision_oth = tp_oth / (tp_oth + fp_oth)
@@ -137,25 +142,25 @@ def evaluate(test_comments: list, distribution: list, models: list):
 
 if __name__ == '__main__':
 
-    comments, distribution = main_config.labelled_comments_getter(file=main_config.handlabelled_hwz_comments, train_test='test')
+    comments, distribution = main_config.labelled_comments_getter(
+        file=main_config.handlabelled_hwz_comments, train_test='test')
 
     print(distribution)
 
-    # filtered_comments = comment_filter.c_filter(
-    #     shuffle=False,
-    #     remove_username=False,
-    #     remove_commas=False,
-    #     length_min=0,
-    #     length_max=999,
-    #     uncased=False,
-    #     unique=False,
-    #     edmw=True,
-    #     input_list=comments)
+    filtered_comments = comment_filter.c_filter(
+        shuffle=False,
+        remove_username=False,
+        remove_commas=False,
+        length_min=0,
+        length_max=999,
+        uncased=False,
+        unique=False,
+        edmw=True,
+        input_list=comments)
 
-    # models = [f for f in listdir(main_config.model_directory) if 'wk13' in f]
+    models = [f for f in listdir(main_config.model_directory) if 'wk13' in f]
 
-    # evaluate(
-    #     test_comments=filtered_comments,
-    #     distribution=distribution,
-    #     models=models)
-    
+    evaluate(
+        test_comments=filtered_comments,
+        distribution=distribution,
+        models=models)

@@ -68,7 +68,6 @@ if __name__ == "__main__":
     import gold_labels
     import re
     import main_config
-    from comment_filter import *
 
     for i in range(500):
         linecopy = main_config.testing_lines[i]
@@ -81,6 +80,3 @@ if __name__ == "__main__":
                 print([label[0], index, end, label[3]])
                 print()
             linecopy = re.sub(r'(?<![^\W_])' + label[0] + r'(?![^\W_])', ' ' * len(label[0]), linecopy, 1)
-
-    # for x in c_filter(hand_labelled_comments):
-    #     print(x)

@@ -2,7 +2,6 @@ from os import listdir
 import main_config
 import spacy
 import time
-import numpy as np
 
 spacy.require_gpu()
 

@@ -1,4 +1,3 @@
-from bad_words import offensive_lexicon
 from bisect import bisect_left
 from tqdm import tqdm
 import labelling_functions_data
@@ -58,7 +57,7 @@ def weak_classifier(sentences: list):
 
         total_targets = []
 
-        offensive_word_pos = [result.start() for key in offensive_lexicon if (result := re.search(r'(?<![^\W_])' + key + r'(?![^\W_])', docs[i].text.lower()))]
+        offensive_word_pos = [result.start() for key in labelling_functions_data.offensive_lexicon if (result := re.search(r'(?<![^\W_])' + key + r'(?![^\W_])', docs[i].text.lower()))]
         noun_verb_pos = {token.idx: token.text for token in docs[i] if token.tag_ in valid_tags}
         ent_pos = {x.start_char: x.label_ for x in docs_ner[i].ents}
 

@@ -1,7 +1,5 @@
 import os
 import sys
-import inspect
-import main_config
 import random
 import re
 

@@ -1,10 +1,8 @@
-import time
-start = time.time()
-
-import main_config
-import gold_labels
-import spacy
 from os import listdir
+import gold_labels
+import main_config
+import spacy
+import time
 
 spacy.require_gpu()
 
@@ -20,6 +18,8 @@ def evaluate_model(
     testing_lines: list,
     all_labels: str,
     wrong_labels: str):
+
+    start = time.time()
 
     for model in models:
 
@@ -38,10 +38,10 @@ def evaluate_model(
         true_positive = 0
         false_positive = 0
 
-        with open(all_labels, 'w') as all_l, open(wrong_labels, 'w') as wrong_l:
+        with open(all_labels, 'w') as all_labels_file, open(wrong_labels, 'w') as wrong_labels_file:
 
-            # all_l.write(f'TEXT, START INDEX, END INDEX, ENTITY, SENTENCE INDEX\n')
-            # wrong_l.write(f'TEXT, START INDEX, END INDEX, ENTITY, SENTENCE INDEX\n')
+            # all_labels_file.write(f'TEXT, START INDEX, END INDEX, ENTITY, SENTENCE INDEX\n')
+            # wrong_labels_file.write(f'TEXT, START INDEX, END INDEX, ENTITY, SENTENCE INDEX\n')
 
             for i in range(len(testing_lines)):
                 testing_lines_copy = testing_lines[i]
@@ -53,13 +53,13 @@ def evaluate_model(
 
                         new_label = [X.text, X.start_char, X.end_char, main_config.label_dict[X.label_]]
 
-                        all_l.write(f'{", ".join(map(str, new_label))}, {i + 1}\n')
+                        all_labels_file.write(f'{", ".join(map(str, new_label))}, {i + 1}\n')
 
                         if new_label in answer_key[i]:
                             true_positive += 1
                         else:
                             false_positive += 1
-                            wrong_l.write(f'{", ".join(map(str, new_label))}, {i + 1}\n')
+                            wrong_labels_file.write(f'{", ".join(map(str, new_label))}, {i + 1}\n')
 
 
         precision = true_positive / (true_positive + false_positive)

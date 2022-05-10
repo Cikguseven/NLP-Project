@@ -1,5 +1,4 @@
 from collections import Counter
-import comment_filter
 import emoji
 import os
 import re

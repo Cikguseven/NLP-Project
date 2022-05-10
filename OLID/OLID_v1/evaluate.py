@@ -4,9 +4,6 @@ import main_config
 import spacy
 import time
 
-import numpy as np
-from sklearn.metrics import precision_recall_curve
-
 spacy.require_gpu()
 
 

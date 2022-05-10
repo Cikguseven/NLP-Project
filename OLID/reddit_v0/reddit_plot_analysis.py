@@ -1,11 +1,10 @@
 from os import listdir
-from sklearn.metrics import precision_recall_curve, roc_curve, auc
+from sklearn.metrics import precision_recall_curve, roc_curve
 import comment_filter
 import main_config
 import matplotlib.pyplot as plt
 import numpy as np
 import spacy
-import time
 import weak_signals
 
 spacy.require_gpu()
@@ -30,8 +29,10 @@ def evaluate_model(
         print(model)
 
         if 'weak_signals_function' in model:
-            task_a_predictions_array = weak_signals.model_aggregator(test_comments, uncased_test_comments, 'a')
-            task_b_predictions_array = weak_signals.model_aggregator(test_comments, uncased_test_comments, 'b')
+            task_a_predictions_array = weak_signals.model_aggregator(
+                test_comments, uncased_test_comments, 'a')
+            task_b_predictions_array = weak_signals.model_aggregator(
+                test_comments, uncased_test_comments, 'b')
 
         else:
             nlp = spacy.load(main_config.model_directory +

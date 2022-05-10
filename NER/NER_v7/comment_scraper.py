@@ -1,7 +1,6 @@
-import main_config
 import praw
-import random
-import time
+import sys
+import os
 
 sys.path.insert(1, os.path.join(sys.path[0], '../'))
 import config
@@ -9,8 +8,6 @@ import config
 
 # Function to scrapes comments and authors from a chosen subreddit
 def c_scraper(output_file: str, subreddit: str, scrape_limit: int):
-    start = time.time()
-
     reddit = praw.Reddit(client_id=config.client_id,
                          client_secret=config.client_secret,
                          user_agent=config.user_agent)
@@ -39,13 +36,3 @@ def c_scraper(output_file: str, subreddit: str, scrape_limit: int):
                         counter += 1
 
     print(f'Comments scraped: {counter}')
-
-    end = time.time()
-    duration = round(end - start, 2)
-
-    if duration > 60:
-        duration = str(int(t // 60)) + 'm ' + str(int(t % 60)) + 's'
-    else:
-        duration = str(duration) + 's'
-
-    print(f'Time taken: {duration}')

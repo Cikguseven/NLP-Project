@@ -21,10 +21,10 @@ handlabelled_hwz_comments = 'hwz_testing.txt'
 
 validation_split = 0.25
 
-version = 'wk13_ws_hwz_50a_10b_'
+version = 'wk13_ws_hwz_60a_15b'
 
-spacy_training_file = version + 'training.spacy'
-spacy_validation_file = version + 'vaildation.spacy'
+spacy_training_file = version + '_training.spacy'
+spacy_validation_file = version + '_vaildation.spacy'
 
 
 def training_tweets_getter(unlabelled: bool):
