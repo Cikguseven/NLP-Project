@@ -62,6 +62,12 @@ def api_filter():
     conn.row_factory = dict_factory
     cur = conn.cursor()
 
+    print(query)
+
+    print(to_filter)
+
+    print()
+
     results = cur.execute(query, to_filter).fetchall()
 
     return jsonify(results)
