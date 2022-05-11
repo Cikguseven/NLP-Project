@@ -4,11 +4,9 @@ import numpy as np
 #Import Flask modules
 from flask import Flask, request, render_template
 
-#Import pickle to save our regression model
-import pickle 
-
 #Initialize Flask and set the template folder to "template"
 app = Flask(__name__, template_folder = 'template')
+app.config["DEBUG"] = True
 
 #Open our model 
 #create our "home" route using the "index.html" page

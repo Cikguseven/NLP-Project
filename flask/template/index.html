@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="styles.css">
+        <link href="{{ url_for('static', filename='/style.css') }}" rel="stylesheet">
     </head>
     <body>
         <!---Initialize structure of Title and house picture--->
@@ -26,7 +26,7 @@
             <div class = "container">
                 <div class = "intro">
                     <b>
-                        <p class = "Note"><b>Note: Enter values which are reasonable to the context1</b></p>
+                        <p class = "Note"><b>Note: Enter values which are reasonable to the context</b></p>
                     </b>
                 </div>
                 <br>
