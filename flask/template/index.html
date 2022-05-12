@@ -8,12 +8,22 @@
     <body>
         <div class = "page">
             <div class="split left">
-                <div class="centered">
-                    <h1 class = "project">Weak Supervision NER/OLID Demo</h1>
-                    <input type="checkbox" id="checkbox1" name="ner" value="NER">
-                    <label for="checkbox1"> NER</label><br>
-                    <input type="checkbox" id="checkbox2" name="olid" value="OLID">
-                    <label for="checkbox2"> OLID</label><br>
+                <div class="title">
+                    <h1>Weak Supervision NER/OLID Demo</h1>
+                </div>
+
+                <div class="controls">
+                    <h4 class = "options"> Select model(s): </h4>
+                    <input type="checkbox" id="checkbox1" value="NER">
+                    <label for="checkbox1">NER</label><br>
+                    <input type="checkbox" id="checkbox2" value="OLID">
+                    <label for="checkbox2">OLID</label><br>
+
+                    <h4 class = "options">Input sentence:</h4>
+                    <input type="text" id="sentence">
+
+                    <h4 class = "options"> Upload JSON/CSV file: </h4>
+                    <input type="file" id="sourcefile"><br><br>
                 </div>
             </div>
 
@@ -29,22 +39,7 @@
                         <form action = "{{url_for('predict')}}" method = "post" class = "info">
                             <input type="text" id="name" name="Average Income of Area" placeholder="Average Area Income" required="required"/><span style="color:red"> * </span>
                             <br>
-                            <br>
-                            <input type="text" id="age" name="Average House Age" placeholder="Area House Age" required="required"/><span style="color:red"> * </span>
-                            <br>
-                            <br>
-                            <input type="text" id="rooms" name="Average Number of Rooms (living, patio etc.) " placeholder="Average Number of Rooms" required="required"/><span style="color:red"> * </span>
-                            <br>
-                            <br>
-                            <input type="text" id="bedrooms" name="Average Number of Bedrooms" placeholder="Number of Bedrooms"/><span style="color:red" required="required"> * </span>
-                            <br>
-                            <br>
-                            <input type="text" id="population" name="Average Area Population" placeholder="Average Area Population"/><span style="color:red" required="required"> * </span>
-                            <br>
-                            <br>
                             <button type="submit" class="btn">Predict</button>
-
-                            <input type="file" id="myfile" name="myfile"/><br><br>
                         </form>
                         <br> 
                         <!---Set placeholder for prediction output--->
