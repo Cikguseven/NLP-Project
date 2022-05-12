@@ -1,9 +1,7 @@
-/*This section involves the overall style of main tags*/
 * {
     font-family: sans-serif;
 }
 body {
-    background-color: lightblue;
     background-size: cover;
 }
 form {
@@ -11,7 +9,7 @@ form {
 }
 h1 {
     text-align: center;
-    font-size: 350%;
+    font-size: 200%;
 }
 button {
     font-weight: bold;
@@ -31,6 +29,41 @@ input {
     box-sizing: border-box
 }
 
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 10px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: white;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: #259ae8;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
 /*Margin, layout and design of paragraphs and structures*/
 .para {
     text-align:center;
@@ -49,7 +82,7 @@ input {
 }
 .Note {
     text-align: center;
-    color: red;
+    color: white;
     margin: 7px;
     padding: 7px 0px;
 }
@@ -58,6 +91,10 @@ input {
 }
 .intro {
     font-size: 20px;
+}
+
+.project{
+    width: 800px;
 }
 
 /*Layout and structure of form body in page*/
@@ -71,7 +108,7 @@ div.container {
 
 }
 div.page {
-    width: 400px;
+    width: 100px;
     margin: 100px auto 0px auto;
 }
 form.info {
@@ -139,14 +176,6 @@ a.link {
 }
 
 /*Responsible for shadow backgrounds*/
-#menu-outer {
-    height: 70px;
-    background-color: rgba(0,0,0,0.5);
-    font-size: 18px;
-    margin: 1%;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.3);
-}
 .table {
     display: table;   
     margin: 0 auto;
@@ -168,18 +197,6 @@ a.scikit {
 }
 ul#horizontal-list li {
     display: inline;
-}
-
-div.title img {
-    display:inline-block;
-    vertical-align:middle;
-}        
-
-div.title h1 {
-    display:inline-block;
-    vertical-align:middle;
-    padding-left: 30%;
-    font-family: "Copperplate Gothic Light";
 }
 
 /*Animation for links*/
