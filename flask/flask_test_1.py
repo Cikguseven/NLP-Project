@@ -8,6 +8,9 @@ from flask import Flask, request, render_template
 app = Flask(__name__, template_folder = 'template')
 app.config["DEBUG"] = True
 
+# Limit upload file size to 2 megabytes
+app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
+
 #Open our model 
 #create our "home" route using the "index.html" page
 @app.route('/')
@@ -18,20 +21,8 @@ def home():
 @app.route('/', methods = ['POST'])
 def predict():
     
-    #obtain all form values and place them in an array, convert into integers
-    int_features = [int(x) for x in request.form.values()]
-    #Combine them all into a final numpy array
-    final_features = [np.array(int_features)]
-    # #predict the price given the values inputted by user
-    # prediction = model.predict(final_features)
-    
-    # #Round the output to 2 decimal places
-    # output = round(prediction[0], 2)
+    nlp_string = request.form.values()
 
-    output = 1
-    
-    #If the output is negative, the values entered are unreasonable to the context of the application
-    #If the output is greater than 0, return prediction
     if output < 0:
         return render_template('index.html', prediction_text = "Predicted Price is negative, values entered not reasonable")
     elif output >= 0:

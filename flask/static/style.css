@@ -17,15 +17,12 @@ h4 {
 }
 
 button {
-  font-weight: bold;
-  background-color: #4CAF50;
+  font-size: 110%;
+  background-color: #d1d1d1;
   padding: 8px 16px;
   display: inline-block;
-  text-decoration: none;
-  border-radius:3px;
-  color: black;
+  border-radius: 10px;
   border-color: black;
-  font-family: Arial;
   border-style: ridge;
 }
 
@@ -37,12 +34,11 @@ input {
 
 input[type=checkbox] {
   transform: scale(1.2);
-  vertical-align: 0.5px;
+  vertical-align: 1px;
 }
 
 input[type=file] {
   transform: scale(1.2);
-  vertical-align: 0.5px;
 }
 
 .split {
@@ -89,8 +85,8 @@ input[type=file] {
 #sentence {
   resize: vertical;
   display: block;
-  margin-right: auto;
-  max-height: 360px;
+  width: 100%;
+  max-height: 500px;
 }
 
 /* Style the image inside the centered container, if needed */

@@ -9,21 +9,15 @@
     <div class="page">
       <div class="split left">
         <div class="title">
-          <h1>Weak Supervision NER/OLID Demo</h1>
+          <h1>Weak Supervision NER & OLID Demo</h1>
         </div>
 
         <div class="controls">
-          <h4 class="options"> Select model(s): </h4>
-          <input type="checkbox" id="checkbox1" value="NER">
-          <label for="checkbox1">NER</label><br>
-          <input type="checkbox" id="checkbox2" value="OLID">
-          <label for="checkbox2">OLID</label><br>
-
-          <form action="{{url_for('predict')}}" method="post" class="info">
+            <form action="{{url_for('predict')}}" method="post" class="info">
             <h4 class="options"><label for="sentence">Input sentence:</label></h4>
-            <textarea id="sentence" placeholder="Your text here..." rows="4" cols="95"></textarea>
+            <textarea id="sentence" placeholder="Your text here..."></textarea>
             <br>
-            <button type="submit" class="btn">Predict</button>
+            <button type="submit" class="button">Predict</button>
           </form>
 
           <h4 class="options"> Upload JSON/CSV file: </h4>
