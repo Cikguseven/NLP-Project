@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import main_config
+import comment_filter
 import spacy
 
 spacy.require_gpu()
@@ -27,21 +28,24 @@ def predict():
 
     input_text = request.form.get("sentence")
 
-    if model == olid:
-        # nlp = spacy.load(olid_model)
-        return render_template('index.html', prediction_text = str(1))
+    nlp = spacy.load(main_config.globals()[model + '_model'])
 
-    elif model == reddit:
-        # nlp = spacy.load(reddit_model)
-        return render_template('index.html', prediction_text = str(2))
+    if input_text:
+        filtered_text = comment_filter.c_filter(
+            shuffle=False,
+            remove_username=False,
+            remove_commas=False,
+            length_min=0,
+            length_max=999999999,
+            uncased=False,
+            unique=False,
+            edmw=False
+            input_list=[input_text])
+        doc = nlp(input_text)
 
-    elif model == hwz:
-        # nlp = spacy.load(hwz_model)
-        return render_template('index.html', prediction_text = str(3))
 
 
-
-    # return render_template('index.html', prediction_text = str(input_text))
+    return render_template('index.html', prediction_text = str(3))
 
 
 if __name__ == "__main__":

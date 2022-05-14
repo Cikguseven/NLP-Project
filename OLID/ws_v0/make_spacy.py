@@ -113,7 +113,7 @@ if __name__ == '__main__':
         length_max=9999,
         uncased=False,
         unique=False,
-        edmw=False
+        edmw=False,
         input_list=training_comments[:10000])
 
     comment_count = len(filtered_comments)
