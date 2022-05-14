@@ -25,7 +25,7 @@
           <p class="options"><label for="sentence">Input sentence:</label></p>
           <textarea id="sentence" name="sentence" onkeyup="success()" rows="4" placeholder="Your text here..."></textarea>
           <br>
-          <button type="submit" id="button" class="button" disabled>Predict</button>
+          <button type="submit" id="button" class="button">Predict</button>
         </form>
 
         <br>
@@ -35,8 +35,20 @@
     </div>
 
     <div class="split right">
-    </div>
+      <div class="centered">
+        <div class="container">
+          <!-- <div class="intro">
+            <p class="note"><b></b></p>
+          </div> -->
+          <br>
 
+          <div class="pred">
+            <p class="result"><b>Your sentence: {{input}}</b></p>
+            <p class="result"><b>{{result}}</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="text/javascript">
       function success() {
         if(document.getElementById("sentence").value==="") { 

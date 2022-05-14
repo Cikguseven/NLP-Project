@@ -21,40 +21,39 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/', methods = ['GET', 'POST'])
+@app.route('/predict', methods = ['GET', 'POST'])
 def predict():
+
+    input_text = request.form.get("sentence")
     
     model = request.form.get("models")
 
-    input_text = request.form.get("sentence")
-
-    nlp = spacy.load(main_config.globals()[model + '_model'])
+    nlp = spacy.load(getattr(main_config, model + '_model'))
 
     is_edmw = False
 
     if model == 'reddit' or model == 'hwz':
         is_edmw = True
 
-    if input_text:
-        filtered_text = comment_filter.c_filter(
-            shuffle=False,
-            remove_username=False,
-            remove_commas=False,
-            length_min=0,
-            length_max=999999999,
-            uncased=False,
-            unique=False,
-            edmw=is_edmw,
-            input_list=[input_text])
+    filtered_text = comment_filter.c_filter(
+        shuffle=False,
+        remove_username=False,
+        remove_commas=False,
+        length_min=0,
+        length_max=999999999,
+        uncased=False,
+        unique=False,
+        edmw=is_edmw,
+        input_list=[input_text])
 
-        doc = nlp(filtered_text)
+    doc = nlp(filtered_text[0])
 
-        if doc.cats['offensive']:
-            prediction_text = 'y'
-        else:
-            prediction_text = 'n'
+    if doc.cats['offensive'] > 0.6:
+        result = 'Sentence is offensive'
+    else:
+        result = 'Sentence is not offensive'
 
-    return render_template('index.html', prediction_text = {prediction_text})
+    return render_template('result.html', input = input_text, result = result)
 
 
 if __name__ == "__main__":
