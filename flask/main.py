@@ -30,6 +30,11 @@ def predict():
 
     nlp = spacy.load(main_config.globals()[model + '_model'])
 
+    is_edmw = False
+
+    if model == 'reddit' or model == 'hwz':
+        is_edmw = True
+
     if input_text:
         filtered_text = comment_filter.c_filter(
             shuffle=False,
@@ -39,13 +44,17 @@ def predict():
             length_max=999999999,
             uncased=False,
             unique=False,
-            edmw=False
+            edmw=is_edmw,
             input_list=[input_text])
-        doc = nlp(input_text)
 
+        doc = nlp(filtered_text)
 
+        if doc.cats['offensive']:
+            prediction_text = 'y'
+        else:
+            prediction_text = 'n'
 
-    return render_template('index.html', prediction_text = str(3))
+    return render_template('index.html', prediction_text = {prediction_text})
 
 
 if __name__ == "__main__":
