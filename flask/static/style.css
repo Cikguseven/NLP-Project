@@ -89,16 +89,7 @@ input[type=file] {
   max-height: 500px;
 }
 
-/* Style the image inside the centered container, if needed */
-.centered img {
-  width: 150px;
-  border-radius: 50%;
-}
-
 /*Margin, layout and design of paragraphs and structures*/
-.para {
-  text-align:center;
-}
 .result {
   font-weight: bold;
   background-color: #4CAF50;
@@ -133,11 +124,6 @@ div.container {
   border: 1px solid rgba(255,255,255,0.3);
   box-shadow: 2px 2px 15px
 
-}
-
-div.page {
-  width: 100px;
-  margin: 100px auto 0px auto;
 }
 
 /*This section involves the design of the inputs in the form*/
