@@ -26,19 +26,48 @@ spacy_training_file = version + '_training.spacy'
 spacy_validation_file = version + '_vaildation.spacy'
 
 
-def training_tweets_getter(unlabelled: bool):
+def training_tweets_getter():
     with open(training_tweet_file, encoding='utf-8') as f:
         tweets = [line.split('\t') for line in f]
 
     tweets.pop(0)
-    for tweet in tweets:
-        tweet[4] = tweet[4].strip()
 
-    if unlabelled:        
-        output_tweets = [tweet[1] for tweet in tweets]
-        return output_tweets
-    else:
-        return tweets
+    tweets = [[x.strip() for x in tweet] for tweet in tweets]
+
+    nn_tweets = []
+    ou_tweets = []
+    ind_tweets = []
+    grp_tweets = []
+    oth_tweets = []
+
+    nn_counter = 0
+    ou_counter = 0
+    ind_counter = 0
+    grp_counter = 0
+    oth_counter = 0
+
+    for tweet in tweets:
+        if tweet[2] == 'NOT':
+            nn_tweets.append(tweet[1])
+            nn_counter += 1
+        elif tweet[3] == 'UNT':
+            ou_tweets.append(tweet[1])
+            ou_counter += 1
+        elif tweet[4] == 'IND':
+            ind_tweets.append(tweet[1])
+            ind_counter += 1
+        elif tweet[4] == 'GRP':
+            grp_tweets.append(tweet[1])
+            grp_counter += 1
+        elif tweet[4] == 'OTH':
+            oth_tweets.append(tweet[1])
+            oth_counter += 1
+
+    output_tweets =  nn_tweets + ou_tweets + ind_tweets + grp_tweets + oth_tweets
+
+    output_distribution = [nn_counter, ou_counter, ind_counter, grp_counter, oth_counter]
+
+    return output_tweets, output_distribution
 
 
 def balanced_tweets_getter(analysis_set: bool):
@@ -117,7 +146,7 @@ def answers_getter():
     return answers
 
 
-def labelled_comments_getter(file: str, train_test: str):
+def labelled_comments_getter(site: str, train_test: str):
 
     if train_test == 'train':
         start = 0
@@ -125,6 +154,14 @@ def labelled_comments_getter(file: str, train_test: str):
     else:
         start = 800
         end = 1000
+
+    if site == 'reddit':
+        file = handlabelled_reddit_comments
+    elif site == 'hwz':
+        file = handlabelled_hwz_comments
+    else:
+        print('Wrong site')
+        return
 
     with open(file, encoding='utf-8') as f:
         comments = [line.split('|') for line in f][start:end]
@@ -160,8 +197,7 @@ def labelled_comments_getter(file: str, train_test: str):
             oth_comments.append(comment[0])
             oth_counter += 1
 
-    output_comments =  nn_comments + ou_comments + \
-        ind_comments + grp_comments + oth_comments
+    output_comments =  nn_comments + ou_comments + ind_comments + grp_comments + oth_comments
 
     output_distribution = [nn_counter, ou_counter, ind_counter, grp_counter, oth_counter]
 

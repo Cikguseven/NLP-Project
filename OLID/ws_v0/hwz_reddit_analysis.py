@@ -143,7 +143,7 @@ def evaluate(test_comments: list, distribution: list, models: list):
 if __name__ == '__main__':
 
     comments, distribution = main_config.labelled_comments_getter(
-        file=main_config.handlabelled_reddit_comments, train_test='test')
+        site='reddit', train_test='test')
 
     print(distribution)
 

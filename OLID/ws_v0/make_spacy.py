@@ -95,12 +95,12 @@ def spacy_file_creator(
 
 
 if __name__ == '__main__':
-    # # OLID tweets
-    # training_comments = main_config.training_tweets_getter(unlabelled=True)
+    # OLID tweets
+    training_comments, distribution = main_config.training_tweets_getter()
 
     # Reddit/HWZ comments
     training_comments, distribution = main_config.labelled_comments_getter(
-        file=main_config.handlabelled_reddit_comments, train_test='train')
+        site='reddit', train_test='train')
 
     print(distribution)
 
@@ -113,7 +113,8 @@ if __name__ == '__main__':
         length_max=9999,
         uncased=False,
         unique=False,
-        input_list=training_comments)
+        edmw=False
+        input_list=training_comments[:10000])
 
     comment_count = len(filtered_comments)
 
