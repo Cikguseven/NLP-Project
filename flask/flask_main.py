@@ -53,7 +53,7 @@ def predict():
     else:
         result = 'not offensive'
 
-    return render_template('home.html', input = input_text, result = result)
+    return render_template('home.html', input = input_text, result = 'Sentence is' + result)
 
 
 if __name__ == "__main__":
