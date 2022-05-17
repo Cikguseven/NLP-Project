@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-import main_config
+import flask_config
 import comment_filter
 import spacy
 
@@ -18,17 +18,17 @@ def page_not_found(e):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 
-@app.route('/predict', methods = ['GET', 'POST'])
+@app.route('/', methods = ['GET', 'POST'])
 def predict():
 
     input_text = request.form.get("sentence")
     
     model = request.form.get("models")
 
-    nlp = spacy.load(getattr(main_config, model + '_model'))
+    nlp = spacy.load(getattr(flask_config, model + '_model'))
 
     is_edmw = False
 
@@ -53,7 +53,7 @@ def predict():
     else:
         result = 'not offensive'
 
-    return render_template('result.html', input = input_text, result = result)
+    return render_template('home.html', input = input_text, result = result)
 
 
 if __name__ == "__main__":

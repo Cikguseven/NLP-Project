@@ -20,19 +20,19 @@ handlabelled_hwz_comments = 'hwz_testing.txt'
 
 validation_split = 0.25
 
-version = 'wk13_ws_reddit_45a_12b'
+version = 'ws_v1_60a_10b_lexicon1_tc9removed'
 
 spacy_training_file = version + '_training.spacy'
 spacy_validation_file = version + '_vaildation.spacy'
 
 
-def training_tweets_getter():
+def training_tweets_getter(tweet_count: int):
     with open(training_tweet_file, encoding='utf-8') as f:
         tweets = [line.split('\t') for line in f]
 
     tweets.pop(0)
 
-    tweets = [[x.strip() for x in tweet] for tweet in tweets]
+    tweets = [[x.strip() for x in tweet] for tweet in tweets][:tweet_count]
 
     nn_tweets = []
     ou_tweets = []

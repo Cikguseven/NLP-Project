@@ -1,6 +1,5 @@
-x = 1
+x = [1, 2, 3, 4]
 
-if x == 2:
-    y = True
+x = [i + 1 for i in x][:2]
 
-print(y)
+print(x)
