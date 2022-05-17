@@ -61,7 +61,7 @@ input[type=file] {
 .right {
   right: 0;
   width: 60%;
-  background-color: #46aaec;
+  background-color: #75bff0;
 }
 
 .centered {
@@ -91,8 +91,7 @@ input[type=file] {
 
 /*Margin, layout and design of paragraphs and structures*/
 .result {
-  font-weight: bold;
-  background-color: #4CAF50;
+  background-color: #e6e6e6;
   padding: 8px 16px;
   display: inline-block;
   text-decoration: none;

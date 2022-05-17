@@ -49,9 +49,9 @@ def predict():
     doc = nlp(filtered_text[0])
 
     if doc.cats['offensive'] > 0.6:
-        result = 'Sentence is offensive'
+        result = 'offensive'
     else:
-        result = 'Sentence is not offensive'
+        result = 'not offensive'
 
     return render_template('result.html', input = input_text, result = result)
 
