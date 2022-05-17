@@ -7,8 +7,8 @@ spacy.require_gpu()
 
 app = Flask(__name__, template_folder = 'template')
 
-# Limit upload file size to 2 megabytes
-app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
+# Limit upload file size to 1 megabyte
+app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 
 
 @app.errorhandler(404)
@@ -24,7 +24,7 @@ def home():
 @app.route('/', methods = ['GET', 'POST'])
 def predict():
 
-    input_text = request.form.get("sentence")
+    input_text = request.form.get("textbox")
     
     model = request.form.get("models")
 
@@ -36,13 +36,7 @@ def predict():
         is_edmw = True
 
     filtered_text = comment_filter.c_filter(
-        shuffle=False,
-        remove_username=False,
-        remove_commas=False,
-        length_min=0,
-        length_max=999999999,
         uncased=False,
-        unique=False,
         edmw=is_edmw,
         input_list=[input_text])
 
@@ -53,7 +47,7 @@ def predict():
     else:
         result = 'not offensive'
 
-    return render_template('home.html', input = input_text, result = 'Sentence is' + result)
+    return render_template('home.html', display_right = True, input = input_text, result = 'Sentence is ' + result)
 
 
 if __name__ == "__main__":

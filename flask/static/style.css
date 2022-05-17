@@ -49,21 +49,35 @@ input[type=file] {
 .left {
   left: 0;
   width: 40%;
-  background-color: #f6f6f6;
+  background-color: #3A3C86;
+  color: white;
 }
 
 /* Control the right side */
 .right {
   right: 0;
   width: 60%;
-  background-color: #75bff0;
+  background-color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: large;
 }
 
-.centered {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  text-align: center;
+.flex_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.result {
+  background-color: #e6e6e6;
+  padding: 8px 16px;
+  display: inline-block;
+  text-decoration: none;
+  border-radius:1px;
+  color: black;
+  border-color: black;
+  font-family: Arial;
+  border-style: solid;
 }
 
 .title {
@@ -84,29 +98,4 @@ input[type=file] {
   max-height: 500px;
 }
 
-/*Margin, layout and design of paragraphs and structures*/
-.result {
-  background-color: #e6e6e6;
-  padding: 8px 16px;
-  display: inline-block;
-  text-decoration: none;
-  border-radius:3px;
-  color: black;
-  border-color: black;
-  font-family: Arial;
-  border-style: ridge;
-}
 
-.pred {
-  text-align:center;
-}
-
-/*Layout and structure of form body in page*/
-div.container {
-  background-color: rgba(0,0,0,0.5);
-  font-size: 18px;
-  margin: 1%;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow: 2px 2px 15px
-}

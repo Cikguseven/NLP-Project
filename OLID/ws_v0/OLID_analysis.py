@@ -185,7 +185,7 @@ if __name__ == '__main__':
         unique=False,
         input_list=get_tweets)
 
-    models = [f for f in listdir(main_config.model_directory) if 'ws_v1' in f and 'uncased' not in f]
+    models = [f for f in listdir(main_config.model_directory) if 'ws_v1_60a_10b_lexicon1_tc9removed' in f or 'wk14' in f]
 
     evaluate(
         test_tweets=filtered_tweets[:],

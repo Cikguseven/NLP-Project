@@ -23,38 +23,51 @@
           </select> 
 
           <p class="options"><label for="textbox">Input sentence:</label></p>
-          <textarea id="textbox" name="textbox" onkeyup="success()" rows="4" placeholder="Your text here..."></textarea>
+          <textarea id="textbox" name="textbox" onkeyup="submit_text()" rows="4" placeholder="Your text here..."></textarea>
           <br>
           <button type="submit" id="text_submit" class="button" disabled>Predict</button>
         </form>
 
         <br>
         <form action="{{url_for('predict')}}" method="post" class="info" enctype = "multipart/form-data">
-          <p class="options">Upload JSON/CSV file:</p>
-          <input type="file" name="file" accept=".json, .csv">
-          <input type="submit"/>
+          <p class="options">Upload JSON/CSV file (Max: 1 MB):</p>
+          <input type="file" id ="file" name="file" onchange="submit_file()" accept=".json, .csv">
+          <br>
+          <button type="submit" id="file_submit" class="button" disabled>Submit file</button>
         </form>
       </div>
     </div>
 
     <div class="split right">
-      <div class="centered">
-        <div class="container">
-          <div class="pred">
-            <p class="result"><b>{{input}}</b></p>
-            <p class="result"><b>{{result}}</b></p>
+      {% if display_right %}
+        <div class="flex_container">
+          <div class="result">
+            <p>{{input}}</p>
+          </div>
+          <div>
+            <p>{{result}}</p>
+          </div>
+          <div>
           </div>
         </div>
-      </div>
+      {% endif %}
     </div>
 
     <script type="text/javascript">
-      function success() {
-        if(document.getElementById("textbox").value==="") { 
+      function submit_text() {
+        if(document.getElementById("textbox").value === "") { 
           document.getElementById("text_submit").disabled = true; 
           }
         else { 
           document.getElementById("text_submit").disabled = false;
+          }
+        }
+      function submit_file() {
+        if(document.getElementById("file").value === "") { 
+          document.getElementById("file_submit").disabled = true; 
+          }
+        else { 
+          document.getElementById("file_submit").disabled = false;
           }
         }
     </script>

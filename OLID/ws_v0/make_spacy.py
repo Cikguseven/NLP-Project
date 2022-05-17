@@ -118,7 +118,7 @@ if __name__ == '__main__':
 
     comment_count = len(filtered_comments)
 
-    is_ws = True
+    is_ws = False
 
     if is_ws:
         print('Creating weak supervision spacy file')

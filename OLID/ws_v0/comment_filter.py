@@ -13,15 +13,16 @@ def random_seed():
     return 0.1
 
 
-# Function to filter reddit comments using RegEx and returns list of filtered comments
+# Function to filter comments based on input file/list
 # Arguments:
-# input_file - Absolute/relative filepath of .txt file with reddit comments
 # shuffle - Randomly shuffles comments based on fixed seed
-# remove_username - Removes username in line of text based on first comma
+# remove_username - Removes username in line of text based on first comma (for reddit comments)
+# remove_commas - Removes commas in comments
 # length_min - Comments must contain at least chosen number of words
 # length_max - Comments must contain at most chosen number of words
 # uncased - Converts comments to lowercase
-# unique - Only returns unique comments
+# unique - Removes duplicate comments
+# edmw - Translates EDMW lingo to English
 def c_filter(
     shuffle: bool,
     remove_username: bool,
