@@ -90,10 +90,15 @@ input[type=file] {
   z-index: 1;
 }
 
+.result_title {
+  height: 5vh;
+  margin: 18px 0px 0px 0px;
+}
+
 .result {
   background-color: #f2f2f2;
   margin-bottom: 10px;
-  padding: 0px 12px;
+  padding: 3px 12px;
   display: inline-block;
   border-radius: 1px;
   /* font-family: Arial; */
