@@ -995,6 +995,7 @@ offensive_lexicon = {
 "chee bai",
 "cheebai",
 "cheebye",
+"chee bye",
 "cheena",
 "cherrypopper",
 "chesticle",

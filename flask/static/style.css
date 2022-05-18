@@ -50,7 +50,7 @@ input[type=file] {
   left: 0;
   width: 40%;
   background-color: #f0f2f6;
-  color: #09a4d7;
+  color: black;
 }
 
 /* Control the right side */
@@ -89,6 +89,10 @@ input[type=file] {
 .inputs {
   margin: 10px;
   padding: 5px;
+}
+
+.olid {
+  background-color: #e3e3e8;
 }
 
 #textbox {

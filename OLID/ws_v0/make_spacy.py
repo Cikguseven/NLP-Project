@@ -95,12 +95,12 @@ def spacy_file_creator(
 
 
 if __name__ == '__main__':
-    # OLID tweets
-    training_comments, distribution = main_config.training_tweets_getter(tweet_count=13240)
+    # # OLID tweets
+    # training_comments, distribution = main_config.training_tweets_getter(tweet_count=13240)
 
     # Reddit/HWZ comments
-    # training_comments, distribution = main_config.labelled_comments_getter(
-    #     site='reddit', train_test='train')
+    training_comments, distribution = main_config.labelled_comments_getter(
+        site='hwz', train_test='train')
 
     print(distribution)
 
@@ -113,7 +113,7 @@ if __name__ == '__main__':
         length_max=9999,
         uncased=False,
         unique=False,
-        edmw=False,
+        edmw=True,
         input_list=training_comments)
 
     comment_count = len(filtered_comments)
@@ -125,8 +125,8 @@ if __name__ == '__main__':
     else:
         print('Creating finetune spacy file at ' + main_config.spacy_training_file)
 
-    threshold_a = 0.6
-    threshold_b = 0.1
+    threshold_a = 0.45
+    threshold_b = 0.12
 
     spacy_file_creator(
         comments=filtered_comments[:],

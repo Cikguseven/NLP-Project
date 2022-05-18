@@ -44,18 +44,35 @@
           <div class="result">
             <p>{{input}}</p>
           </div>
-          {% for result in render_result %}
-          <div class="olid_a">
+          <div class="olid a">
             <p>Is the sentence offensive?</p>
-            {% if condition %}
-              <p>{{result}}</p>
+            {% if render_result[0] %}
+              <p>Yes</p>
+            {% else %}
+              <p>No</p>
+            {% endif %}
           </div>
-          <div class="olid_b">
+          <div class="olid b">
             <p>Is the sentence targeted?</p>
-            <p></p>
+            {% if render_result[0] and render_result[1] %}
+              <p>Yes</p>
+            {% elif render_result[0] %}
+              <p>No</p>
+            {% else %}
+              <p>Not Applicable</p>
+            {% endif %}
           </div>
-          <div class="olid_c">
+          <div class="olid c">
             <p>Target of sentence:</p>
+            {% if render_result[2] == 'IND' %}
+              <p>Individual</p>
+            {% elif render_result[2] == 'GRP' %}
+              <p>Group</p>
+            {% elif render_result[2] == 'OTH' %}
+              <p>Others</p>
+            {% else %}
+              <p>Not Applicable</p>
+            {% endif %}
           </div>
         </div>
       {% endif %}

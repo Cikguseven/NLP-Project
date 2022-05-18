@@ -20,7 +20,7 @@ handlabelled_hwz_comments = 'hwz_testing.txt'
 
 validation_split = 0.25
 
-version = 'wk14_ws_v1_60a_10b_lexicon1_tc9removed_13240'
+version = 'wk14_ws_hwz_45a_12b'
 
 spacy_training_file = version + '_training.spacy'
 spacy_validation_file = version + '_vaildation.spacy'

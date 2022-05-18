@@ -41,17 +41,14 @@ def predict():
         input_list=[input_text])
 
     doc = nlp(filtered_text[0])
+    result = doc.cats
 
     is_off = False
     is_tin = False
     target = None
 
-    result_array = [is_off, is_tin, target]
-
-    result = doc.cats
-
     if result["offensive"] > flask_config.offensive_threshold:
-        is_off = True
+        is_off = 1
 
         if result["targeted"] > flask_config.targeted_threshold:
             is_tin = True
@@ -66,6 +63,8 @@ def predict():
                 target = 'GRP'
             else:
                 target = 'OTH'
+
+    result_array = [is_off, is_tin, target]
 
     return render_template('home.html', display_right = True, input = input_text, render_result = result_array)
 
