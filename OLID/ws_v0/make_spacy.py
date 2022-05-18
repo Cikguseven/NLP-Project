@@ -96,7 +96,7 @@ def spacy_file_creator(
 
 if __name__ == '__main__':
     # OLID tweets
-    training_comments, distribution = main_config.training_tweets_getter(tweet_count=10000)
+    training_comments, distribution = main_config.training_tweets_getter(tweet_count=13240)
 
     # Reddit/HWZ comments
     # training_comments, distribution = main_config.labelled_comments_getter(
@@ -118,12 +118,12 @@ if __name__ == '__main__':
 
     comment_count = len(filtered_comments)
 
-    is_ws = False
+    is_ws = True
 
     if is_ws:
-        print('Creating weak supervision spacy file')
+        print('Creating weak supervision spacy file at ' + main_config.spacy_training_file)
     else:
-        print('Creating finetune spacy file')
+        print('Creating finetune spacy file at ' + main_config.spacy_training_file)
 
     threshold_a = 0.6
     threshold_b = 0.1
