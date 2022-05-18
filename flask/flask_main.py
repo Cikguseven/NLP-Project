@@ -42,12 +42,32 @@ def predict():
 
     doc = nlp(filtered_text[0])
 
-    if doc.cats['offensive'] > 0.6:
-        result = 'offensive'
-    else:
-        result = 'not offensive'
+    is_off = False
+    is_tin = False
+    target = None
 
-    return render_template('home.html', display_right = True, input = input_text, result = 'Sentence is ' + result)
+    result_array = [is_off, is_tin, target]
+
+    result = doc.cats
+
+    if result["offensive"] > flask_config.offensive_threshold:
+        is_off = True
+
+        if result["targeted"] > flask_config.targeted_threshold:
+            is_tin = True
+
+            result.pop('offensive')
+            result.pop('targeted')
+            prediction = max(result, key=result.get)
+
+            if prediction == 'individual':
+                target = 'IND'
+            elif prediction == 'group':
+                target = 'GRP'
+            else:
+                target = 'OTH'
+
+    return render_template('home.html', display_right = True, input = input_text, render_result = result_array)
 
 
 if __name__ == "__main__":

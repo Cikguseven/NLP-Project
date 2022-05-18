@@ -44,10 +44,18 @@
           <div class="result">
             <p>{{input}}</p>
           </div>
-          <div>
-            <p>{{result}}</p>
+          {% for result in render_result %}
+          <div class="olid_a">
+            <p>Is the sentence offensive?</p>
+            {% if condition %}
+              <p>{{result}}</p>
           </div>
-          <div>
+          <div class="olid_b">
+            <p>Is the sentence targeted?</p>
+            <p></p>
+          </div>
+          <div class="olid_c">
+            <p>Target of sentence:</p>
           </div>
         </div>
       {% endif %}

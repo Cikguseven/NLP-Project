@@ -65,7 +65,5 @@ def c_filter(
             comment = comment.strip()
 
             output_comments.append(comment)
-
-    print(f'{len(output_comments)} filtered comments')
-    
+   
     return output_comments

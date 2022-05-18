@@ -49,8 +49,8 @@ input[type=file] {
 .left {
   left: 0;
   width: 40%;
-  background-color: #3A3C86;
-  color: white;
+  background-color: #f0f2f6;
+  color: #09a4d7;
 }
 
 /* Control the right side */
@@ -95,7 +95,7 @@ input[type=file] {
   resize: vertical;
   display: block;
   width: 100%;
-  max-height: 500px;
+  max-height: 300px;
 }
 
 
