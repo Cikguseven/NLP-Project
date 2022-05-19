@@ -30,7 +30,7 @@
 
         <br>
         <form action="{{url_for('predict')}}" method="post" class="info" enctype = "multipart/form-data">
-          <p class="options">Upload JSON/CSV file (Max: 1 MB):</p>
+          <p class="options">Upload JSON/CSV file (Max. 1 MB):</p>
           <input type="file" id ="file" name="file" onchange="submit_file()" accept=".json, .csv">
           <br>
           <button type="submit" id="file_submit" class="button" disabled>Submit file</button>
@@ -40,10 +40,10 @@
 
     <div class="split right">
       {% if display_right %}
-        <div class="flex_container">
-          <div>
-            <h2 class="result_title">Result</h2>
-            <p class="result">{{input}}</p>
+        <div class="wrapper">
+          <h2>Result</h2>
+          <div class="result">
+            <p>{{input}}</p>
           </div>
           <div class="categories">
             <div class="olid a">
@@ -81,7 +81,7 @@
       {% endif %}
     </div>
 
-    <script type="text/javascript">
+    <script>
       function submit_text() {
         if(document.getElementById("textbox").value === "") { 
           document.getElementById("text_submit").disabled = true; 
