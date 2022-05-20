@@ -4,26 +4,52 @@ import main_config
 
 spacy.require_gpu()
 
+test_sentences = [
+'fuck',
+'shit',
+'god damn it',
+'you are not funny',
+'they are being assholes',
+'damn girl',
+'cunt',
+'cock',
+'nigger',
+'I want to punch you',
+'I want to knife women',
+'I am going to bomb that building',
+'why is the sun black?',
+'why am I so bad?',
+'how is this possible?',
+'let us meet at 3pm tomorrow',
+'you dont cb',
+'pundei',
+'oranges are tasty'
+]
+
+model = 'wk13_ws_hwz_45a_12b'
+
+if 'reddit' in model or 'hwz' in model:
+    is_edmw = True
+
 filtered_comments = comment_filter.c_filter(
-        shuffle=True,
-        remove_username=True,
+        shuffle=False,
+        remove_username=False,
         remove_commas=False,
-        length_min=10,
+        length_min=0,
         length_max=999,
         uncased=False,
-        unique=True,
-        edmw=False,
-        input_file='redditsg_raw.txt')
+        unique=False,
+        edmw=is_edmw,
+        input_list=test_sentences)
 
-nlp = spacy.load(main_config.model_directory + 'ws_v1_50a_10b_lexicon10_tc9removed' + '/model-best')
+nlp = spacy.load(main_config.model_directory + model + '/model-best')
 
 docs = list(nlp.pipe(filtered_comments))
 
-offensive_threshold = 0.7
-targeted_threshold = 0.2
+offensive_threshold = 0.0003
+targeted_threshold = 0.1
 
-for i in range(10000):
-    doc = docs[i]
+for doc in docs:
     is_off = 'NOT'
     is_tin = 'NULL'
     target = 'NULL'
@@ -49,6 +75,5 @@ for i in range(10000):
 
         else:
             is_tin = 'UNT'
-            print(f'{doc.text} | OFF | UNT | NULL')
 
-    #  print(f'{doc.text} | {is_off} | {is_tin} | {target}')
+    print(f'{doc.text} | {is_off} | {is_tin} | {target}')

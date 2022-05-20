@@ -63,7 +63,7 @@ input[type=file] {
   resize: vertical;
   display: block;
   width: 100%;
-  max-height: 300px;
+  max-height: 30vh;
 }
 
 .inputs {
@@ -96,6 +96,7 @@ input[type=file] {
   padding: 0px 8px;
   height: auto;
   overflow: auto;
+  overflow-x: auto;
 }
 
 .olid {

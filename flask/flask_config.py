@@ -3,5 +3,12 @@ reddit_model = '../OLID/models/wk13_ws_reddit_45a_12b/model-best'
 hwz_model = '../OLID/models/wk13_ws_hwz_45a_12b/model-best'
 ner_model = '../NER/models/v7/model-best'
 
-offensive_threshold = 0.1
-targeted_threshold = 0.1
+# todo
+olid_offensive_threshold = 1
+olid_targeted_threshold = 1
+
+reddit_offensive_threshold = 0.004
+reddit_targeted_threshold = 0.75
+
+hwz_offensive_threshold = 0.0002
+hwz_targeted_threshold = 0.1

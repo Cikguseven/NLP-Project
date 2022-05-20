@@ -1,0 +1,114 @@
+19 filtered comments
+fuck | OFF | TIN | IND
+shit | OFF | TIN | IND
+god damn it | OFF | TIN | IND
+you are not funny | NOT | NULL | NULL
+they are being assholes | OFF | TIN | IND
+damn girl | OFF | TIN | IND
+cunt | NOT | NULL | NULL
+cock | NOT | NULL | NULL
+nigger | OFF | TIN | OTH
+I want to punch you | OFF | TIN | IND
+I want to knife women | OFF | TIN | IND
+I am going to bomb that building | OFF | TIN | IND
+why is the sun black? | NOT | NULL | NULL
+why am I so bad? | OFF | TIN | IND
+how is this possible? | NOT | NULL | NULL
+let us meet at 3pm tomorrow | NOT | NULL | NULL
+you do not cunt | OFF | TIN | IND
+pundei | NOT | NULL | NULL
+oranges are tasty | NOT | NULL | NULL
+[Finished in 7.7s]
+0.1 0.1
+
+19 filtered comments
+fuck | OFF | TIN | IND
+shit | OFF | TIN | IND
+god damn it | OFF | TIN | IND
+you are not funny | OFF | TIN | IND
+they are being assholes | OFF | TIN | IND
+damn girl | OFF | TIN | IND
+cunt | NOT | NULL | NULL
+cock | NOT | NULL | NULL
+nigger | OFF | TIN | OTH
+I want to punch you | OFF | TIN | IND
+I want to knife women | OFF | TIN | IND
+I am going to bomb that building | OFF | TIN | IND
+why is the sun black? | NOT | NULL | NULL
+why am I so bad? | OFF | TIN | IND
+how is this possible? | NOT | NULL | NULL
+let us meet at 3pm tomorrow | NOT | NULL | NULL
+you do not cunt | OFF | TIN | IND
+pundei | NOT | NULL | NULL
+oranges are tasty | NOT | NULL | NULL
+[Finished in 7.7s]
+0.01 0.01
+
+19 filtered comments
+fuck | OFF | TIN | IND
+shit | OFF | TIN | IND
+god damn it | OFF | TIN | IND
+you are not funny | OFF | TIN | IND
+they are being assholes | OFF | TIN | IND
+damn girl | OFF | TIN | IND
+cunt | NOT | NULL | NULL
+cock | NOT | NULL | NULL
+nigger | OFF | TIN | OTH
+I want to punch you | OFF | TIN | IND
+I want to knife women | OFF | TIN | IND
+I am going to bomb that building | OFF | TIN | IND
+why is the sun black? | NOT | NULL | NULL
+why am I so bad? | OFF | TIN | IND
+how is this possible? | NOT | NULL | NULL
+let us meet at 3pm tomorrow | NOT | NULL | NULL
+you do not cunt | OFF | TIN | IND
+pundei | NOT | NULL | NULL
+oranges are tasty | NOT | NULL | NULL
+[Finished in 7.6s]
+0.01 0.1
+
+19 filtered comments
+fuck | OFF | TIN | IND
+shit | OFF | TIN | IND
+god damn it | OFF | TIN | IND
+you are not funny | OFF | TIN | IND
+they are being assholes | OFF | TIN | IND
+damn girl | OFF | TIN | IND
+cunt | NOT | NULL | NULL
+cock | NOT | NULL | NULL
+nigger | OFF | TIN | OTH
+I want to punch you | OFF | TIN | IND
+I want to knife women | OFF | TIN | IND
+I am going to bomb that building | OFF | TIN | IND
+why is the sun black? | OFF | TIN | IND
+why am I so bad? | OFF | TIN | IND
+how is this possible? | NOT | NULL | NULL
+let us meet at 3pm tomorrow | NOT | NULL | NULL
+you do not cunt | OFF | TIN | IND
+pundei | OFF | TIN | OTH
+oranges are tasty | NOT | NULL | NULL
+[Finished in 7.7s]
+0.0005 0.1
+
+19 filtered comments
+fuck | OFF | TIN | IND
+shit | OFF | TIN | IND
+god damn it | OFF | TIN | IND
+you are not funny | OFF | TIN | IND
+they are being assholes | OFF | TIN | IND
+damn girl | OFF | TIN | IND
+cunt | OFF | UNT | NULL
+cock | OFF | UNT | NULL
+nigger | OFF | TIN | OTH
+I want to punch you | OFF | TIN | IND
+I want to knife women | OFF | TIN | IND
+I am going to bomb that building | OFF | TIN | IND
+why is the sun black? | OFF | TIN | IND
+why am I so bad? | OFF | TIN | IND
+how is this possible? | NOT | NULL | NULL
+let us meet at 3pm tomorrow | NOT | NULL | NULL
+you do not cunt | OFF | TIN | IND
+pundei | OFF | TIN | OTH
+oranges are tasty | NOT | NULL | NULL
+[Finished in 7.6s]
+0.0002 0.1
