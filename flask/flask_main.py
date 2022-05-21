@@ -7,8 +7,6 @@ from spacy import displacy
 
 spacy.require_gpu()
 
-HTML_WRAPPER = """<div style="overflow-x: auto; border: 1px solid #e6e9ef; border-radius: 0.25rem; padding: 1rem">{}</div>"""
-
 app = Flask(__name__, template_folder = 'template')
 Markdown(app)
 
@@ -36,11 +34,8 @@ def predict():
     # displaCy visualizer for NER
     ner_nlp = spacy.load(flask_config.ner_model)
     ner_doc = ner_nlp(input_text)
-
-    ner_options = {'colors': {'ORG': '#ffcc33', 'LOC': '#fb836f', 'PER': '#43c6fc', 'MISC': '#a6e22d'}}
-    ner_tags = displacy.render(ner_doc, style='ent', options=ner_options)
-    ner_tags.replace('\n\n', '\n')
-    render_input = ner_tags
+    tagged_input = displacy.render(ner_doc, style='ent', options={'colors': {'ORG': '#ffd24d', 'LOC': '#fc9583', 'PER': '#4fc8fc', 'MISC': '#a9e335'}})
+    tagged_input.replace('\n\n', '\n')
 
     model = request.form.get('models')
 
@@ -48,8 +43,6 @@ def predict():
 
     offensive_threshold = getattr(flask_config, model + '_offensive_threshold')
     targeted_threshold = getattr(flask_config, model + '_targeted_threshold')
-
-    render_thresholds = [offensive_threshold, targeted_threshold]
 
     is_edmw = False
 
@@ -87,8 +80,8 @@ def predict():
 
     render_result = [is_off, is_tin, target]
 
-    return render_template('home.html', display_right = True, input = render_input, result_array = render_result, threshold_array = render_thresholds)
+    return render_template('home.html', display_right = True, input = tagged_input, result_array = render_result)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=6777)

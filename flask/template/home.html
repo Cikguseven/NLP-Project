@@ -32,9 +32,8 @@
       </form>
 
       <br>
-      <br>
 
-      <form action="{{url_for('predict')}}" method="post" enctype = "multipart/form-data">
+      <form action="{{url_for('predict')}}" method="post" enctype="multipart/form-data">
         <p>Upload JSON/CSV file (Max. 1 MB):</p>
         <input type="file" id ="file" name="file" onchange="submit_file()" accept=".json, .csv">
         <br>
@@ -49,12 +48,12 @@
         <h2>Result</h2>
 
         <div class="result">
-          <p>{{input|markdown}}</p>
+          <p class="echo">{{input|markdown}}</p>
         </div>
 
         <div>
           <div class="olid">
-            <p class="question">Is the sentence offensive? {{threshold_array[0]}}</p>
+            <p class="question">Is the sentence offensive?</p>
             {% if result_array[0] %}
               <p><b>Yes</b></p>
             {% else %}
@@ -63,7 +62,7 @@
           </div>
 
           <div class="olid">
-            <p class="question">Is the sentence targeted? {{threshold_array[1]}}</p>
+            <p class="question">Is the sentence targeted?</p>
             {% if result_array[0] and result_array[1] %}
               <p><b>Yes</b></p>
             {% elif result_array[0] %}

@@ -10,5 +10,5 @@ olid_targeted_threshold = 1
 reddit_offensive_threshold = 0.004
 reddit_targeted_threshold = 0.75
 
-hwz_offensive_threshold = 0.0002
+hwz_offensive_threshold = 0.01
 hwz_targeted_threshold = 0.1

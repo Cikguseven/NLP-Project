@@ -10,31 +10,6 @@ h1 {
   text-align: center;
 }
 
-button {
-  font-size: 110%;
-  background-color: #d1d1d1;
-  padding: 8px 16px;
-  display: inline-block;
-  border-radius: 8px;
-  border-color: black;
-  border-style: ridge;
-}
-
-input {
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box
-}
-
-input[type=checkbox] {
-  transform: scale(1.2);
-  vertical-align: 1px;
-}
-
-input[type=file] {
-  transform: scale(1.2);
-}
-
 .split {
   height: 100%;
   position: fixed;
@@ -59,6 +34,11 @@ input[type=file] {
   margin-right: auto;
 }
 
+.inputs {
+  margin: 10px;
+  padding: 5px;
+}
+
 #textbox {
   resize: vertical;
   display: block;
@@ -66,9 +46,24 @@ input[type=file] {
   max-height: 30vh;
 }
 
-.inputs {
-  margin: 10px;
-  padding: 5px;
+button {
+  font-size: 110%;
+  background-color: #d1d1d1;
+  padding: 8px 16px;
+  display: inline-block;
+  border-radius: 8px;
+  border-color: black;
+  border-style: ridge;
+}
+
+input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box
+}
+
+input[type=file] {
+  transform: scale(1.2);
 }
 
 /* Control the right side */
@@ -96,7 +91,10 @@ input[type=file] {
   padding: 0px 8px;
   height: auto;
   overflow: auto;
-  overflow-x: auto;
+}
+
+.echo {
+  /*overflow-y: auto;*/
 }
 
 .olid {
