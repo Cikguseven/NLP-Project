@@ -19,7 +19,7 @@ class UserControlForm(FlaskForm):
                        validators=[InputRequired()],
                        choices=[('olid', 'Trained on OLID'), ('hwz', 'Trained on HWZ EDMW'), ('reddit', 'Trained on r/Singapore')],
                        default='olid')
-    user_input = TextAreaField('Input sentence:', validators=[Optional()])
+    user_input = TextAreaField('Input sentence:', validators=[Optional()], default="Lee Kuan Yew (16 September 1923 – 23 March 2015), born Harry Lee Kuan Yew, often referred to by his initials LKY and in his earlier years as Harry Lee, was a Singaporean statesman and lawyer who served as the first prime minister of Singapore between 1959 and 1990. He is widely recognised as the nation's founding father. Lee was born in Singapore during British colonial rule, which was then part of the Straits Settlements. He gained an educational scholarship to Raffles College, and during the Japanese occupation, he worked in private enterprises and as an administration service officer for the propaganda office. After the war, Lee attended the London School of Economics, but transferred to Fitzwilliam College, Cambridge, graduating with starred-first-class honours in law in 1947. He became a barrister of the Middle Temple in 1950 and campaigned for the United Kingdom to relinquish its colonial rule upon returning to Singapore.")
     user_file = FileField('Upload file:', validators=[Optional(), Regexp(r'^[^/\\]\.(json|csv)$', flags=re.IGNORECASE)])
 
 
@@ -31,9 +31,6 @@ app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
-
-# upload_folder = 'C:/Users/kiero/Documents/GitHub/NLP-Project/flask'
-# allowed_extensions = {'json', 'csv'}
 
 
 @app.errorhandler(404)
