@@ -1,0 +1,45 @@
+{% block content %}
+    <form method="POST" action="/">
+        {{ form.csrf_token }}
+
+        <p>
+            {{ form.model.label }}
+            {{ form.model() }}
+        </p>
+
+        {% if form.model.errors %}
+            <ul class="errors">
+                {% for error in form.model.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ form.user_input.label }}
+        </p>
+        {{ form.user_input(rows=4, cols=80)}}
+
+        {% if form.user_input.errors %}
+            <ul class="errors">
+                {% for error in form.user_input.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ form.user_file.label }}
+        </p>
+
+        {% if form.user_file.errors %}
+            <ul class="errors">
+                {% for error in form.user_file.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    </form>
+
+{% endblock %}

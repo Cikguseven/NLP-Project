@@ -43,17 +43,16 @@ h1 {
   resize: vertical;
   display: block;
   width: 100%;
-  max-height: 30vh;
+  max-height: 40vh;
 }
 
-button {
-  font-size: 110%;
+#submit {
+  font-size: 120%;
   background-color: #d1d1d1;
   padding: 8px 16px;
   display: inline-block;
-  border-radius: 8px;
-  border-color: black;
-  border-style: ridge;
+  border-radius: 6px;
+  box-shadow: 0px 0px 10px 0px;
 }
 
 input {

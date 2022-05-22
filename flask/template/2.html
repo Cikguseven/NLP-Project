@@ -1,0 +1,26 @@
+<!--       <form action="{{url_for('file_upload')}}" method="post" enctype="multipart/form-data">
+        <p>Upload JSON/CSV file (Max. 1 MB):</p>
+        <input type="file" id ="file" name="file" onchange="submit_file()" accept=".json, .csv">
+        <br>
+        <button type="submit" id="file_submit" disabled>Upload file</button>
+      </form>
+
+      <br>
+      <br>
+
+      <form action="{{url_for('predict')}}" method="post">
+        <label for="models">Select model:</label>
+        <select id="models" name="models">
+          <option value="hwz">Trained on HWZ EDMW</option>
+          <option value="reddit">Trained on r/Singapore</option>
+          <option value="olid">Trained on OLID</option>
+        </select>
+
+        <br>
+        <br>
+
+        <p><label for="textbox">Input sentence:</label></p>
+        <textarea id="textbox" name="textbox" onkeyup="submit_text()" rows="4" placeholder="Your text here..." value={{upload_text}}></textarea>
+        <br>
+        <button type="submit" id="text_submit" disabled>Predict</button>
+      </form>   -->  

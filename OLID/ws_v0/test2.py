@@ -1,5 +1,3 @@
-x = [1, 2, 3, 4]
+import time
 
-x = [i + 1 for i in x][:2]
-
-print(x)
+print(time.time())

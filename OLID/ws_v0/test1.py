@@ -1,9 +1,9 @@
-is_off = False
-is_tin = False
-target = None
+allowed_extensions = {'json', 'csv'}
 
-result_array = [is_off, is_tin, target]
 
-is_off = 100
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in allowed_extensions
 
-print(result_array)
+
+print(allowed_file('p.csv'))
