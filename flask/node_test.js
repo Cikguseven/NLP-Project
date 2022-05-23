@@ -1,19 +1,14 @@
-const express = require('express')
-const request = require('request');
+var http = require('http'),
+    fs = require('fs');
 
-const app = express();
-const PORT = 3000;
 
-app.get('/', function(req, res) {
-    res.sendFile('C:/Users/super/Documents/NLP-Project-NEW/flask/template/home_node.html');
-    // request('http://127.0.0.1:5000', function (error, response, body) {
-    //     console.error('error:', error); // Print the error
-    //     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    //     console.log('body:', body); // Print the data received
-    //     res.send(body); //Display the response on the website
-    //   });      
+fs.readFile('template/home_node.html', function (err, html) {
+    if (err) {
+        throw err; 
+    }       
+    http.createServer(function(request, response) {  
+        response.writeHeader(200, {"Content-Type": "text/html"});  
+        response.write(html);  
+        response.end();  
+    }).listen(3000);
 });
-
-app.listen(PORT, function (){ 
-    console.log('Listening on Port 3000');
-});  
