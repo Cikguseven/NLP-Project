@@ -1,3 +1,3 @@
-import time
+x = ' djksnjkdfsnfkj 112 3'
 
-print(time.time())
+print(x.strip())

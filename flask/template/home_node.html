@@ -4,7 +4,7 @@
   <title>Weak Supervision NER & OLID Demo</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="{{url_for('static', filename='/style.css')}}" rel="stylesheet">
+  <link href="/static/style_node.css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,43 +14,22 @@
     </div>
 
     <div class="inputs">
-    {% block content %}
-      <form method="POST" action="{{url_for('predict')}}">
-          {{ form.csrf_token }}
+      <form action="/predict" method="POST">
+        <label for="models">Select model:</label>
+        <select id="models" name="models">
+          <option value="hwz">Trained on HWZ EDMW</option>
+          <option value="reddit">Trained on r/Singapore</option>
+          <option value="olid">Trained on OLID</option>
+        </select>
 
-          <p>
-            {{ form.model.label }}
-            {{ form.model(style="list-style:none;padding:0px") }}
-          </p>
-          {% if form.model.errors %}
-            <ul class="errors">
-              {% for error in form.model.errors %}
-                <li>{{ error }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
+        <br>
+        <br>
 
-          <br>
-
-          <p>
-            {{ form.user_input.label }}
-          </p>
-          <div>
-            {{ form.user_input(id="textbox", rows="8") }}
-          </div>
-          {% if form.user_input.errors %}
-            <div class="errors">
-              {% for error in form.user_input.errors %}
-                <p style="color:red">{{ error.replace('.', '') }}</p>
-              {% endfor %}
-            </div>
-          {% endif %}
-
-          <p>
-            <input type="submit" value="Predict" id="submit">
-          </p>
-      </form>
-    {% endblock %}
+        <p><label for="textbox">Input sentence:</label></p>
+        <textarea id="textbox" name="textbox" onkeyup="submit_text()" rows="4" placeholder="Your text here..." value={{upload_text}}></textarea>
+        <br>
+        <button type="submit" id="text_submit" disabled>Predict</button>
+      </form> 
     </div>
   </div>
 

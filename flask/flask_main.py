@@ -7,8 +7,8 @@ import flask_config
 import spacy
 import os
 from flask_wtf import FlaskForm
-from wtforms import FileField, TextAreaField, RadioField
-from wtforms.validators import InputRequired, Length, Regexp, Optional
+from wtforms import TextAreaField, RadioField
+from wtforms.validators import InputRequired, Regexp
 import re
 
 spacy.require_gpu()
@@ -19,8 +19,7 @@ class UserControlForm(FlaskForm):
                        validators=[InputRequired()],
                        choices=[('olid', 'Trained on OLID'), ('hwz', 'Trained on HWZ EDMW'), ('reddit', 'Trained on r/Singapore')],
                        default='olid')
-    user_input = TextAreaField('Input sentence:', validators=[Optional()], default="Lee Kuan Yew, born Harry Lee Kuan Yew, often referred to by his initials LKY and in his earlier years as Harry Lee, was a Singaporean statesman and lawyer who served as the first prime minister of Singapore between 1959 and 1990. He is widely recognised as the nation's founding father. Lee was born in Singapore during British colonial rule, which was then part of the Straits Settlements. He gained an educational scholarship to Raffles College, and during the Japanese occupation, he worked in private enterprises and as an administration service officer for the propaganda office.")
-    user_file = FileField('Upload file:', validators=[Optional(), Regexp(r'^[^/\\]\.(json|csv)$', flags=re.IGNORECASE)])
+    user_input = TextAreaField('Input sentence:', validators=[InputRequired(), Regexp('[A-Za-z]')], default="Lee Kuan Yew, born Harry Lee Kuan Yew, often referred to by his initials LKY and in his earlier years as Harry Lee, was a Singaporean statesman and lawyer who served as the first prime minister of Singapore between 1959 and 1990. He is widely recognised as the nation's founding father. Lee was born in Singapore during British colonial rule, which was then part of the Straits Settlements. He gained an educational scholarship to Raffles College, and during the Japanese occupation, he worked in private enterprises and as an administration service officer for the propaganda office.")
 
 
 app = Flask(__name__, template_folder = 'template')
@@ -95,18 +94,13 @@ def predict():
     form = UserControlForm()
 
     if form.validate_on_submit():
-        received_model = form.model.data
-        received_text = form.user_input.data
-        received_file = form.user_file.data
+        form_text = form.user_input.data
+        form_model = form.model.data
 
-        if received_text:
-            ner_tagged_input, render_result = pipeline(received_text, received_model)
+        if re.search('[a-zA-Z]', form_text.strip()):
+            ner_tagged_input, render_result = pipeline(form_text, form_model)
 
-        elif received_file:
-            ner_tagged_input, render_result = pipeline(received_fileread(), received_model)
-
-
-        return render_template('home.html', display_right = True, input = ner_tagged_input, result_array = render_result, form=form)
+            return render_template('home.html', display_right=True, input=ner_tagged_input, result_array=render_result, form=form)
 
     return render_template('home.html', form=form)
 
