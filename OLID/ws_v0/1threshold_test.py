@@ -26,7 +26,9 @@ test_sentences = [
 'oranges are tasty'
 ]
 
-model = 'wk13_ws_hwz_45a_12b'
+model = 'wk14_ws_v1_60a_10b_lexicon1_tc9removed_13240'
+
+is_edmw = False
 
 if 'reddit' in model or 'hwz' in model:
     is_edmw = True
@@ -46,8 +48,8 @@ nlp = spacy.load(main_config.model_directory + model + '/model-best')
 
 docs = list(nlp.pipe(filtered_comments))
 
-offensive_threshold = 0.0003
-targeted_threshold = 0.1
+offensive_threshold = 0.01
+targeted_threshold = 0.95
 
 for doc in docs:
     is_off = 'NOT'

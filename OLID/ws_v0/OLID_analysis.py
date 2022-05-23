@@ -20,8 +20,6 @@ def f1_score(p, r):
 
 def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list):
 
-    figure, axis = plt.subplots(2, 2)
-
     if balanced:
         task_a_answers_array = np.concatenate([np.zeros(1102), np.ones(1102)])
         task_b_answers_array = np.concatenate([np.zeros(551), np.ones(551)])
@@ -85,8 +83,12 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
             recall = recall[:-1]
 
             final_f1 = [0, 0, 0]
+            final_t = 0
 
-            for p, r in zip(precision, recall):
+            macro_f1_array = []
+            threshold_array = []
+
+            for p, r, t in zip(precision, recall, thresholds):
                 f1 = f1_score(p, r)
                 tp_count = int(r * total_pos)
                 fp_count = tp_count // p - tp_count
@@ -99,11 +101,23 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
                 else:
                     neg_f1 = 0
                 macro_f1 = (f1  + neg_f1) / 2
+
+                macro_f1_array.append(macro_f1)
+                threshold_array.append(t)
+
                 if macro_f1 > final_f1[-1]:
                     final_f1 = [f1, neg_f1, macro_f1]
+                    final_t = t
 
-            print(task)
             print(final_f1)
+            print(final_t)
+
+            plt.figure()
+            x_threshold = np.array(threshold_array)
+            y_f1 = np.array(macro_f1_array)
+
+            plt.plot(x_threshold, y_f1)
+            plt.show()
 
         tp_ind = 0
         fp_ind = 0
@@ -158,7 +172,6 @@ def evaluate(test_tweets: list, test_answers: list, balanced: bool, models: list
 
         macro_f1 = (f1_ind + f1_grp + f1_oth) / 3
 
-        print('C')
         print([f1_ind, f1_grp, f1_oth, macro_f1])
         print()
 
@@ -185,7 +198,7 @@ if __name__ == '__main__':
         unique=False,
         input_list=get_tweets)
 
-    models = [f for f in listdir(main_config.model_directory) if 'wk14' in f]
+    models = [f for f in listdir(main_config.model_directory) if 'wk14_ws_v1_60a_10b_lexicon1_tc9removed_13240' in f]
 
     evaluate(
         test_tweets=filtered_tweets[:],
