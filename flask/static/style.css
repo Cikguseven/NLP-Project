@@ -62,10 +62,6 @@ input {
   box-sizing: border-box
 }
 
-input[type=file] {
-  transform: scale(1.2);
-}
-
 /* Control the right side */
 .right {
   right: 0;
