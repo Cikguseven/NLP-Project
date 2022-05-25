@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Weak Supervision NER & OLID Demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/dist/a31b2915e4d80790e48d10a7d2440eae.css">
+</head>
+
+<body>
+  <div class="loader" style="visibility:hidden"></div>
+
+  <div class="split left">
+    <div class="title">
+      <h2>Weak Supervision NER & OLID Demo</h2>
+    </div>
+
+    <div class="inputs">
+      <form>
+        <p>Select model:</p>
+        <input type="radio" id="hwz" name="models" value="hwz" checked="checked" required="">
+        <label for="hwz">Trained on HWZ EDMW</label><br>
+        <input type="radio" id="reddit" name="models" value="reddit">
+        <label for="reddit">Trained on r/Singapore</label><br>
+        <input type="radio" id="olid" name="models" value="olid">
+        <label for="olid">Trained on OLID</label> 
+
+        <br>
+        <br>
+
+        <p><label for="textbox">Input sentence:</label></p>
+        <textarea id="textbox" name="textbox" onkeyup="submit_text()" rows="8" placeholder="Your text here...">Lee Kuan Yew, born Harry Lee Kuan Yew, often referred to by his initials LKY and in his earlier years as Harry Lee, was a Singaporean statesman and lawyer who served as the first prime minister of Singapore between 1959 and 1990. He is widely recognised as the nation's founding father. Lee was born in Singapore during British colonial rule, which was then part of the Straits Settlements. He gained an educational scholarship to Raffles College, and during the Japanese occupation, he worked in private enterprises and as an administration service officer for the propaganda office."</textarea>
+
+        <br>
+
+        <button type="submit" id="submit">Predict</button>
+      </form> 
+    </div>
+  </div>
+
+  <div class="split right" style="display: none;">
+    <h3>Result</h3>
+
+    <div>
+      <p class="echo"></p>
+    </div>
+
+    <div>
+      <div class="olid">
+        <p class="question">Is the sentence offensive?</p>
+        <p id="answer_1"></p>
+      </div>
+
+      <div class="olid">
+        <p class="question">Is the sentence targeted?</p>
+        <p id="answer_2"></p>
+      </div>
+
+      <div class="olid">
+        <p class="question">Target of sentence:</p>
+        <p id="answer_3"></p>
+      </div>
+    </div>
+  </div>
+   <script src="/dist/cf26277eea8f5b52e7e9aa841495cbcd.js"></script>
+   <script>
+    function submit_text() {
+        if(document.getElementById("textbox").value === "") { 
+          document.getElementById("text_submit").disabled = true; 
+          }
+        else { 
+          document.getElementById("text_submit").disabled = false;
+          }
+        }
+  </script>
+</body>
+</html>

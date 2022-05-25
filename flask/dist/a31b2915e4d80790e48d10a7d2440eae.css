@@ -10,6 +10,24 @@ h2 {
   text-align: center;
 }
 
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top:40%;
+  left:50%;
+  z-index: 2;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .split {
   height: 100%;
   position: fixed;
@@ -47,7 +65,7 @@ h2 {
 }
 
 #submit {
-  font-size: 120%;
+  font-size: 110%;
   background-color: #d1d1d1;
   padding: 8px 16px;
   display: inline-block;
@@ -69,15 +87,11 @@ input {
   background-color: #f3f3f5;
   padding: 20px;
   box-sizing: border-box;
-}
-
-.wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
-.result {
+.echo {
   background-color: #f2f2f2;
   border-radius: 1px;
   border-style: ridge;

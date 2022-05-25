@@ -15,9 +15,16 @@ Markdown(app)
 
 
 def pipeline(input_sentence: str, model: str):
+
     # displaCy visualizer for NER
     ner_nlp = spacy.load(flask_config.ner_model)
+
+    stopwords = ner_nlp.Defaults.stop_words
+    stopwords.add('to be')
+
     ner_doc = ner_nlp(input_sentence)
+    ner_doc.ents = tuple(x for x in ner_doc.ents if x.text.lower() not in stopwords)
+    
     output_ner_tags = displacy.render(ner_doc, style='ent', options={'colors': {'ORG': '#ffd24d', 'LOC': '#fc9583', 'PER': '#4fc8fc', 'MISC': '#a9e335'}})
     output_ner_tags.replace('\n\n', '\n')
 
@@ -65,7 +72,7 @@ def pipeline(input_sentence: str, model: str):
 
     return output_ner_tags, is_off, is_tin, target
 
-@app.route('/predict', methods =['POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
 	form_text = request.form['textbox']
 	form_model = request.form['models']
