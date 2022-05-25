@@ -33,14 +33,8 @@ def pipeline(input_sentence: str, model: str):
     offensive_threshold = getattr(flask_config, model + '_offensive_threshold')
     targeted_threshold = getattr(flask_config, model + '_targeted_threshold')
 
-    is_edmw = False
-
-    if model == 'reddit' or model == 'hwz':
-        is_edmw = True
-
     filtered_text = comment_filter.c_filter(
-        uncased=False,
-        edmw=is_edmw,
+        edmw=True if model == 'reddit' or model == 'hwz' else False,
         input_list=[input_sentence])
 
     doc = nlp(filtered_text[0])

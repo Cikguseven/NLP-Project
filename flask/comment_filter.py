@@ -17,7 +17,6 @@ def random_seed():
 # uncased - Converts comments to lowercase
 # edmw - Translates EDMW lingo to English
 def c_filter(
-    uncased: bool, 
     edmw=False,
     **kwargs):
 
@@ -58,9 +57,6 @@ def c_filter(
 
             for old, new in shared_filters.cased_regex_replacements:
                 comment = re.sub(old, new, comment)
-
-            if uncased:
-                comment = comment.lower()
 
             comment = comment.strip()
 
