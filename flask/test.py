@@ -2,9 +2,6 @@ import re
 import comment_filter
 import unidecode
 
-
-
-
 x = "ḟ̶̹̎̅̋̂ų̴̢̣͈͚̰͍̻͔̦͎͉̬͓̒̀̀͌́͌̚͠͝c̶̱̝̖̳̿͋̋̎͛̐͋k̶̢͔̰̲̼̯̠̭̜͆̏̊͂̀͐̓̓́̈́̚̚͠ ̸͓̜̙̺͇̬̝̟̽̌̓͌͆́̀͘y̶̝͇̹̟̱͉̒̈͆̀͝͠o̸̡̧̪̱̰̺͙͉͓͕̜͒͛̌̿̿̆̊̅̆͝ṵ̵̪̞͉̦̞̐̉'"
 
 x = unidecode.unidecode(x)

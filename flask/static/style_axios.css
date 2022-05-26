@@ -85,10 +85,10 @@ button {
   box-shadow: 0 6px #999999;
 }
 
-button:hover {background-color: #bfbfbf}
+button:hover {background-color: #cccccc}
 
 button:active {
-  background-color: #bfbfbf;
+  background-color: #cccccc;
   box-shadow: 0 3px #595959;
   transform: translateY(3px);
 }
@@ -124,11 +124,8 @@ input {
 }
 
 .olid {
-  background-color: #e3e3e8;
   margin: 10px 0px 0px;
   padding: 1px 15px;
-}
-
-.question {
-  color: #444755;
+  border-radius: 1px;
+  border-style: ridge;
 }
