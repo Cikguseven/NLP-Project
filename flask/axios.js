@@ -8,6 +8,9 @@ form.addEventListener('submit', async event => {
 
   const formData = new FormData(form);
 
+  var error = document.querySelector('#error');
+  error.style.display = 'none';
+
   var loader = document.querySelector('.loader');
   loader.style.visibility = 'visible';
 
@@ -25,22 +28,29 @@ export const predict = async formData => {
     var loader = document.querySelector('.loader')
     loader.style.visibility = 'hidden';
 
-    var split_right = document.querySelector('.right');
-    split_right.style.visibility = 'visible';
-
     const output = response.data;
 
-    var echo = document.querySelector('.echo');
-    echo.innerHTML = output.tagged_input;
+    if (output.error) {
+      var error = document.querySelector('#error');
+      error.style.display = 'initial';
+    }
 
-    var offensive_answer = document.querySelector('#answer_1');
-    offensive_answer.innerHTML = output.offensive;
+    else {
+      var split_right = document.querySelector('.right');
+      split_right.style.visibility = 'visible';
 
-    var targeted_answer = document.querySelector('#answer_2');
-    targeted_answer.innerHTML = output.targeted;
+      var echo = document.querySelector('.echo');
+      echo.innerHTML = output.tagged_input;
 
-    var target_answer = document.querySelector('#answer_3');
-    target_answer.innerHTML = output.target;
+      var offensive_answer = document.querySelector('#answer_1');
+      offensive_answer.innerHTML = output.offensive;
+
+      var targeted_answer = document.querySelector('#answer_2');
+      targeted_answer.innerHTML = output.targeted;
+
+      var target_answer = document.querySelector('#answer_3');
+      target_answer.innerHTML = output.target;
+    }
 
   } catch (errors) {
     console.error(errors);

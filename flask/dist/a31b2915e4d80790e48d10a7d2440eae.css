@@ -11,8 +11,8 @@ h2 {
 }
 
 .loader {
-  border: 6px solid black; /* Light grey */
-  border-top: 6px solid transparent; /* Blue */
+  border: 6px solid gray;
+  border-top: 6px solid transparent;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -21,6 +21,7 @@ h2 {
   top:40%;
   left:50%;
   z-index: 2;
+  visibility: hidden;
 }
 
 @keyframes spin {
@@ -62,15 +63,34 @@ h2 {
   display: block;
   width: 100%;
   max-height: 40vh;
+  padding: 6px;
+  box-sizing: border-box;
+  text-align: justify;
+  white-space: normal;
 }
 
-#submit {
+#error {
+  color: red;
+  display: none; 
+}
+
+button {
   font-size: 110%;
-  background-color: #d1d1d1;
+  background-color: #e6e6e6;
   padding: 8px 16px;
   display: inline-block;
   border-radius: 6px;
-  box-shadow: 0px 0px 10px 0px;
+  border-style: solid;
+  border-color: black;
+  box-shadow: 0 6px #999999;
+}
+
+button:hover {background-color: #bfbfbf}
+
+button:active {
+  background-color: #bfbfbf;
+  box-shadow: 0 3px #595959;
+  transform: translateY(3px);
 }
 
 input {
@@ -84,15 +104,16 @@ input {
   right: 0;
   height: 100%;
   width: 60%;
-  background-color: #f3f3f5;
+  background-color: white;
   padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  visibility: hidden;
 }
 
 .echo {
-  background-color: #f2f2f2;
+  background-color: white;
   border-radius: 1px;
   border-style: ridge;
   text-align: justify;

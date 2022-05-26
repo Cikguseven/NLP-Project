@@ -62,19 +62,21 @@ def pipeline(input_sentence: str, model: str):
                 target = 'Other'
 
         else:
-        	is_tin = 'No'
+            is_tin = 'No'
 
     return output_ner_tags, is_off, is_tin, target
 
 @app.route('/predict', methods=['POST'])
 def predict():
-	form_text = request.form['textbox']
-	form_model = request.form['models']
+    form_text = request.form['textbox']
+    form_model = request.form['models']
 
-	if re.search('[a-zA-Z]', form_text.strip()):
-		ner_tagged_input, offensive_result, targeted_result, target_result = pipeline(form_text, form_model)
+    if re.search('[a-zA-Z]', form_text.strip()):
+        ner_tagged_input, offensive_result, targeted_result, target_result = pipeline(form_text, form_model)
 
-		return jsonify({"display_right": True, "tagged_input": ner_tagged_input, "offensive": offensive_result, "targeted":targeted_result, "target":target_result})
+        return jsonify({"tagged_input": ner_tagged_input, "offensive": offensive_result, "targeted":targeted_result, "target":target_result})
+
+    return jsonify({"error": True})
 
 if __name__ == '__main__':
     app.run(debug=True)

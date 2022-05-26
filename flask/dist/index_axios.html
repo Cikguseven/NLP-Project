@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <div class="loader" style="visibility:hidden"></div>
+  <div class="loader"></div>
 
   <div class="split left">
     <div class="title">
@@ -33,6 +33,9 @@
         <p><label for="textbox">Input sentence:</label></p>
         <textarea id="textbox" name="textbox" onkeyup="submit_text()" rows="8" placeholder="Your text here..." required="">Lee Kuan Yew, born Harry Lee Kuan Yew, often referred to by his initials LKY and in his earlier years as Harry Lee, was a Singaporean statesman and lawyer who served as the first prime minister of Singapore between 1959 and 1990. He is widely recognised as the nation's founding father. Lee was born in Singapore during British colonial rule, which was then part of the Straits Settlements. He gained an educational scholarship to Raffles College, and during the Japanese occupation, he worked in private enterprises and as an administration service officer for the propaganda office.</textarea>
 
+        <p id="error">Please enter a valid sentence</p>
+
+        <br>
         <br>
 
         <button type="submit" id="submit">Predict</button>
@@ -40,7 +43,7 @@
     </div>
   </div>
 
-  <div class="split right" style="visibility: hidden;">
+  <div class="split right">
     <h3>Result</h3>
 
     <div>
