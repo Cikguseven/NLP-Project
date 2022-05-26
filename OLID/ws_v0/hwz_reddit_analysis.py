@@ -159,7 +159,7 @@ def evaluate(test_comments: list, distribution: list, models: list):
 if __name__ == '__main__':
 
     comments, distribution = main_config.labelled_comments_getter(
-        site='reddit', train_test='test')
+        site='hwz', train_test='test')
 
     print(distribution)
 
@@ -174,7 +174,7 @@ if __name__ == '__main__':
         edmw=True,
         input_list=comments)
 
-    models = [f for f in listdir(main_config.model_directory) if 'wk13_ws_reddit_45a_12b' in f]
+    models = [f for f in listdir(main_config.model_directory) if 'wk' in f and 'hwz' in f]
 
     evaluate(
         test_comments=filtered_comments,
