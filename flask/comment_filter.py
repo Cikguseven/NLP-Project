@@ -3,6 +3,7 @@ import sys
 import re
 import emoji
 import wordsegment
+import unidecode
 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 import shared_filters
@@ -31,6 +32,9 @@ def c_filter(
     for comment in comments:
         
         if re.search('[a-zA-Z]', comment):
+
+            # Converts non-ASCII characters (diacritics) to ASCII
+            comment = unidecode.unidecode(comment)
 
             # User mention replacement
             if comment.find('@USER') != comment.rfind('@USER'):
