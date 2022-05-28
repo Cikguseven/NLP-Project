@@ -39,8 +39,8 @@ export const predict = async formData => {
       var split_right = document.querySelector('.right');
       split_right.style.visibility = 'visible';
 
-      var echo = document.querySelector('.echo');
-      echo.innerHTML = output.tagged_input;
+      var results = document.querySelector('.results');
+      results.innerHTML = output.tagged_input;
 
       var offensive_answer = document.querySelector('#answer_1');
       offensive_answer.innerHTML = output.offensive;

@@ -4,8 +4,8 @@
   <title>Weak Supervision NER & OLID Demo</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="/dist/a31b2915e4d80790e48d10a7d2440eae.css">
-</head>
+  <link rel="stylesheet" type="text/css" href="/style_axios.8f6b39b1.css">
+<script src="/style_axios.8f6b39b1.js"></script></head>
 
 <body>
   <div class="loader"></div>
@@ -47,7 +47,7 @@
     <h3>Result</h3>
 
     <div>
-      <p class="echo"></p>
+      <p class="results"></p>
     </div>
 
     <div>
@@ -67,16 +67,13 @@
       </div>
     </div>
   </div>
-   <script src="/dist/cf26277eea8f5b52e7e9aa841495cbcd.js"></script>
-   <script>
-    function submit_text() {
-      if(document.getElementById("textbox").value === "") { 
-        document.getElementById("submit").disabled = true; 
-      }
-      else { 
-        document.getElementById("submit").disabled = false;
-      }
-    }
-  </script>
+   <script src="/axios.2953b418.js"></script>
+   <script>function submit_text() {
+  if (document.getElementById("textbox").value === "") {
+    document.getElementById("submit").disabled = true;
+  } else {
+    document.getElementById("submit").disabled = false;
+  }
+}</script>
 </body>
 </html>

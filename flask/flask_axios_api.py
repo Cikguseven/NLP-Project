@@ -21,6 +21,7 @@ def pipeline(input_sentence: str, model: str):
 
     stopwords = ner_nlp.Defaults.stop_words
     stopwords.add('to be')
+    stopwords.add('u')
 
     ner_doc = ner_nlp(input_sentence)
     ner_doc.ents = tuple(x for x in ner_doc.ents if x.text.lower() not in stopwords)
