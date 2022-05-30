@@ -76,20 +76,20 @@ h2 {
 
 button {
   font-size: 110%;
-  background-color: #e6e6e6;
+  background-color: white;
   padding: 8px 16px;
   display: inline-block;
   border-radius: 6px;
   border-style: solid;
   border-color: black;
-  box-shadow: 0 6px #999999;
+  box-shadow: 0 6px #8c8c8c;
 }
 
 button:hover {background-color: #cccccc}
 
 button:active {
   background-color: #cccccc;
-  box-shadow: 0 3px #595959;
+  box-shadow: 0 3px #4d4d4d;
   transform: translateY(3px);
 }
 
@@ -104,7 +104,6 @@ input {
   right: 0;
   height: 100%;
   width: 60%;
-  background-color: white;
   padding: 20px;
   box-sizing: border-box;
   display: flex;
@@ -112,13 +111,12 @@ input {
   visibility: hidden;
 }
 
-.echo {
-  background-color: white;
+.results {
   border-radius: 1px;
   border-style: ridge;
   text-align: justify;
   line-height: 125%;
-  padding: 0px 8px;
+  padding: 2px 8px;
   height: auto;
   overflow: auto;
 }
