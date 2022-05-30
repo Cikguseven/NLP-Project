@@ -68,7 +68,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({6:[function(require,module,exports) {
+})({5:[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -824,7 +824,7 @@ try {
   }
 }
 
-},{}],10:[function(require,module,exports) {
+},{}],12:[function(require,module,exports) {
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -1188,7 +1188,7 @@ module.exports = {
   stripBOM: stripBOM
 };
 
-},{"./helpers/bind":10}],24:[function(require,module,exports) {
+},{"./helpers/bind":12}],24:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -1260,7 +1260,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   return url;
 };
 
-},{"./../utils":9}],25:[function(require,module,exports) {
+},{"./../utils":9}],26:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -1316,7 +1316,7 @@ InterceptorManager.prototype.forEach = function forEach(fn) {
 
 module.exports = InterceptorManager;
 
-},{"./../utils":9}],21:[function(require,module,exports) {
+},{"./../utils":9}],20:[function(require,module,exports) {
 'use strict';
 
 var utils = require('../utils');
@@ -1330,7 +1330,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
   });
 };
 
-},{"../utils":9}],20:[function(require,module,exports) {
+},{"../utils":9}],21:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -1374,7 +1374,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
   return error;
 };
 
-},{}],33:[function(require,module,exports) {
+},{}],34:[function(require,module,exports) {
 'use strict';
 
 var enhanceError = require('./enhanceError');
@@ -1394,7 +1394,7 @@ module.exports = function createError(message, config, code, request, response) 
   return enhanceError(error, config, code, request, response);
 };
 
-},{"./enhanceError":20}],28:[function(require,module,exports) {
+},{"./enhanceError":21}],32:[function(require,module,exports) {
 'use strict';
 
 var createError = require('./createError');
@@ -1421,7 +1421,7 @@ module.exports = function settle(resolve, reject, response) {
   }
 };
 
-},{"./createError":33}],29:[function(require,module,exports) {
+},{"./createError":34}],28:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -1508,7 +1508,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
     : baseURL;
 };
 
-},{}],32:[function(require,module,exports) {
+},{}],30:[function(require,module,exports) {
 'use strict';
 
 var isAbsoluteURL = require('../helpers/isAbsoluteURL');
@@ -1585,7 +1585,7 @@ module.exports = function parseHeaders(headers) {
   return parsed;
 };
 
-},{"./../utils":9}],30:[function(require,module,exports) {
+},{"./../utils":9}],29:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -1846,7 +1846,7 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-},{"./../utils":9,"./../core/settle":28,"./../helpers/cookies":29,"./../helpers/buildURL":24,"../core/buildFullPath":32,"./../helpers/parseHeaders":31,"./../helpers/isURLSameOrigin":30,"../core/createError":33}],19:[function(require,module,exports) {
+},{"./../utils":9,"./../core/settle":32,"./../helpers/cookies":28,"./../helpers/buildURL":24,"../core/buildFullPath":30,"./../helpers/parseHeaders":31,"./../helpers/isURLSameOrigin":29,"../core/createError":34}],19:[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {};
@@ -2033,7 +2033,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],13:[function(require,module,exports) {
+},{}],10:[function(require,module,exports) {
 var process = require("process");
 'use strict';
 
@@ -2170,7 +2170,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-},{"./utils":9,"./helpers/normalizeHeaderName":21,"./core/enhanceError":20,"./adapters/xhr":22,"./adapters/http":22,"process":19}],34:[function(require,module,exports) {
+},{"./utils":9,"./helpers/normalizeHeaderName":20,"./core/enhanceError":21,"./adapters/xhr":22,"./adapters/http":22,"process":19}],33:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -2194,7 +2194,7 @@ module.exports = function transformData(data, headers, fns) {
   return data;
 };
 
-},{"./../utils":9,"./../defaults":13}],18:[function(require,module,exports) {
+},{"./../utils":9,"./../defaults":10}],13:[function(require,module,exports) {
 'use strict';
 
 module.exports = function isCancel(value) {
@@ -2285,7 +2285,7 @@ module.exports = function dispatchRequest(config) {
   });
 };
 
-},{"./../utils":9,"./transformData":34,"../cancel/isCancel":18,"../defaults":13}],11:[function(require,module,exports) {
+},{"./../utils":9,"./transformData":33,"../cancel/isCancel":13,"../defaults":10}],14:[function(require,module,exports) {
 'use strict';
 
 var utils = require('../utils');
@@ -2460,7 +2460,7 @@ module.exports = {
   ]
 }
 ;
-},{}],26:[function(require,module,exports) {
+},{}],25:[function(require,module,exports) {
 'use strict';
 
 var pkg = require('./../../package.json');
@@ -2567,7 +2567,7 @@ module.exports = {
   validators: validators
 };
 
-},{"./../../package.json":27}],12:[function(require,module,exports) {
+},{"./../../package.json":27}],11:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -2717,7 +2717,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = Axios;
 
-},{"./../utils":9,"../helpers/buildURL":24,"./InterceptorManager":25,"./dispatchRequest":23,"./mergeConfig":11,"../helpers/validator":26}],14:[function(require,module,exports) {
+},{"./../utils":9,"../helpers/buildURL":24,"./InterceptorManager":26,"./dispatchRequest":23,"./mergeConfig":14,"../helpers/validator":25}],16:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -2738,7 +2738,7 @@ Cancel.prototype.__CANCEL__ = true;
 
 module.exports = Cancel;
 
-},{}],15:[function(require,module,exports) {
+},{}],17:[function(require,module,exports) {
 'use strict';
 
 var Cancel = require('./Cancel');
@@ -2797,7 +2797,7 @@ CancelToken.source = function source() {
 
 module.exports = CancelToken;
 
-},{"./Cancel":14}],16:[function(require,module,exports) {
+},{"./Cancel":16}],15:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -2826,7 +2826,7 @@ module.exports = function spread(callback) {
   };
 };
 
-},{}],17:[function(require,module,exports) {
+},{}],18:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -2897,7 +2897,7 @@ module.exports = axios;
 // Allow use of default import syntax in TypeScript
 module.exports.default = axios;
 
-},{"./utils":9,"./helpers/bind":10,"./core/Axios":12,"./core/mergeConfig":11,"./defaults":13,"./cancel/Cancel":14,"./cancel/CancelToken":15,"./cancel/isCancel":18,"./helpers/spread":16,"./helpers/isAxiosError":17}],7:[function(require,module,exports) {
+},{"./utils":9,"./helpers/bind":12,"./core/Axios":11,"./core/mergeConfig":14,"./defaults":10,"./cancel/Cancel":16,"./cancel/CancelToken":17,"./cancel/isCancel":13,"./helpers/spread":15,"./helpers/isAxiosError":18}],7:[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":8}],2:[function(require,module,exports) {
 "use strict";
@@ -2966,7 +2966,7 @@ const predict = exports.predict = async formData => {
     console.error(errors);
   }
 };
-},{"regenerator-runtime/runtime":6,"axios":7}],0:[function(require,module,exports) {
+},{"regenerator-runtime/runtime":5,"axios":7}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module() {
@@ -2984,7 +2984,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://localhost:58607/');
+  var ws = new WebSocket('ws://localhost:64652/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
