@@ -68,7 +68,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({7:[function(require,module,exports) {
+})({8:[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -824,7 +824,7 @@ try {
   }
 }
 
-},{}],12:[function(require,module,exports) {
+},{}],19:[function(require,module,exports) {
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -837,7 +837,7 @@ module.exports = function bind(fn, thisArg) {
   };
 };
 
-},{}],10:[function(require,module,exports) {
+},{}],12:[function(require,module,exports) {
 'use strict';
 
 var bind = require('./helpers/bind');
@@ -1188,7 +1188,7 @@ module.exports = {
   stripBOM: stripBOM
 };
 
-},{"./helpers/bind":12}],25:[function(require,module,exports) {
+},{"./helpers/bind":19}],27:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -1260,7 +1260,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   return url;
 };
 
-},{"./../utils":10}],24:[function(require,module,exports) {
+},{"./../utils":12}],26:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -1316,7 +1316,7 @@ InterceptorManager.prototype.forEach = function forEach(fn) {
 
 module.exports = InterceptorManager;
 
-},{"./../utils":10}],22:[function(require,module,exports) {
+},{"./../utils":12}],23:[function(require,module,exports) {
 'use strict';
 
 var utils = require('../utils');
@@ -1330,7 +1330,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
   });
 };
 
-},{"../utils":10}],21:[function(require,module,exports) {
+},{"../utils":12}],24:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -1374,7 +1374,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
   return error;
 };
 
-},{}],34:[function(require,module,exports) {
+},{}],36:[function(require,module,exports) {
 'use strict';
 
 var enhanceError = require('./enhanceError');
@@ -1394,7 +1394,7 @@ module.exports = function createError(message, config, code, request, response) 
   return enhanceError(error, config, code, request, response);
 };
 
-},{"./enhanceError":21}],29:[function(require,module,exports) {
+},{"./enhanceError":24}],30:[function(require,module,exports) {
 'use strict';
 
 var createError = require('./createError');
@@ -1421,7 +1421,7 @@ module.exports = function settle(resolve, reject, response) {
   }
 };
 
-},{"./createError":34}],28:[function(require,module,exports) {
+},{"./createError":36}],33:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -1476,7 +1476,7 @@ module.exports = (
     })()
 );
 
-},{"./../utils":10}],36:[function(require,module,exports) {
+},{"./../utils":12}],38:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -1492,7 +1492,7 @@ module.exports = function isAbsoluteURL(url) {
   return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
 };
 
-},{}],37:[function(require,module,exports) {
+},{}],39:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -1508,7 +1508,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
     : baseURL;
 };
 
-},{}],30:[function(require,module,exports) {
+},{}],31:[function(require,module,exports) {
 'use strict';
 
 var isAbsoluteURL = require('../helpers/isAbsoluteURL');
@@ -1530,7 +1530,7 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
   return requestedURL;
 };
 
-},{"../helpers/isAbsoluteURL":36,"../helpers/combineURLs":37}],31:[function(require,module,exports) {
+},{"../helpers/isAbsoluteURL":38,"../helpers/combineURLs":39}],32:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -1585,7 +1585,7 @@ module.exports = function parseHeaders(headers) {
   return parsed;
 };
 
-},{"./../utils":10}],33:[function(require,module,exports) {
+},{"./../utils":12}],35:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -1655,7 +1655,7 @@ module.exports = (
     })()
 );
 
-},{"./../utils":10}],23:[function(require,module,exports) {
+},{"./../utils":12}],25:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -1846,7 +1846,7 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-},{"./../utils":10,"./../core/settle":29,"./../helpers/cookies":28,"./../helpers/buildURL":25,"../core/buildFullPath":30,"./../helpers/parseHeaders":31,"./../helpers/isURLSameOrigin":33,"../core/createError":34}],20:[function(require,module,exports) {
+},{"./../utils":12,"./../core/settle":30,"./../helpers/cookies":33,"./../helpers/buildURL":27,"../core/buildFullPath":31,"./../helpers/parseHeaders":32,"./../helpers/isURLSameOrigin":35,"../core/createError":36}],22:[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {};
@@ -2033,7 +2033,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],11:[function(require,module,exports) {
+},{}],13:[function(require,module,exports) {
 var process = require("process");
 'use strict';
 
@@ -2170,7 +2170,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-},{"./utils":10,"./helpers/normalizeHeaderName":22,"./core/enhanceError":21,"./adapters/xhr":23,"./adapters/http":23,"process":20}],35:[function(require,module,exports) {
+},{"./utils":12,"./helpers/normalizeHeaderName":23,"./core/enhanceError":24,"./adapters/xhr":25,"./adapters/http":25,"process":22}],37:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -2194,14 +2194,14 @@ module.exports = function transformData(data, headers, fns) {
   return data;
 };
 
-},{"./../utils":10,"./../defaults":11}],16:[function(require,module,exports) {
+},{"./../utils":12,"./../defaults":13}],20:[function(require,module,exports) {
 'use strict';
 
 module.exports = function isCancel(value) {
   return !!(value && value.__CANCEL__);
 };
 
-},{}],26:[function(require,module,exports) {
+},{}],28:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -2285,7 +2285,7 @@ module.exports = function dispatchRequest(config) {
   });
 };
 
-},{"./../utils":10,"./transformData":35,"../cancel/isCancel":16,"../defaults":11}],13:[function(require,module,exports) {
+},{"./../utils":12,"./transformData":37,"../cancel/isCancel":20,"../defaults":13}],16:[function(require,module,exports) {
 'use strict';
 
 var utils = require('../utils');
@@ -2374,7 +2374,7 @@ module.exports = function mergeConfig(config1, config2) {
   return config;
 };
 
-},{"../utils":10}],32:[function(require,module,exports) {
+},{"../utils":12}],34:[function(require,module,exports) {
 module.exports = {
   "name": "axios",
   "version": "0.21.4",
@@ -2460,7 +2460,7 @@ module.exports = {
   ]
 }
 ;
-},{}],27:[function(require,module,exports) {
+},{}],29:[function(require,module,exports) {
 'use strict';
 
 var pkg = require('./../../package.json');
@@ -2567,7 +2567,7 @@ module.exports = {
   validators: validators
 };
 
-},{"./../../package.json":32}],14:[function(require,module,exports) {
+},{"./../../package.json":34}],14:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -2717,7 +2717,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = Axios;
 
-},{"./../utils":10,"../helpers/buildURL":25,"./InterceptorManager":24,"./dispatchRequest":26,"./mergeConfig":13,"../helpers/validator":27}],15:[function(require,module,exports) {
+},{"./../utils":12,"../helpers/buildURL":27,"./InterceptorManager":26,"./dispatchRequest":28,"./mergeConfig":16,"../helpers/validator":29}],15:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -2826,7 +2826,7 @@ module.exports = function spread(callback) {
   };
 };
 
-},{}],19:[function(require,module,exports) {
+},{}],21:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -2839,7 +2839,7 @@ module.exports = function isAxiosError(payload) {
   return (typeof payload === 'object') && (payload.isAxiosError === true);
 };
 
-},{}],9:[function(require,module,exports) {
+},{}],11:[function(require,module,exports) {
 'use strict';
 
 var utils = require('./utils');
@@ -2897,9 +2897,9 @@ module.exports = axios;
 // Allow use of default import syntax in TypeScript
 module.exports.default = axios;
 
-},{"./utils":10,"./helpers/bind":12,"./core/Axios":14,"./core/mergeConfig":13,"./defaults":11,"./cancel/Cancel":15,"./cancel/CancelToken":17,"./cancel/isCancel":16,"./helpers/spread":18,"./helpers/isAxiosError":19}],8:[function(require,module,exports) {
+},{"./utils":12,"./helpers/bind":19,"./core/Axios":14,"./core/mergeConfig":16,"./defaults":13,"./cancel/Cancel":15,"./cancel/CancelToken":17,"./cancel/isCancel":20,"./helpers/spread":18,"./helpers/isAxiosError":21}],10:[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":9}],6:[function(require,module,exports) {
+},{"./lib/axios":11}],5:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2966,7 +2966,7 @@ const predict = exports.predict = async formData => {
     console.error(errors);
   }
 };
-},{"regenerator-runtime/runtime":7,"axios":8}],0:[function(require,module,exports) {
+},{"regenerator-runtime/runtime":8,"axios":10}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module() {
@@ -2984,7 +2984,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://localhost:65261/');
+  var ws = new WebSocket('ws://localhost:58560/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -3085,4 +3085,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,6])
+},{}]},{},[0,5])
