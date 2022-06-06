@@ -117,8 +117,9 @@ input {
   text-align: justify;
   line-height: 125%;
   padding: 2px 8px;
-  height: 45vh;
-  overflow: scroll;
+  height: auto;
+/*  height: 45vh;*/
+/*  overflow-y: scroll;*/
 }
 
 .olid {
