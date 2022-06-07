@@ -1,5 +1,5 @@
 # NLP Project
-Using weak supervision to perform named entity recognition and offensive language detection on r/Singapore comments
+Using weak supervision to perform named entity recognition and offensive language identification on r/Singapore and EDMW comments
 
 #### Quick start: 
 `pip install requirements.txt` in NER/OLID folder.
