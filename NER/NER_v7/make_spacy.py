@@ -21,16 +21,13 @@ def spacy_file_creator(
     nlp = spacy.load(load_spacy_model)
     docs = list(nlp.pipe(comments))
 
-
     # Adding labels from combined annotators in conll2003_ner.py module
     full_annotator = modified_conll2003_ner.NERAnnotator().add_all()
     docs = list(full_annotator.pipe(docs))
 
-
     # Resolve aggregated labelling functions to create a single annotation for each
     # document by estimating a generative model.
     if weak_supervision_mode:
-
         unified_model = skweak.aggregation.HMM("hmm", ["LOC", "MISC", "ORG", "PER"], initial_weights={"custom_lf": 60, "core_web_trf": 10, "money_detector": 10, "proper_detector": 0.7})
         unified_model.add_underspecified_label("NOT_ENT", ["O"])
 
@@ -58,18 +55,19 @@ def spacy_file_creator(
 if __name__ == '__main__':
     import time 
     start = time.time()
-    # # Scrape comments from r/sg subreddit.
-    # c_scraper(
-    # output_file=main_config.scraped_comments,
-    # subreddit='Singapore',
-    # scrape_limit=30)
 
-    # Import unique filtered comments for testing and validation
+    # Scrape comments from r/sg subreddit.
+    c_scraper(
+    output_file=main_config.scraped_comments,
+    subreddit='Singapore',
+    scrape_limit=30)
+
+    # Import filtered comments for testing and validation
     filtered_comments = c_filter(
-        input_file=main_config.remaining_comments,
+        input_file=main_config.scraped_comments,
         shuffle=True,
-        remove_username=False,
-        length_min=14,
+        remove_username=True,
+        length_min=10,
         length_max=99999,
         uncased=False,
         unique=True)

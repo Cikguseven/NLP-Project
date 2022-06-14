@@ -14,11 +14,9 @@ version = "v7_"
 all_labels = version + "all_labels.txt"
 wrong_labels = version + "wrong_labels.txt"
 
-validation_str = version + "val_" + str(validation_split) + "_cased"
-spacy_validation_file = validation_str + ".spacy"
+spacy_validation_file = version + "val_" + str(validation_split) + "_cased" + ".spacy"
 
-training_str = version + "train_" + str(training_split) + "_cased"
-spacy_training_file = training_str + ".spacy"
+spacy_training_file = version + "train_" + str(training_split) + "_cased" + ".spacy"
 
 # with open(hand_labelled_comments) as f:
 #     testing_lines = [next(f).strip() for x in range(testing_count)]
