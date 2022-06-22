@@ -1,8 +1,16 @@
-import re
+parents = {'Brenda': 'Aaron', 'Claire': 'Brenda', 'David': 'Brenda',
+'Elis': 'Claire', 'Freddy': 'Claire', 'Gerene': 'David'}
 
-x = 'ḟ̶̹̎̅̋̂ų̴̢̣͈͚̰͍̻͔̦͎͉̬͓̒̀̀͌́͌̚͠͝c̶̱̝̖̳̿͋̋̎͛̐͋k̶̢͔̰̲̼̯̠̭̜͆̏̊͂̀͐̓̓́̈́̚̚͠ ̸͓̜̙̺͇̬̝̟̽̌̓͌͆́̀͘y̶̝͇̹̟̱͉̒̈͆̀͝͠o̸̡̧̪̱̰̺͙͉͓͕̜͒͛̌̿̿̆̊̅̆͝ṵ̵̪̞͉̦̞̐̉'
+def convert(p_d):
+	c_d = {}
+	for key, value in p_d.items():
+		if value in c_d:
+			c_d[value].append(key)
+		else:
+			c_d[value] = [key]
+		if key not in c_d:
+			c_d[key] = []
+	return c_d
 
-x = re.sub("[^A-Za-z0-9 .,!?'/$&@%+\-\(\)]", ' ', x)
-
-print(" ".join(x.strip().split()))
+print(convert(parents))
 
