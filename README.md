@@ -104,3 +104,10 @@ To scrape comments for NER, create a config.py file in the NER folder with Reddi
 | --- | --- | --- | --- | --- |
 |Weak Supervision labels|64.0|46.7|25.0|45.2|
 |Gold labels|73.7|48.5|42.4|54.9|  
+
+## Web Application
+
+### Workflow:
+Open command prompt in `/flask` and key in the command `npm run dev`
+Run `flask_axios_api.py`
+Open `127.0.0.1:1234` or `localhost:1234` in a web browser to access the web application
