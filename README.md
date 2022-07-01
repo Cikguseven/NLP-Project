@@ -7,7 +7,7 @@ Using Weak Supervision to perform Named Entity Recognition (NER) and Offensive L
 ## NER
 
 ### Workflow to obtain fine-tuned NER model using weak supervision/gold labels:
-To scrape comments for NER, create a config.py file in the NER folder with Reddit API info. (Refer to `NER/example_config.py`)
+To scrape comments for NER, create a config.py file in the NER folder with Reddit API info. (Refer to `NER/example_config.py`)  
 Adjust parameters from `NER/NER_v7/main_config.py`
 
 `NER/NER_v7/make_spacy_weak_supervision.py` (pipeline to scrape and preprocess comments, apply and resolve aggregated labelling functions, serialize .spacy binary file for fine-tuning)  
@@ -109,6 +109,6 @@ Adjust parameters from `NER/NER_v7/main_config.py`
 ## Web Application
 
 ### Workflow:
-Open command prompt in `/flask` and key in the command `npm run dev`
-Run `flask_axios_api.py`
-Open `127.0.0.1:1234` or `localhost:1234` in a web browser to access the web application
+Open command prompt in `/flask` and key in the command `npm run dev`  
+Run `flask_axios_api.py`  
+Open `127.0.0.1:1234` or `localhost:1234` in a web browser to access the web application  
