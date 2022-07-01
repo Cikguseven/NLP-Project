@@ -4,14 +4,15 @@ Using Weak Supervision to perform Named Entity Recognition (NER) and Offensive L
 #### Quick start: 
 `pip install requirements.txt` in NER/OLID folder.
 
-To scrape comments for NER, create a config.py file in the NER folder with Reddit API info. (Refer to `NER/example_config.py`)
-
 ## NER
 
-### Workflow to obtain fine-tuned NER model using weak supervision/gold labels: 
+### Workflow to obtain fine-tuned NER model using weak supervision/gold labels:
+To scrape comments for NER, create a config.py file in the NER folder with Reddit API info. (Refer to `NER/example_config.py`)
+Adjust parameters from `NER/NER_v7/main_config.py`
+
 `NER/NER_v7/make_spacy_weak_supervision.py` (pipeline to scrape and preprocess comments, apply and resolve aggregated labelling functions, serialize .spacy binary file for fine-tuning)  
 `NER/NER_cli_train.ipynb` (jupyter notebook to fine-tune model in command line using serialized file)  
-`NER/NER_v7/evaluate.py` (test performance on NER task from best model saved to disk after fine-tuning) 
+`NER/NER_v7/evaluate.py` (test performance on NER task from best model saved to disk after fine-tuning)
 
 ### Performance
 
