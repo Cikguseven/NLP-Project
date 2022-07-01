@@ -1,5 +1,5 @@
 # NLP Project
-Using Weak Supervision to perform Named Entity Recognition (NER) and Offensive Language Identification (OLI) on r/Singapore,EDMW and OLID comments.
+Using Weak Supervision to perform Named Entity Recognition (NER) and Offensive Language Identification (OLI) on r/Singapore, EDMW and OLID comments.
 
 #### Quick start: 
 `pip install requirements.txt` in NER/OLID folder.
@@ -10,9 +10,9 @@ Using Weak Supervision to perform Named Entity Recognition (NER) and Offensive L
 To scrape comments for NER, create a config.py file in the NER folder with Reddit API info. (Refer to `NER/example_config.py`)  
 Adjust parameters from `NER/NER_v7/main_config.py`
 
-`NER/NER_v7/make_spacy_weak_supervision.py` (pipeline to scrape and preprocess comments, apply and resolve aggregated labelling functions, serialize .spacy binary file for fine-tuning)  
-`NER/NER_cli_train.ipynb` (jupyter notebook to fine-tune model in command line using serialized file)  
-`NER/NER_v7/evaluate.py` (test performance on NER task from best model saved to disk after fine-tuning)
+- `NER/NER_v7/make_spacy_weak_supervision.py` (pipeline to scrape and preprocess comments, apply and resolve aggregated labelling functions, serialize .spacy binary file for fine-tuning)  
+- `NER/NER_cli_train.ipynb` (jupyter notebook to fine-tune model in command line using serialized file)  
+- `NER/NER_v7/evaluate.py` (test performance on NER task from best model saved to disk after fine-tuning)
 
 ### Performance
 
@@ -26,10 +26,10 @@ Adjust parameters from `NER/NER_v7/main_config.py`
 ## OLI  
 
 ### Workflow to obtain fine-tuned OLID model using weak supervision/gold labels:  
-`OLID/ws_v0/download_transformer_pipeline.py` (download hugging face transformers required for weak supervision pipeline)  
-`OLID/ws_v0/make_spacy.py` (pipeline to preprocess comments, apply and resolve aggregated labelling functions, serialize .spacy binary file for fine-tuning)  
-`NER/NER_cli_train.ipynb` (jupyter notebook to fine-tune model in command line using serialized file)  
-`NER/NER_v7/*_analysis.py` (test OLID performance on chosen dataset from best model saved to disk after fine-tuning) 
+- `OLID/ws_v0/download_transformer_pipeline.py` (download hugging face transformers required for weak supervision pipeline)  
+- `OLID/ws_v0/make_spacy.py` (pipeline to preprocess comments, apply and resolve aggregated labelling functions, serialize .spacy binary file for fine-tuning)  
+- `NER/NER_cli_train.ipynb` (jupyter notebook to fine-tune model in command line using serialized file)  
+- `NER/NER_v7/*_analysis.py` (test OLID performance on chosen dataset from best model saved to disk after fine-tuning) 
 
 ### Performance
 
@@ -109,6 +109,6 @@ Adjust parameters from `NER/NER_v7/main_config.py`
 ## Web Application
 
 ### Workflow:
-Open command prompt in `/flask` and key in the command `npm run dev`  
-Run `flask_axios_api.py`  
-Open `127.0.0.1:1234` or `localhost:1234` in a web browser to access the web application  
+- Open command prompt in `/flask` and key in the command `npm run dev`  
+- Run `flask_axios_api.py`  
+- Open `127.0.0.1:1234` or `localhost:1234` in a web browser to access the web application  
